@@ -15,12 +15,13 @@ Assume that you are using Mac OS X Snow Leopard (this means you will have python
 
 ## Existing Features
 1. facebook integeration
-2. messaging system
+2. trip page with admin feature to invite or approve ppl
 3. picture upload
 4. email notification
 5. trip filtering
 6. Upcoming/Newly Created trips
 7. user roles: organizer, others
+8. simple planning between spots, trip and users, a trust system(if u cancel too late, ur credit get destroyed). Extra people get suggestion to rent a car or bus (first come first server based). 
 
 ## Feature Pipeline
 1. Lodging affiliate
@@ -30,3 +31,7 @@ Assume that you are using Mac OS X Snow Leopard (this means you will have python
 5. Twitter integration
 6. Search Trips instead of filtering: Solr
 7. Autocomplete
+8. messaging system
+9. private trips
+10. trip feedback
+11. repeat the same trip, same group of ppl
