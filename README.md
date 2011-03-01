@@ -6,6 +6,7 @@ A project for ski & snowboard lovers.
 ### Local Environment Setup
 Assume that you are using Mac OS X Snow Leopard (this means you will have python and related tools installed):
 
+0. Install virtualenv and install [virtualenvwrapper](http://www.doughellmann.com/docs/virtualenvwrapper/). Use virtualenvwrapper tool to create virtual enviroment for Pyramid.
 1. Install Pyramid framework by following [this](http://docs.pylonsproject.org/projects/pyramid/1.0/narr/install.html#installing-pyramid-on-a-unix-system).
 2. Install Mysql Community Server 5.1 64-bit from [here](http://dev.mysql.com/downloads/mysql/5.1.html). Make sure that you install 64-bit, not 32-bit.
 
