@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Unicode
+from sqlalchemy import Column, Integer, String, Unicode, BLOB
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.declarative import declarative_base
@@ -19,7 +19,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(255))
     email = Column(String(255), unique=True)
-    password = Column(String(32))
+    password = Column(BLOB)
 
     def __init__(self, name, email, password):
         self.name = name
@@ -32,7 +32,8 @@ def initialize_sql(engine):
     Base.metadata.create_all(engine)
     try:
         session = DBSession()
-        user = User(u'Ben Hu', 'bhu@carvewith.us', func.md5('5mad_cows'))
+        user = User(u'Ben Hu', 'bhu@carvewith.us', func.aes_encrypt('5mad_cows',
+                                                                   'my_secret_key'))
         session.add(user)
         session.commit()
     except IntegrityError:
