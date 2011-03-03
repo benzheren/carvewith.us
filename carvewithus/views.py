@@ -1,7 +1,7 @@
 from carvewithus.models import DBSession
-from carvewithus.models import MyModel
+from carvewithus.models import User
 
 def my_view(request):
     dbsession = DBSession()
-    root = dbsession.query(MyModel).filter(MyModel.name==u'root').first()
+    root = dbsession.query(User).filter(User.name==u'Ben Hu').first()
     return {'root':root, 'project':'carvewithus'}
