@@ -9,9 +9,11 @@ def main(global_config, **settings):
     engine = engine_from_config(settings, 'sqlalchemy.')
     initialize_sql(engine)
     config = Configurator(settings=settings)
+    config.scan()
     config.add_static_view('static', 'carvewithus:static')
-    config.add_route('home', '/', view='carvewithus.views.my_view',
-                     view_renderer='templates/mytemplate.pt')
+    config.add_static_view('css', 'carvewithus:static/css')
+    config.add_route('signup', '/')
+    config.add_route('create_profile', '/profile/create')
     return config.make_wsgi_app()
 
 

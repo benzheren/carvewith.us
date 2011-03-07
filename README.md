@@ -11,6 +11,9 @@ Assume that you are using Mac OS X Snow Leopard (this means you will have python
 2. Install Mysql Community Server 5.1 64-bit from [here](http://dev.mysql.com/downloads/mysql/5.1.html). Make sure that you install 64-bit, not 32-bit.
 3. Install MySQL-python library with pip or easy_install.
 
+### Database
+1. In your local mysql database, create a user:carvewithus with password:5mad_cows. Create a database called carvewithus and grant correct privileges of this database to carvewithus user.
+
 ## Open Questions
 * What's the relationship between our users? Friends or followers? (Follower case, this guy is awsome and I  like to follow him when he goes to snowboarding)
 * Other than ski/snowboard, do we need any other preference/interests to catch?

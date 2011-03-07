@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Unicode, BLOB
+from sqlalchemy import Column, Integer, String, Unicode
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
@@ -14,14 +14,13 @@ class User(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
+    username = Column(Unicode(255), unique=True)
     name = Column(Unicode(255))
     email = Column(String(255), unique=True)
-    password = Column(BLOB)
+    password = Column(String(40))
 
-    def __init__(self, name, email, password):
-        self.name = name
-        self.email = email
-        self.password = password
+    def __init__(self):
+        pass
 
 def initialize_sql(engine):
     DBSession.configure(bind=engine)
@@ -29,10 +28,6 @@ def initialize_sql(engine):
     Base.metadata.create_all(engine)
     try:
         session = DBSession()
-        user = User(u'Ben Hu', 'bhu@carvewith.us',
-                    func.aes_encrypt('5mad_cows', 'my_secret_key'))
-        session.add(user)
-        session.commit()
     except IntegrityError:
         # already exist
         pass
