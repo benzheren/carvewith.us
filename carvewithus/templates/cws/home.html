@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>pagetitle</title>
+
+<link rel="stylesheet" href="css/960reset.css" />
+<link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+
+<!----- Head Start ----->
+<div id="head">
+	<div class="logo"><h1>carvewith.us</h1></div>
+    
+    <ul class="menu">
+    	<li><a href="">
+        	<h2>Join Trip</h2>
+            <span class="sub">Find a trip to join</span>
+        </a></li>
+        <li><a href="">
+        	<h2>Organize Trip</h2>
+            <span class="sub">Make a new trip</span>
+        </a></li>
+    </ul>
+    
+    <div id="account">
+    	<div id="login_links">
+        	<a href="login">login</a>&nbsp;|&nbsp;<a href="register">register</a>
+        </div>
+        <div id="account_links">
+        	<span>Hi, username</span>
+            &nbsp;|&nbsp;
+            <a href="account">my account</a>
+            &nbsp;|&nbsp;
+            <a href="login">logout</a>
+        </div>
+    </div>
+
+</div>
+<!----- Head End ----->
+
+<!----- SubHead Start ----->
+<div id="subhead">
+	<div class="title">
+    	<h3>Trip title goes here</h3>
+    </div>
+</div>
+<!----- SubHead End ----->
+
+<!----- Content Start ----->
+
+<div id="content" class="content container_12">
+
+	<!----- Left Column ----->
+	<div id="column_1" class="grid_3">
+    	<img src="" width="180" height="120" />
+        
+        <div class="clear"> </div>
+        
+        <!----- Dates ----->
+        <div id="dates" class="outer">
+            <div id="from_date" class="inner">
+            	<span>From</span>
+            	<div class="date">
+            		<div class="month">MON</div>
+                    <div class="day">12</div>
+                    <div class="dow">fri</div>
+            	</div>
+            </div>
+            <div class="inner arrow">
+            	<span>&rarr;</span>
+            </div> 
+            <div id="to_date" class="inner">
+            	<span>To</span>
+            	<div class="date">
+            		<div class="month">MON</div>
+                    <div class="day">12</div>
+                    <div class="dow">fri</div>
+            	</div>
+            </div> 
+        </div>
+        <!-- end dates -->
+        <div class="clear"> </div>
+        
+        <!-- Transportation -->
+        <div id="transportation" class="outer">
+            <h5>Transportation</h5>
+            <img class="col_lead_icon" src="" />
+            <div class="indicator">5</div>
+            <div class="label">spots remaining</div>
+        </div>
+        <!-- end Transportation -->
+        <div class="clear"> </div>
+        
+        <!-- Lodging -->
+        <div id="lodging" class="outer">
+            <h5>Lodging</h5>
+            <img class="col_lead_icon" src="" />
+            <div class="indicator">Y</div>
+            <div class="label">have lodging</div>
+        </div>
+        <!-- end Lodging -->
+        <div class="clear"> </div>
+        
+        <!-- Organizer -->
+        <div id="organizer" class="outer">
+            <h5>Organizer</h5>
+            <div class="user_small">
+                <a id="user_###" class="block" href="">
+                <img class="small" src="" />
+                <h6 class="name">User Name</h6>
+                <div class="skill">
+                	<span class="activity">Snowboard</span>
+                    <span class="level">Beginner</span>
+                </div>
+                <ul class="tags">
+                	<li>tag</li>
+                </ul>
+				</a>	            
+            </div>
+        </div>
+        <!-- end Organizer -->
+        <div class="clear"> </div>
+    </div>	
+	<!----- End Left Column ----->
+    
+    <!----- Main Column ----->
+	<div id="column_main" class="grid_9">
+    	<!----- Top bar ----->
+        <div class="top">
+        	<input id="btn_join" class="button" name="join" type="button" />
+            <input id="btn_bookmark" class="button" name="bookmark" type="button" />
+            <ul id="share" class="share">
+            	<li class="label"></li>
+                <li></li>
+           	</ul>
+            <input id="btn_admin" class="button" name="admin" type="button" />
+        </div>
+        <!----- end Top bar ----->
+        <div id="summary" class="outer">
+        	<h4>Summary</h4>
+            <p id="description">blah blah blah</p>
+       	</div>
+        
+        <div id="members" class="outer">
+        	<h4>Who is going?</h4>
+            <ul id="users_small_list">
+            	<li>
+                    <a id="user_###" class="block" href="">
+                        <img class="small" src="" />
+                        <h6 class="name">User Name</h6>
+                        <div class="skill">
+                        <span class="activity">Snowboard</span>
+                        <span class="level">Beginner</span>
+                        </div>
+                        <ul class="tags">
+                        	<li>tag</li>
+                        </ul>
+                    </a>	            
+                </li>
+            </ul>
+       	</div>
+        
+        <div id="destinations" class="outer">
+        	<h4>Destinations</h4>
+            <div id="ds_col_main">
+                <ul class="timespan">
+                    <li value="#destinationid#">#number#</li>
+                </ul>
+                
+                <div id="timespan_labels">
+                    <div class="start">start</div>
+                    <div class="end">end</div>
+                </div>
+                <div class="clear"></div>
+                <ul id="destination_list">
+                	<li value="#destinationid#">
+                    	<img class="marker" src="" />
+                        <h6 class="place"><a href="">San Francisco, CA</a></h6>
+                    	<div class="date">March 2, 2011</div>
+                        <div class="time">7:56 AM</div>
+                    </li>
+                </ul>
+           	</div>
+            <div id="ds_col_right">
+                <map>placeholder</map>
+           	</div>
+       	</div>
+        
+    </div>
+    <!----- End Main Column ----->
+</div>
+<!----- Content End ----->
+
+</body>
+</html>
