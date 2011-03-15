@@ -1,3 +1,3 @@
 <%inherit file="base.mak"/>
 
-Good!
+Good! ${root}
