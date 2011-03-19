@@ -126,6 +126,17 @@ a:hover {
 	font-size:1.1em;
 }
 
+.content {
+    background:#FFF;
+    display:block;
+    overflow:hidden;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 1px 1px 5px #ccc;
+    -webkit-box-shadow: 1px 1px 5px #ccc;
+    box-shadow: 1px 1px 5px #ccc;
+}
 
 /****************************************
 	Body
@@ -134,13 +145,15 @@ a:hover {
 /*sign up*/
 #sign_up {
     margin-top: 40px;
+    min-height: 260px;
 }
 
 #sign_up .title {
+    background: none repeat scroll 0 0 #A7BFE8;
     height: 60px;
     font-size: 24px;
     font-weight: bold;
-    verti
+    padding: 10px 0px 0px 20px;
 }
 
 #sign_up .top {
@@ -154,6 +167,7 @@ a:hover {
     text-align: center;
     margin-top: 20px;
 }
+
 /*facebook button*/
 .fb_button {
     margin-top: 40px;

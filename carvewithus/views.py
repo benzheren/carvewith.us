@@ -31,7 +31,6 @@ class SignUp(object):
             if not user:
                 graph = facebook.GraphAPI(cookie['access_token'])
                 profile = graph.get_object('me')
-                print profile
                 user = User(username=self.get_username(profile['name']),
                             name=profile['name'], email=profile['email'],
                             fb_id=profile['id'], fb_profile_url=profile['link'], 
@@ -49,9 +48,9 @@ class SignUp(object):
         step_0 = FieldSet(User)
         step_0.configure(
             include = [
-                step_0.name,
-                step_0.email,
-                step_0.password,
+                step_0.name.required(),
+                step_0.email.required(),
+                step_0.password.password().required(),
             ],
             options=[step_0.email.set(validate=validators.email)]
         )
