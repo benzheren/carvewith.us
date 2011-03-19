@@ -50,19 +50,20 @@
 </div>
 <!----- SubHead End ----->
 
+
 <!----- Content Start ----->
 
 <div id="content" class="content container_12">
 
 	<!----- Left Column ----->
 	<div id="column_1" class="grid_3">
-    	<img src="" width="180" height="120" />
+    	<img src="" class="trip_pic" />
         
         <div class="clear"> </div>
         
         <!----- Dates ----->
         <div id="dates" class="outer">
-            <div id="from_date" class="inner">
+            <div id="from_date" class="inner dates">
             	<span>From</span>
             	<div class="date">
             		<div class="month">MON</div>
@@ -73,12 +74,12 @@
             <div class="inner arrow">
             	<span>&rarr;</span>
             </div> 
-            <div id="to_date" class="inner">
+            <div id="to_date" class="inner dates">
             	<span>To</span>
             	<div class="date">
-            		<div class="month">MON</div>
+            		<div class="month">mar</div>
                     <div class="day">12</div>
-                    <div class="dow">fri</div>
+                    <div class="dow">wed</div>
             	</div>
             </div> 
         </div>
@@ -90,7 +91,7 @@
             <h5>Transportation</h5>
             <img class="col_lead_icon" src="" />
             <div class="indicator">5</div>
-            <div class="label">spots remaining</div>
+            <div class="label">Spots<br  />Remaining</div>
         </div>
         <!-- end Transportation -->
         <div class="clear"> </div>
@@ -100,7 +101,7 @@
             <h5>Lodging</h5>
             <img class="col_lead_icon" src="" />
             <div class="indicator">Y</div>
-            <div class="label">have lodging</div>
+            <div class="label">Have<br />Lodging</div>
         </div>
         <!-- end Lodging -->
         <div class="clear"> </div>
@@ -118,6 +119,7 @@
                 </div>
                 <ul class="tags">
                 	<li>tag</li>
+                    <li>tag</li>                
                 </ul>
 				</a>	            
             </div>
@@ -131,23 +133,23 @@
 	<div id="column_main" class="grid_9">
     	<!----- Top bar ----->
         <div class="top">
-        	<input id="btn_join" class="button" name="join" type="button" />
-            <input id="btn_bookmark" class="button" name="bookmark" type="button" />
+        	<input id="btn_join" class="button primary" name="join" type="button" value="Join Trip" />
+            <input id="btn_bookmark" class="button primary" name="bookmark" type="button" value="&hearts;" />
             <ul id="share" class="share">
-            	<li class="label"></li>
-                <li></li>
+            	<li class="label">icon</li>
+                <li>icon</li>
            	</ul>
-            <input id="btn_admin" class="button" name="admin" type="button" />
+            <input id="btn_admin" class="button secondary" name="admin" type="button" value="Trip Admin" />
         </div>
         <!----- end Top bar ----->
         <div id="summary" class="outer">
         	<h4>Summary</h4>
-            <p id="description">blah blah blah</p>
+            <p id="description">blah blah blahblah blah blahblah blah blahblah blah blahblah blah blahblah blah blahblah blah blah</p>
        	</div>
         
         <div id="members" class="outer">
         	<h4>Who is going?</h4>
-            <ul id="users_small_list">
+            <ul class="users_small_list">
             	<li>
                     <a id="user_###" class="block" href="">
                         <img class="small" src="" />
@@ -156,11 +158,32 @@
                         <span class="activity">Snowboard</span>
                         <span class="level">Beginner</span>
                         </div>
-                        <ul class="tags">
-                        	<li>tag</li>
-                        </ul>
+                        
                     </a>	            
                 </li>
+                <li>
+                    <a id="user_###" class="block" href="">
+                        <img class="small" src="" />
+                        <h6 class="name">User Name</h6>
+                        <div class="skill">
+                        <span class="activity">Snowboard</span>
+                        <span class="level">Beginner</span>
+                        </div>
+                    
+                    </a>	            
+                </li>
+
+				<li>
+                    <a id="user_###" class="block" href="">
+                        <img class="small" src="" />
+                        <h6 class="name">User Name</h6>
+                        <div class="skill">
+                        <span class="activity">Snowboard</span>
+                        <span class="level">Beginner</span>
+                        </div>
+                    </a>	            
+                </li>
+
             </ul>
        	</div>
         
@@ -168,19 +191,22 @@
         	<h4>Destinations</h4>
             <div id="ds_col_main">
                 <ul class="timespan">
-                    <li value="#destinationid#">#number#</li>
+                    <li value="#destinationid#">##</li>
+                    <li value="#destinationid#" style="background:#aaa">##</li>
+                    <li value="#destinationid#" style="background:#999">##</li>
+                     <li value="#destinationid#" style="background:#666">##</li>
                 </ul>
                 
                 <div id="timespan_labels">
-                    <div class="start">start</div>
-                    <div class="end">end</div>
+                    <div class="start">Start</div>
+                    <div class="end">End</div>
                 </div>
                 <div class="clear"></div>
                 <ul id="destination_list">
                 	<li value="#destinationid#">
                     	<img class="marker" src="" />
                         <h6 class="place"><a href="">San Francisco, CA</a></h6>
-                    	<div class="date">March 2, 2011</div>
+                    	<div class="date">January 2, 2011</div>
                         <div class="time">7:56 AM</div>
                     </li>
                 </ul>
@@ -192,8 +218,31 @@
         
     </div>
     <!----- End Main Column ----->
+    
+ <div class="clear"> </div>
 </div>
 <!----- Content End ----->
+
+<div class="footer">
+	<div class="container_12">
+		<div class="footer_col_1 grid_3">
+			<ul class="sitemap">
+				<li class="lead">carvewith.us</li>
+				<li><a href="home">Home</a></li>
+				<li><a href="jointrip">Join a Trip</a></li>
+				<li><a href="organizetrip">Organize Trip</a></li>
+				<li><a href="about">About Us</a></li>
+				<li><a href="mobile">Misc</a></li>
+			</ul>
+		</div>
+		<div class="grid_9">
+			<h1>Carve with who?</h1>
+			<p class="description">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>
