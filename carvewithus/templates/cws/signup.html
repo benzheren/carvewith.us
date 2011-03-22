@@ -16,12 +16,12 @@
         <div class="logo"><h1>carvewith.us</h1></div>
         
         <ul class="menu">
-            <li><a href="">
+            <li><a href="joinlink">
                 <h2>Join Trip</h2>
                 <span class="sub">Find a trip to join</span>
             </a></li>
-            <li><a href="">
-                <h2>Organize Trip</h2>
+            <li><a href="organizelink">
+                <h2>Organize</h2>
                 <span class="sub">Make a new trip</span>
             </a></li>
         </ul>
@@ -44,156 +44,93 @@
 
 <!----- SubHead Start ----->
 <div id="subhead">
-	<div class="title">
-    	<h3>Trip title goes here</h3>
-    </div>
+	
 </div>
 <!----- SubHead End ----->
 
 <!----- Content Start ----->
 
-<div id="content" class="content container_12">
-
-	<!----- Left Column ----->
-	<div id="column_1" class="grid_3">
-    	<img src="" width="180" height="120" />
-        
-        <div class="clear"> </div>
-        
-        <!----- Dates ----->
-        <div id="dates" class="outer">
-            <div id="from_date" class="inner">
-            	<span>From</span>
-            	<div class="date">
-            		<div class="month">MON</div>
-                    <div class="day">12</div>
-                    <div class="dow">fri</div>
-            	</div>
-            </div>
-            <div class="inner arrow">
-            	<span>&rarr;</span>
-            </div> 
-            <div id="to_date" class="inner">
-            	<span>To</span>
-            	<div class="date">
-            		<div class="month">MON</div>
-                    <div class="day">12</div>
-                    <div class="dow">fri</div>
-            	</div>
-            </div> 
-        </div>
-        <!-- end dates -->
-        <div class="clear"> </div>
-        
-        <!-- Transportation -->
-        <div id="transportation" class="outer">
-            <h5>Transportation</h5>
-            <img class="col_lead_icon" src="" />
-            <div class="indicator">5</div>
-            <div class="label">spots remaining</div>
-        </div>
-        <!-- end Transportation -->
-        <div class="clear"> </div>
-        
-        <!-- Lodging -->
-        <div id="lodging" class="outer">
-            <h5>Lodging</h5>
-            <img class="col_lead_icon" src="" />
-            <div class="indicator">Y</div>
-            <div class="label">have lodging</div>
-        </div>
-        <!-- end Lodging -->
-        <div class="clear"> </div>
-        
-        <!-- Organizer -->
-        <div id="organizer" class="outer">
-            <h5>Organizer</h5>
-            <div class="user_small">
-                <a id="user_###" class="block" href="">
-                <img class="small" src="" />
-                <h6 class="name">User Name</h6>
-                <div class="skill">
-                	<span class="activity">Snowboard</span>
-                    <span class="level">Beginner</span>
-                </div>
-                <ul class="tags">
-                	<li>tag</li>
-                </ul>
-				</a>	            
-            </div>
-        </div>
-        <!-- end Organizer -->
-        <div class="clear"> </div>
-    </div>	
-	<!----- End Left Column ----->
-    
-    <!----- Main Column ----->
-	<div id="column_main" class="grid_9">
-    	<!----- Top bar ----->
-        <div class="top">
-        	<input id="btn_join" class="button" name="join" type="button" />
-            <input id="btn_bookmark" class="button" name="bookmark" type="button" />
-            <ul id="share" class="share">
-            	<li class="label"></li>
-                <li></li>
-           	</ul>
-            <input id="btn_admin" class="button" name="admin" type="button" />
-        </div>
-        <!----- end Top bar ----->
-        <div id="summary" class="outer">
-        	<h4>Summary</h4>
-            <p id="description">blah blah blah</p>
-       	</div>
-        
-        <div id="members" class="outer">
-        	<h4>Who is going?</h4>
-            <ul id="users_small_list">
-            	<li>
-                    <a id="user_###" class="block" href="">
-                        <img class="small" src="" />
-                        <h6 class="name">User Name</h6>
-                        <div class="skill">
-                        <span class="activity">Snowboard</span>
-                        <span class="level">Beginner</span>
-                        </div>
-                        <ul class="tags">
-                        	<li>tag</li>
-                        </ul>
-                    </a>	            
-                </li>
-            </ul>
-       	</div>
-        
-        <div id="destinations" class="outer">
-        	<h4>Destinations</h4>
-            <div id="ds_col_main">
-                <ul class="timespan">
-                    <li value="#destinationid#">#number#</li>
-                </ul>
-                
-                <div id="timespan_labels">
-                    <div class="start">start</div>
-                    <div class="end">end</div>
-                </div>
-                <div class="clear"></div>
-                <ul id="destination_list">
-                	<li value="#destinationid#">
-                    	<img class="marker" src="" />
-                        <h6 class="place"><a href="">San Francisco, CA</a></h6>
-                    	<div class="date">March 2, 2011</div>
-                        <div class="time">7:56 AM</div>
-                    </li>
-                </ul>
-           	</div>
-            <div id="ds_col_right">
-                <map>placeholder</map>
-           	</div>
-       	</div>
-        
+<div id="content" class="content container_480">
+	
+    <!----- Title bar ----->
+	<div class="bar">
+    	<h3>Sign Up</h3>
     </div>
-    <!----- End Main Column ----->
+    <!----- end Title bar ----->
+    
+    <!----- Manual Sign Up ----->
+    <form method="post" id="signup" name="signup">
+    <div class="clear"> </div>
+
+        <table class="verticalform" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="label"><label for="reg_name">Full Name:</label></td>
+                    <td class="input"><input id="txt_reg_name" name="reg_name" type="text" class="inputtext" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="reg_email">Email:</label></td>
+                    <td class="input"><input id="txt_user_email" name="user_email" type="text" class="inputtext" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="reg_pwd">Password:</label></td>
+                    <td class="input"><input id="txt_reg_pwd" name="reg_pwd" type="password" class="inputtext" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="reg_city">City:</label></td>
+                    <td class="input">
+                        <select id="txt_reg_city" name="full_name" class="inputtext">
+                            <option value="sfo">San Francisco, CA</option>
+                            <option value="nyc">New York City, NY</option>
+                            <option value="chi">Chicago, IL</option>
+                            <option value="den">Denver, CO</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"></td>
+                    <td class="text">By clicking "Sign Up", you are agreeing to our <a href="terms">terms</a>.</td>
+                </tr>
+                <tr>
+                    <td class="label"></td>
+                    <td class="text"><a href="signup" class="button primary">Sign Up</a></td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </form>
+    <!----- End Manual Sign Up ----->
+	
+    
+        
+       
+    
+ <div class="clear"> </div>
 </div>
 <!----- Content End ----->
 
+
+<!----- Footer Start ----->
+<div class="footer">
+	<div class="container_12">
+		<div class="footer_col_1 grid_3">
+			<ul class="sitemap">
+				<li class="lead">carvewith.us</li>
+				<li><a href="home">Home</a></li>
+				<li><a href="jointrip">Join a Trip</a></li>
+				<li><a href="organizetrip">Organize Trip</a></li>
+				<li><a href="about">About Us</a></li>
+				<li><a href="mobile">Misc</a></li>
+			</ul>
+		</div>
+		<div class="grid_9">
+			<h1>Carve with who?</h1>
+			<p class="description">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</div>
+</div>
+<!----- Footer End ----->
 </body>
 </html>

@@ -154,6 +154,37 @@ a:hover {
 	font-weight:400;
 }
 
+/****************************************
+	Buttons
+*****************************************/
+a.button {
+	font-weight:bold;
+	text-align:center;
+	display:block;
+	border-radius:5px;
+}
+
+.button.primary {
+	font-weight:bold;
+	font-size:1.6em;
+	
+	padding:10px 20px;
+
+	background:#b71d1f;
+	width:auto;
+	
+	color:#fff;
+}
+.button.primary:hover {
+	text-decoration:none;
+}
+.button.primary:active {
+	background:#000;	
+}
+.button.secondary {
+	font-size:1.1em;
+}
+
 
 /****************************************
 	Left Column - Trip Profile
@@ -351,17 +382,11 @@ a:hover {
 #column_main .button {
 	float:left;
 	margin:0px 10px 0px 0px;
-	padding:5px 10px;
 }
-#column_main .button.primary {
-	font-weight:bold;
-	font-size:1.4em;
-}
-#column_main .button.secondary {
-	font-size:1.1em;
-}
+
 #column_main .button#btn_admin {
 	float:right;
+	margin:10px 10px 0px 0px;
 }
 #column_main .share {
 	float:left;
@@ -375,6 +400,8 @@ a:hover {
 #column_main .outer {
 	margin:10px 0px 30px 0px;
 }
+
+
 p#description {
 	font-size:1.2em;	
 }
@@ -479,10 +506,15 @@ map {
 	width:100%;
 	min-height:100px;
 	overflow:hidden;
-	padding:20px 0 20px 0;
+	padding:0px 0 20px 0;
 	/* background:#a7bfe8; */
 	color:#666;
-	border-top:0px solid #280078;
+	border-top:1px solid #280078;	
+}
+
+.footer .container_12 {
+	
+	padding:10px 0px;
 }
 .footer a {
 	color:#666;
@@ -517,3 +549,58 @@ map {
 	line-height:1.4em;
 }
 
+/****************************************
+	Sign Up / Small Content
+*****************************************/
+.container_480 {
+	width:480px;
+	margin:0 auto;	
+}
+.container_480 .bar {
+	padding:0 0 10px 0;
+	width:100%;
+	border-radius:5px 5px 0px 0px;
+	background:	#a7bfe8;
+	overflow:hidden;
+	display:block;
+	border-bottom:5px solid #280078;
+}
+
+.container_480 .bar h3 {
+	float:left;
+	display:block;
+	margin:10px 0 0 10px;
+	font-size:2.4em;
+	font-weight:400;
+	color:#fff;
+	
+}
+
+
+#signup table.verticalform {
+	width:100%;
+	display:inline-block;
+}
+
+#signup .verticalform td.label {
+	width: 200px;
+	text-align:right;
+	padding:0 5px 0 0;
+}
+#signup .verticalform td.input {
+	padding:3px;
+}
+#signup .verticalform td.text {
+	padding:5px;
+}
+
+#signup .verticalform td.label label {
+	font-size:1.6em;
+	color:#666;
+}
+
+#signup .verticalform td.input .inputtext {
+	padding:5px;
+	font-size:1.6em;
+	width:220px;
+}
