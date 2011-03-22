@@ -1,6 +1,6 @@
 <%inherit file="base.mak"/>
 <div class="container_12">
-<div class="grid_6 prefix_3 suffix_3">
+<div class="grid_6 push_3">
 <div id="sign_up" class="content">
     <div class="title content">
         Sign up
@@ -9,7 +9,7 @@
         <fb:login-button size="xlarge">Connect Your Facebook Account</fb:login-button>
     </div>
     <div class="sign_up_1" style="display:none;">
-	<form method="post">
+	<form method="post" action="/signup/signup_post">
             ${fs.render()}
 	    <input type="checkbox" id="allow_passwordless" value="allow_passwordless" name="allow_passwordless" checked="checked">
 	    <label for="allow_passwordless" class="login_option">Let me login without a password on this browser</label>
@@ -18,7 +18,7 @@
         </form>
     </div>
     <div class="sign_up_2 top" style="display:none;">
-	<form method="post">
+	<form method="post" action="/signup/signup_post">
             ${fs.render()}
 	    <input type="checkbox" id="" value="allow_passwordless" name="allow_passwordless" checked="checked">
 	    <label for="_allow_passwordless" class="login_option">Let me login without a password on this browser</label>
@@ -30,13 +30,10 @@
     </div>
 </div>
 </div>
+<div id="fb_preview" class="grid_2 push_3">
+
 </div>
-
-% if id:
-    <p><a href="${profile_url}"><img src="http://graph.facebook.com/${id}/picture?type=square"/></a></p>
-% endif
-
-
+</div>
 
 <div id="fb-root"></div>
 <script>
@@ -47,6 +44,12 @@
             $('#sign_up div.sign_up_0').hide();
     	    $('#sign_up div.sign_up_1').hide();
 	    $('#sign_up div.sign_up_2').show();
+	    FB.api('/me', function(response) {
+	        content = '<p><a href=\"' + response.link + '\"><img src=\"http://graph.facebook.com/' + response.id +
+		          '/picture?type=large\"></a></p>';
+	        $('#fb_preview').html(content);
+	    });
+	    
 	});
     };
     (function() {
