@@ -151,38 +151,71 @@ a:hover {
 	display:block;
 	margin:10px 0px;
 	font-size:2.4em;
-	font-weight:400;
+	font-weight:900;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 }
 
 /****************************************
 	Buttons
 *****************************************/
-a.button {
+.button,.button:visited {
+	background: #222 url(images/button-overlay.png) repeat-x;
 	font-weight:bold;
 	text-align:center;
-	display:block;
+	display:inline-block;
 	border-radius:5px;
+	font-weight:bold;
+	line-height:1;
+	border-radius:5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+.button:active {
+	top:1px;
 }
 
-.button.primary {
-	font-weight:bold;
-	font-size:1.6em;
-	
-	padding:10px 20px;
+.button:hover {
+	text-decoration:none;
+	background: #111;
+}
 
+.button.large {
+	font-size:1.6em;
+	padding:10px 20px;
+}
+
+.button.medium {
+	font-size:1.1em;
+	padding:7px 14px;
+}
+.button.blue {
+
+}
+.button.blue:hover {
+
+}
+.button.red {
 	background:#b71d1f;
-	width:auto;
-	
 	color:#fff;
 }
-.button.primary:hover {
-	text-decoration:none;
+.button.red:hover {
+	background:#C00;
+	color:#fff;
 }
-.button.primary:active {
-	background:#000;	
+.button.gray {
+	background:#666;
+	color:#fff;
 }
-.button.secondary {
-	font-size:1.1em;
+.button.gray:hover {
+	background:#777;
+
 }
 
 
@@ -235,12 +268,15 @@ a.button {
 	font-weight:bold;
 }
 .inner .date {
-	background:#002d44;
+	background:#280078;
 	font-weight:bold;
 	text-align:center;
 	text-transform:uppercase;
 	margin:5px 0px;
 	padding:0px 0px 5px 0px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .inner .date .month {
 	color:#FFF;
@@ -277,13 +313,17 @@ a.button {
 }
 .outer .indicator {
 	float:left;
-	font-size:1.8em;
-	background:#002d44;
+	font-size:2.4em;
+	background:#280078;
+	font-weight:900;
 	color:#FFF;
-	padding: 10px 20px;
+	padding: 7px 14px;
 	margin:5px 5px;
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	
+
 }
 .outer .label {
 	float:left;
@@ -311,10 +351,13 @@ a.button {
 	border:1px solid #ccc;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 
 }
 .users_small_list li:hover {
-	background:#ccc;
+	background:#eee;
 }
 
 .user_small, .users_small_list li a {
@@ -386,7 +429,7 @@ a.button {
 
 #column_main .button#btn_admin {
 	float:right;
-	margin:10px 10px 0px 0px;
+	margin:5px 5px 0px 0px;
 }
 #column_main .share {
 	float:left;
@@ -571,8 +614,9 @@ map {
 	display:block;
 	margin:10px 0 0 10px;
 	font-size:2.4em;
-	font-weight:400;
+	font-weight:900;
 	color:#fff;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	
 }
 
