@@ -151,7 +151,71 @@ a:hover {
 	display:block;
 	margin:10px 0px;
 	font-size:2.4em;
-	font-weight:400;
+	font-weight:900;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+}
+
+/****************************************
+	Buttons
+*****************************************/
+.button,.button:visited {
+	background: #222 url(images/button-overlay.png) repeat-x;
+	font-weight:bold;
+	text-align:center;
+	display:inline-block;
+	border-radius:5px;
+	font-weight:bold;
+	line-height:1;
+	border-radius:5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+.button:active {
+	top:1px;
+}
+
+.button:hover {
+	text-decoration:none;
+	background: #111;
+}
+
+.button.large {
+	font-size:1.6em;
+	padding:10px 20px;
+}
+
+.button.medium {
+	font-size:1.1em;
+	padding:7px 14px;
+}
+.button.blue {
+
+}
+.button.blue:hover {
+
+}
+.button.red {
+	background:#b71d1f;
+	color:#fff;
+}
+.button.red:hover {
+	background:#C00;
+	color:#fff;
+}
+.button.gray {
+	background:#666;
+	color:#fff;
+}
+.button.gray:hover {
+	background:#777;
+
 }
 
 
@@ -204,12 +268,15 @@ a:hover {
 	font-weight:bold;
 }
 .inner .date {
-	background:#002d44;
+	background:#280078;
 	font-weight:bold;
 	text-align:center;
 	text-transform:uppercase;
 	margin:5px 0px;
 	padding:0px 0px 5px 0px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .inner .date .month {
 	color:#FFF;
@@ -246,13 +313,17 @@ a:hover {
 }
 .outer .indicator {
 	float:left;
-	font-size:1.8em;
-	background:#002d44;
+	font-size:2.4em;
+	background:#280078;
+	font-weight:900;
 	color:#FFF;
-	padding: 10px 20px;
+	padding: 7px 14px;
 	margin:5px 5px;
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	
+
 }
 .outer .label {
 	float:left;
@@ -280,10 +351,13 @@ a:hover {
 	border:1px solid #ccc;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 
 }
 .users_small_list li:hover {
-	background:#ccc;
+	background:#eee;
 }
 
 .user_small, .users_small_list li a {
@@ -351,17 +425,11 @@ a:hover {
 #column_main .button {
 	float:left;
 	margin:0px 10px 0px 0px;
-	padding:5px 10px;
 }
-#column_main .button.primary {
-	font-weight:bold;
-	font-size:1.4em;
-}
-#column_main .button.secondary {
-	font-size:1.1em;
-}
+
 #column_main .button#btn_admin {
 	float:right;
+	margin:5px 5px 0px 0px;
 }
 #column_main .share {
 	float:left;
@@ -375,6 +443,8 @@ a:hover {
 #column_main .outer {
 	margin:10px 0px 30px 0px;
 }
+
+
 p#description {
 	font-size:1.2em;	
 }
@@ -479,10 +549,15 @@ map {
 	width:100%;
 	min-height:100px;
 	overflow:hidden;
-	padding:20px 0 20px 0;
+	padding:0px 0 20px 0;
 	/* background:#a7bfe8; */
 	color:#666;
-	border-top:0px solid #280078;
+	border-top:1px solid #280078;	
+}
+
+.footer .container_12 {
+	
+	padding:10px 0px;
 }
 .footer a {
 	color:#666;
@@ -517,3 +592,59 @@ map {
 	line-height:1.4em;
 }
 
+/****************************************
+	Sign Up / Small Content
+*****************************************/
+.container_480 {
+	width:480px;
+	margin:0 auto;	
+}
+.container_480 .bar {
+	padding:0 0 10px 0;
+	width:100%;
+	border-radius:5px 5px 0px 0px;
+	background:	#a7bfe8;
+	overflow:hidden;
+	display:block;
+	border-bottom:5px solid #280078;
+}
+
+.container_480 .bar h3 {
+	float:left;
+	display:block;
+	margin:10px 0 0 10px;
+	font-size:2.4em;
+	font-weight:900;
+	color:#fff;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	
+}
+
+
+#signup table.verticalform {
+	width:100%;
+	display:inline-block;
+}
+
+#signup .verticalform td.label {
+	width: 200px;
+	text-align:right;
+	padding:0 5px 0 0;
+}
+#signup .verticalform td.input {
+	padding:3px;
+}
+#signup .verticalform td.text {
+	padding:5px;
+}
+
+#signup .verticalform td.label label {
+	font-size:1.6em;
+	color:#666;
+}
+
+#signup .verticalform td.input .inputtext {
+	padding:5px;
+	font-size:1.6em;
+	width:220px;
+}
