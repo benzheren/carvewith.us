@@ -1,5 +1,6 @@
-import facebook
+import re
 
+import facebook
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.response import Response
@@ -22,51 +23,49 @@ class SignUp(object):
     
     @view_config(route_name="signup", renderer='signup.mak')
     def signup(self):
+        """docstring for signup"""
         result = {'facebook_app_id' : self.settings['facebook.app.id']}
-        cookie = facebook.get_user_from_cookie(self.request.cookies, 
-                                               self.settings['facebook.app.id'],
-                                               self.settings['facebook.app.secret'])
-        if cookie:
-            user = self.get_user_from_fb_id(cookie['uid'])
-            if not user:
+        return result
+
+    @view_config(route_name="signup_post", renderer="json")
+    def signup_post(self):
+        if self.request.POST and not self.validate_signup():
+            user = \
+                User(username=self.get_username(self.request.params['reg_name']), 
+                    name=self.request.params['reg_name'], 
+                    email=self.request.params['reg_email'],
+                    password=func.sha1(self.request.params['reg_pwd']))
+            
+            cookie = facebook.get_user_from_cookie(self.request.cookies, 
+                                                   self.settings['facebook.app.id'],
+                                                   self.settings['facebook.app.secret'])
+            if cookie:
+                #user = self.get_user_from_fb_id(cookie['uid'])
+                #if not user:
                 graph = facebook.GraphAPI(cookie['access_token'])
                 profile = graph.get_object('me')
-                print profile
-                user = User(username=self.get_username(profile['name']),
-                            name=profile['name'], email=profile['email'],
-                            fb_id=profile['id'], fb_profile_url=profile['link'], 
-                            fb_access_token=profile['access_token'])
-                self.dbsession.add(user)
-                self.dbsession.commit()
-            elif user.fb_access_token != cookie['access_token']:
-                user.fb_access_token = cooke['access_token']
-                self.dbsession.update(user)
-                self.dbsession.commit()
-            return HTTPFound(location=route_url('create_profile', self.request))
-        else:
-            result['id'] = None
+                user.fb_id = profile['id']
+                user.fb_profile_url = profile['link']
+                user.fb_access_token = profile['access_token']
+                #elif user.fb_access_token != cookie['access_token']:
+                #    user.fb_access_token = cooke['access_token']
+                #    self.dbsession.update(user)
+                #    self.dbsession.commit()
+                #return HTTPFound(location=route_url('create_profile', self.request))
 
-        step_0 = FieldSet(User)
-        step_0.configure(
-            include = [
-                step_0.name,
-                step_0.email,
-                step_0.password,
-            ],
-            options=[step_0.email.set(validate=validators.email)]
-        )
-        fs = step_0.bind(User, data=self.request.POST or None)
-        if self.request.POST and fs.validate():
-            fs.sync()
-            fs.model.username = self.get_username(fs.name.value)
-            self.dbsession.add(fs.model)
+            self.dbsession.add(user)
             self.dbsession.commit()
-            headers = remember(self.request, fs.model.email)
-            return HTTPFound(location=route_url('create_profile', self.request), 
-                            headers=headers)
+            headers = remember(self.request, user.email)
+            headerlist = []
+            for k, v in headers:
+                headerlist.append((k, v))
+            #return HTTPFound(location=route_url('create_profile', self.request), 
+            #                headers=headers)
+            redirect_url = route_url('create_profile', self.request)
+            self.request.response_headerlist = headers
+            return {'status': 1, 'url': redirect_url}
 
-        result['fs'] = fs
-        return result
+        return self.validate_signup()
 
 
     @view_config(route_name="create_profile", renderer='create_profile.mak')
@@ -86,3 +85,26 @@ class SignUp(object):
             return name
         else:
             return "%s-%d" % (name, count)
+
+    def validate_signup(self):
+        """docstring for validate_signup"""
+        email_re = re.compile(
+            r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"  # dot-atom
+            r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
+            r')@(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?$', re.IGNORECASE)  # domain
+        
+        errors = {}
+        name = self.request.params['reg_name']
+        email = self.request.params['reg_email']
+        password = self.request.params['reg_pwd']
+        if not name:
+            errors['reg_name'] = 'Name cannot be empty'
+        if not email:
+            errors['reg_email'] = 'Email cannot be emtpy'
+        elif email_re.match(email) == None:
+            errors['reg_email'] = 'Invalid email'
+        if not password:
+            errors['reg_pwd'] = 'Password cannot be empy'
+        
+        return errors
+
