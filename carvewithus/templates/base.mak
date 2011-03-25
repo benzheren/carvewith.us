@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="${request.static_url('carvewithus:static/css/main.css')}" 
     type="text/css" media="screen" charset="utf-8"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="${request.static_url('carvewithus:static/js/jquery.form.js')}"></script>
     <script type="text/javascript" src="${request.static_url('carvewithus:static/js/main.js')}"></script>
 
 </head>

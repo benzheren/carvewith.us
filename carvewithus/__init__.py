@@ -15,8 +15,7 @@ def main(global_config, **settings):
     config.add_static_view('static', 'carvewithus:static')
     config.add_static_view('css', 'carvewithus:static/css')
     config.add_static_view('js', 'carvewithus:static/js')
-    config.add_route('signup', '/signup')
-    config.add_route('signup_post', '/signup/signup_post')
+    config.add_route('signup', '/')
     config.add_route('create_profile', '/profile/create')
     return config.make_wsgi_app()
 
