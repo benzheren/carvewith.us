@@ -1,9 +1,7 @@
-/*******
+﻿/*******
 	main.css
 	
 *******/
-
-@import url('css/css/reset.css');
 
 
 /****************************************
@@ -134,16 +132,12 @@ a:hover {
 
 #subhead {
 	width:100%;
-	min-height:1px;
 	overflow:hidden;
 	padding:0;
 	margin:0;
 	background:#a7bfe8;
+	border-bottom:5px solid #280078;
 	color:#FFF;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-
 }
 #subhead .title {
 	width:960px;
@@ -155,148 +149,9 @@ a:hover {
 	display:block;
 	margin:10px 0px;
 	font-size:2.4em;
-	font-weight:500;
+	font-weight:900;
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 }
-
-#subhead .submenu {
-	display:block;
-	float:right;
-	margin:0 0 0 10px;
-	list-style:none;
-	font-size:1.4em;
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.10);
-	font-weight:900;
-
-}
-#subhead .submenu li:first-child {
-	border-left:1px dotted #fff;
-}
-
-#subhead .submenu  li {
-	float:left;
-	border-right:1px dotted #fff;
-	display:block;
-	overflow:hidden;
-}
-
-#subhead .submenu  li a {
-	display:block;
-	padding:15px 10px;
-	width:110px;
-	text-align:center;
-	color:#fff;
-}
-
-#subhead .submenu  li a:hover, .submenu  li.active a {
-	text-decoration:none;
-	color:#fff;
-	background:#280078;
-}
-
-/****************************************
-	Content Header Bar - Create Trip, Admin Trip, Trip Profile
-*****************************************/
-
-.bar {
-	overflow:hidden;
-	display:block;
-}
-.bar.fill {
-	width:100%;
-	border-radius:5px 5px 0px 0px;
-	background:	#a7bfe8;
-	
-}
-.bar.line {
-	width:940px;
-	margin:0px 10px;
-	border-radius:5px 5px 0px 0px;
-}
-.bar.border {
-	width:100%;
-	height:5px;
-	padding:0px;
-	background: #280078;
-	box-shadow: 0 -1px 1px rgba(0,0,0,0.10);
-}
-
-.bar.fill.blue {
-	border-radius:5px 5px 0px 0px;
-	background:	#a7bfe8;
-}
-.bar.line.top {
-	border-bottom:1px solid #CCC;
-}
-.bar.line.bottom {
-	border-top:1px solid #CCC;
-}
-.bar .button.right {
-	float:right;
-	margin: 10px 10px 0 10px;
-}
-.bar h3 {
-	float:left;
-	display:block;
-	font-size:2.4em;
-	font-weight:400;
-	margin:10px;	
-}
-.bar h3.white {
-	color:#fff;
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-}
-.bar h3.dark {
-	color:#000;
-}
-
-.bar .submenu {
-	display:block;
-	float:right;
-	margin:0 0 0 20px;
-	list-style:none;
-	font-size:1.4em;
-	font-weight:900;
-	min-width:400px;
-
-}
-
-.bar .submenu  li {
-	float:left;
-
-	display:block;
-	overflow:hidden;
-}
-
-.bar .submenu  li a {
-
-	display:block;
-	margin:10px 0 0 0;
-	padding:10px 10px;
-	width:110px;
-	text-align:center;
-	color:#666;
-	background:#fff;
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.10);
-	border-right:1px solid #ccc;
-
-}
-.bar .submenu li:first-child a {
-	border-left:1px solid #ccc;
-}
-
-
-.bar .submenu  li a:hover, .submenu  li.active a {
-	text-decoration:none;
-	color:#fff;
-	background:#280078;
-	
-}
-.bar .submenu  li.active a {
-	padding:12px 10px;
-	margin:6px 0 0 0;
-}
-
 
 /****************************************
 	Buttons
@@ -333,23 +188,16 @@ a:hover {
 	font-size:1.6em;
 	padding:10px 20px;
 }
-.button.huge {
-	font-size:1.6em;
-	padding:10px 20px;
-	min-width:240px;
-	margin:10px 0 0 -10px;
-}
 
 .button.medium {
 	font-size:1.1em;
 	padding:7px 14px;
 }
 .button.blue {
-	color:#fff;
-	background:#0066CC;
+
 }
 .button.blue:hover {
-	background:#3366CC;
+
 }
 .button.red {
 	background:#b71d1f;
@@ -370,38 +218,12 @@ a:hover {
 
 
 /****************************************
-	Forms
-*****************************************/
-
-.text {
-	border:1px solid #a7bfe8;
-	font-family:inherit;
-}
-
-.text.large {
-	padding:5px;
-	font-size:1.6em;
-}
-
-.text.small {
-	padding:3px;
-	font-size:1.2em;
-}
-.text.full {
-	width:460px;
-}
-textarea.text {
-	height:100px;
-}
-
-/****************************************
-	General - Content
+	Left Column - Trip Profile
 *****************************************/
 
 #content {
 	background:#FFF;
 	display:block;
-	min-height:300px;
 	overflow:hidden;
 	margin:20px auto;
 	border-radius: 5px;
@@ -410,7 +232,16 @@ textarea.text {
 	-webkit-box-shadow: 1px 1px 5px #ccc;
 	box-shadow: 1px 1px 5px #ccc;
 }
+#column_1 {
+	background:#fff;
+	margin:15px 0 0 15px;
+	border-right: 1px solid #ccc;
+}
+.trip_pic {
+	width:205px;
+	height:120px;
 
+}
 .clear {
 	widows:100%;
 	height:15px;
@@ -425,30 +256,6 @@ textarea.text {
 	float:left;
 	clear:none;	
 }
-
-/****************************************
-	Left Column 
-*****************************************/
-
-.column_1 {
-	background:#fff;
-	margin:15px 0 0 15px;
-}
-
-.outer h5 {
-	font-size:1.8em;
-	padding:0px 0px 10px 0px;
-}
-
-/****************************************
-	Left Column - Trip Profile
-*****************************************/
-.trip_pic {
-	width:205px;
-	height:120px;
-
-}
-
 .inner.dates {
 	display:block;
 	width:64px;
@@ -492,7 +299,10 @@ textarea.text {
 	padding:50px 10px;
 	font-weight:bold;
 }
-
+.outer h5 {
+	font-size:1.8em;
+	padding:0px 0px 10px 0px;
+}
 .outer .col_lead_icon {
 	width:48px;
 	height:48px;
@@ -590,7 +400,6 @@ textarea.text {
 	
 }
 
-
 /****************************************
 	Main Column - Trip Profile
 *****************************************/
@@ -604,19 +413,18 @@ textarea.text {
 	padding:15px 0px;
 	display:block;
 }
+
 #column_main .top {
 	padding:0px 0px 10px 0px;
 	border-bottom:1px solid #CCC;
 	overflow:hidden;
 }
-
-
 #column_main .button {
 	float:left;
 	margin:0px 10px 0px 0px;
 }
 
-#column_main .button.right {
+#column_main .button#btn_admin {
 	float:right;
 	margin:5px 5px 0px 0px;
 }
@@ -741,7 +549,7 @@ map {
 	padding:0px 0 20px 0;
 	/* background:#a7bfe8; */
 	color:#666;
-	
+	border-top:1px solid #280078;	
 }
 
 .footer .container_12 {
@@ -788,31 +596,51 @@ map {
 	width:480px;
 	margin:0 auto;	
 }
+.container_480 .bar {
+	padding:0 0 10px 0;
+	width:100%;
+	border-radius:5px 5px 0px 0px;
+	background:	#a7bfe8;
+	overflow:hidden;
+	display:block;
+	border-bottom:5px solid #280078;
+}
+
+.container_480 .bar h3 {
+	float:left;
+	display:block;
+	margin:10px 0 0 10px;
+	font-size:2.4em;
+	font-weight:900;
+	color:#fff;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	
+}
 
 
-#signup table.verticalform {
+.signup_form table.verticalform {
 	width:100%;
 	display:inline-block;
 }
 
-#signup .verticalform td.label {
+.signup_form .verticalform td.label {
 	width: 200px;
 	text-align:right;
 	padding:0 5px 0 0;
 }
-#signup .verticalform td.input {
+.signup_form .verticalform td.input {
 	padding:3px;
 }
-#signup .verticalform td.text {
+.signup_form .verticalform td.text {
 	padding:5px;
 }
 
-#signup .verticalform td.label label {
+.signup_form .verticalform td.label label {
 	font-size:1.6em;
 	color:#666;
 }
 
-#signup .verticalform td.input .inputtext {
+.signup_form .verticalform td.input .inputtext {
 	padding:5px;
 	font-size:1.6em;
 	width:220px;
@@ -847,3 +675,5 @@ map {
 	margin-left: 50px;
 	font-size: 18px !important;
 }
+
+

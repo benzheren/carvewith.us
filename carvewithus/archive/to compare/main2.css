@@ -1,0 +1,163 @@
+/*******
+	main.css
+	
+*******/
+
+@import url('css/reset.css');
+
+
+/****************************************
+	colors
+	
+	white: #fff
+	grey: #ccc;
+	black: #000;
+	red: #fa0032;
+	dark-red: #b71d1f;
+	light-blue: #ebf7ff;
+	med-blue: #a7bfe8;
+	dark-blue: #280078;
+	dark-grey-blue: #002d44;
+	
+*****************************************/
+
+/****************************************
+	body and general elements style
+*****************************************/
+
+body{
+	font-family:"Helvetica Neue", Helvetica, Arial, san-serif;
+	/* set base size at 10px = 1em */
+	font-size: 62.5%;
+	background:#ebf7ff;
+
+}
+
+a,a:visited,a:link {
+	color: #b71d1f;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+
+/****************************************
+	Shared Classes
+*****************************************/
+
+/****************************************
+	Header
+*****************************************/
+#banner {
+	background: #fff;
+	width:100%;
+	overflow:hidden;
+	padding:0;
+	margin:0;
+	border-bottom:5px solid #a7bfe8;
+}
+#head {
+	width:960px;
+	height:80px;
+	margin:0 auto;
+	display:block;
+
+}
+
+.logo {
+	float:left;
+	display:block;
+	margin:20px 40px;
+	width:200px;
+}
+
+.logo h1 {
+	font-family:"Arial Black", "Helvetica Neue", Helvetica, Arial, san-serif;
+	font-weight:900;
+	font-size: 2.8em;
+	line-height:normal;
+}
+#head .menu {
+	list-style:none;
+	display:block;
+	overflow:hidden;
+	width:auto;
+	min-width:200px;
+	margin: 0 100px;
+	float:left;
+}
+#head .menu li {
+	float:left;
+	clear:none;
+}
+#head .menu li a {
+	display:block;
+	width:100px;
+	height:80px;
+	padding:0px 20px;
+	color:#ccc;
+	overflow:hidden;
+}
+#head .menu li a:hover {
+	background:#ebf7ff;
+	text-decoration:none;
+}
+
+#head .menu li a h2 {
+	color: #000;
+	font-size: 2.4em;
+	margin:20px 0 5px 0;
+}
+
+#head .menu li a span {
+	color: #ccc;
+	font-size: 1.2em;
+	margin:5px 0 0 0;
+}
+
+#head #account {
+	display: block;
+	float:right;
+	width:180px;
+	margin:10px 0 0 0;
+	padding:10px;
+	font-size:1.1em;
+}
+
+
+/****************************************
+	Body
+*****************************************/
+
+/*sign up*/
+#sign_up {
+    margin-top: 40px;
+}
+
+#sign_up .title {
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    verti
+}
+
+#sign_up .top {
+    height: 130px;
+    margin: 0px 10px;
+    border-bottom: 2px solid #CCC;
+}
+
+#sign_up .bottom {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+/*facebook button*/
+.fb_button {
+    margin-top: 40px;
+    margin-left: 50px;
+    font-size: 18px !important;
+}
+
