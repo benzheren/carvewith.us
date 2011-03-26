@@ -1,0 +1,502 @@
+:mod:`formalchemy.forms` -- `FieldSet`: Form generation
+*******************************************************
+
+.. Commented imports
+
+   >>> from formalchemy.tests import *
+
+.. automodule:: formalchemy.forms
+
+Configuring and rendering forms
+===============================
+
+In FormAlchemy, forms are rendered using the `FieldSet` object.
+
+There are several operations that can be made on a FieldSet. They can be `bound`, `configured`, `validated`, and `sync'd`.
+
+* `Binding` attaches a model object to the `FieldSet`.
+* `Configuration` tells the `FieldSet` which fields to include, in which order, etc.
+* `Validation` checks the form-submitted parameters for correctness against the FieldSet's validators and field definitions.
+* `Synchronization` fills the model object with values taken from the web form submission.
+
+
+Binding
+-------
+
+Binding occurs at first on :class:`FieldSet` object creation.
+
+The :class:`~formalchemy.forms.FieldSet` object constructor takes it's parameters and calls it's base class's constructor (:meth:`ModelRenderer.__init__`). It looks like:
+
+.. automethod:: formalchemy.base.ModelRenderer.__init__
+
+
+Fields
+------
+
+Each :class:`~formalchemy.forms.FieldSet` will have a :mod:`Field
+<formalchemy.fields>` created for each attribute of the bound model.
+Additional :mod:`Field <formalchemy.fields>`s may be added manually; see below.
+A :mod:`Field <formalchemy.fields>` knows how to render itself, and most
+customization is done by telling a :mod:`Field <formalchemy.fields>` to modify
+itself appropriately.
+
+:mod:`Field <formalchemy.fields>`-s are accessed simply as attributes of the
+:class:`~formalchemy.forms.FieldSet`::
+
+  >>> fs = FieldSet(bill)
+  >>> print fs.name.value
+  Bill
+
+If you have an attribute name that conflicts with a built-in
+:class:`~formalchemy.forms.FieldSet` attribute, you can use `fs[fieldname]`
+instead. So these are equivalent::
+
+  >>> fs.name == fs['name']
+  True
+
+
+Field Modification
+------------------
+  
+:mod:`Field <formalchemy.fields>` rendering can be modified with the following methods:
+
+
+- `validate(self, validator)`: 
+      Add the `validator` function to the list of validation routines to run
+      when the :class:`~formalchemy.forms.FieldSet`'s `validate` method is run.
+      Validator functions take one parameter: the value to validate. This value
+      will have already been turned into the appropriate data type for the
+      given :mod:`Field <formalchemy.fields>` (string, int, float, etc.). It should raise
+      `ValidationException` if validation fails with a message explaining the
+      cause of failure.
+
+- `required(self)`: 
+      Convenience method for `validate(validators.required)`.  By
+      default, NOT NULL columns are required.  You can only add
+      required-ness, not remove it.
+
+- `label(self)`:
+      Change the label associated with this field.  By default, the
+      field name is used, modified for readability (e.g.,
+      'user_name' -> 'User name').
+
+- `with_null_as(self, option)`:
+      For optional foreign key fields, render null as the given option
+      tuple of text, value.
+
+- `with_renderer(self, renderer)`:
+      Change the renderer class used to render this field.  Used for
+      one-off renderer changes; if you want to change the renderer
+      for all instances of a Field type, modify
+      FieldSet.default_renderers instead.
+
+- `with_metadata(self, **attrs)`:
+      Add/modify some metadata for the Field. Use this to attach any
+      metadata to your field. By default, the the `instructions` property
+      is used to show additional text below or beside your rendered Field.
+
+- `disabled(self)`:
+      Render the field disabled.
+
+- `readonly(self)`:
+      Render the field readonly.
+
+- `hidden(self)`:
+      Render the field hidden.  (Value only, no label.)
+
+- `password(self)`:
+      Render the field as a password input, hiding its value.
+
+- `textarea(self, size=None)`:
+      Render the field as a textarea.
+
+- `radio(self, options=None)`:
+      Render the field as a set of radio buttons.
+
+- `checkbox(self, options=None)`:
+      Render the field as a set of checkboxes.
+
+- `dropdown(self, options=None, multiple=False, size=5)`:
+      Render the field as an HTML select field.  
+      (With the `multiple` option this is not really a 'dropdown'.)
+        
+Methods taking an `options` parameter will accept several ways of
+specifying those options:
+
+- an iterable of SQLAlchemy objects; `str()` of each object will be the description, and the primary key the value
+- a SQLAlchemy query; the query will be executed with `all()` and the objects returned evaluated as above
+- an iterable of (description, value) pairs
+- a dictionary of {description: value} pairs
+- a callable that return one of those cases. Used to evaluate options each time.
+
+Options can be "chained" indefinitely because each modification returns a new
+:mod:`Field <formalchemy.fields>` instance, so you can write::
+
+  >>> fs.append(Field('foo').dropdown(options=[('one', 1), ('two', 2)]).radio())
+
+or::
+
+  >>> fs.configure(options=[fs.name.label('Username').readonly()])
+
+Here is a callable exemple::
+
+  >>> def custom_query(fs):
+  ...     return fs.session.query(User).filter(User.name=='Bill')
+  >>> fs3 = FieldSet(bill)
+  >>> fs3.configure(options=[fs3.name.dropdown(options=custom_query)])
+  >>> print fs3.name.render()
+  <select id="User-1-name" name="User-1-name">
+  <option value="">None</option>
+  <option value="1">Bill</option>
+  </select>
+
+
+Manipulating Fields
+--------------------
+  
+You can add additional fields not in your SQLAlchemy model with the `append` 
+method, which takes a :mod:`Field <formalchemy.fields>` object as parameter::
+
+  >>> fs3 = FieldSet(bill)
+  >>> fs3.configure(include=[fs3.name, fs3.email])
+  >>> fs3.append(Field('password', renderer='password'))
+  >>> fs3.render_fields.keys()
+  ['name', 'email', 'password']
+
+You can also `insert` fields. Here we add a country before the password field::
+
+  >>> fs3.insert(fs3.password, Field('country'))
+  >>> fs3.render_fields.keys()
+  ['name', 'email', 'country', 'password']
+
+And finally, you can `delete` fields::
+
+  >>> del fs3.country
+  >>> fs3.render_fields.keys()
+  ['name', 'email', 'password']
+
+  >>> del fs3['password']
+  >>> fs3.render_fields.keys()
+  ['name', 'email']
+
+Here is `Field`'s constructor:
+
+.. automethod:: formalchemy.fields.Field.__init__
+
+Fields to render
+----------------
+  
+The `configure` method specifies a set of attributes to be rendered.  By
+default, all attributes are rendered except primary keys and foreign keys.
+But, relations **based on** foreign keys **will** be rendered.  For example, if
+an `Order` has a `user_id` FK and a `user` relation based on it, `user` will be
+rendered (as a select box of `User`'s, by default) but `user_id` will not.
+
+See parameters in :meth:`AbstractFieldSet.configure`.
+
+Examples: given a :class:`~formalchemy.forms.FieldSet` `fs` bound to a `User`
+instance as a model with primary key `id` and attributes `name` and `email`,
+and a relation `orders` of related Order objects, the default will be to render
+`name`, `email`, and `orders`. To render the orders list as checkboxes instead
+of a select, you could specify::
+
+  >>> fs2 = fs.bind(bill)
+  >>> fs2.configure(options=[fs.orders.checkbox()]) 
+
+To render only name and email::
+
+  >>> fs2 = fs.bind(bill)
+  >>> fs2.configure(include=[fs.name, fs.email]) 
+
+or::
+
+  >>> fs2 = fs.bind(bill)
+  >>> fs2.configure(exclude=[fs.orders]) 
+
+Of course, you can include modifications to a field in the `include`
+parameter, such as here, to render name and options-as-checkboxes::
+  
+  >>> fs2 = fs.bind(bill)
+  >>> fs2.configure(include=[fs.name, fs.orders.checkbox()]) 
+
+
+Rendering
+---------
+
+Once you've configured your :class:`~formalchemy.forms.FieldSet`,
+just call the `render` method to get an HTML string suitable for
+including in your page::
+
+    >>> fs = FieldSet(bill)
+    >>> print fs.render() 
+    <div>
+     <label class="field_req" for="User-1-email">
+      Email
+     </label>
+     <input id="User-1-email" maxlength="40" name="User-1-email" type="text" value="bill@example.com" />
+    </div>
+    <script type="text/javascript">
+     //<![CDATA[
+    document.getElementById("User-1-email").focus();
+    //]]>
+    </script>
+    <div>
+     <label class="field_req" for="User-1-password">
+      Password
+     </label>
+     <input id="User-1-password" maxlength="20" name="User-1-password" type="text" value="1234" />
+    </div>
+    <div>
+     <label class="field_opt" for="User-1-name">
+      Name
+     </label>
+     <input id="User-1-name" maxlength="30" name="User-1-name" type="text" value="Bill" />
+    </div>
+    <div>
+     <label class="field_opt" for="User-1-orders">
+      Orders
+     </label>
+     <select id="User-1-orders" multiple="multiple" name="User-1-orders" size="5">
+      <option value="2">
+       Quantity: 5
+      </option>
+      <option value="3">
+       Quantity: 6
+      </option>
+      <option selected="selected" value="1">
+       Quantity: 10
+      </option>
+     </select>
+    </div>
+
+Note that there is no `form` element!  You must provide that yourself.
+
+You can also render individual fields for more fine-grained control::
+
+  >>> fs = FieldSet(bill)
+  >>> print fs.name.render()
+  <input id="User-1-name" maxlength="30" name="User-1-name" type="text" value="Bill" />
+
+
+
+Custom FieldSet
+===============
+
+You can customize your FieldSet, and create a ready-made derived version
+for when you need it in your application. For example, you could create
+one FieldSet per model object in your application.
+
+In this example, we create a FieldSet to edit the `User` model object:
+
+.. sourcecode:: py
+
+ from formalchemy import validators
+ class UserFieldSet(FieldSet):
+     """Used to edit users"""
+     def __init__(self):
+         """Pre-configuration"""
+         FieldSet.__init__(self, model.User)
+         
+         self.add(Field('passwd1'))
+         self.add(Field('passwd2'))
+         inc = [self.username,
+                self.passwd1.password().label(u'Password'),
+                self.passwd2.password().label(u'Confirm') \
+                    .validate(validators.passwords_match('passwd1')),
+                self.email,
+                self.firstname,
+                self.lastname,
+                ]
+         self.configure(include=inc)
+
+Then you could use it in your framework controllers as:
+
+.. sourcecode:: py
+
+  fs = UserFieldSet().bind(my_user_object, data=request.POST or None)
+  if request.POST and fs.validate():
+      fs.sync()
+      fs.model.password = fs.passwd1.value
+      ...
+
+Another option would be to create a function that generates your FieldSet,
+perhaps at the top of your controller if it's not to be reused anywhere,
+otherwise in a central lib for your application.  Then you would call your
+function instead of the `forms.UserFieldSet()` above.
+
+You can use the `.insert`, `.insert_after`, `.append`, `.extend` functions to
+tweak your FieldSet's composition afterwards.  You can also use the `del`
+keyword on ``Field`` attributes (like `fs.passwd`) to remove them from the
+FieldSet.
+
+You'll probably want to modify the default behavior for fields using the `.set`
+function on the ``Field`` attributes directly.  This will tweak the objects
+in-place.
+
+
+
+Including data from more than one class
+=======================================
+
+`FormAlchemy` only supports binding to a single class, but a single class can itself
+include data from multiple tables.  Example::
+
+  >>> class Order__User(Base):
+  ...     __table__ = join(Order.__table__, User.__table__).alias('__orders__users')
+
+Such a class can then be used normally in a :class:`~formalchemy.forms.FieldSet`.
+
+See http://www.sqlalchemy.org/docs/05/mappers.html#advdatamapping_mapper_joins
+for full details on mapping multiple tables to a single class.
+
+
+Non-SQLAlchemy forms
+====================
+
+You can create a :class:`~formalchemy.forms.FieldSet` from non-SQLAlchemy, new-style (inheriting
+from `object`) classes, like this::
+
+  >>> class Manual(object):
+  ...     a = Field()
+  ...     b = Field(type=types.Integer).dropdown([('one', 1), ('two', 2)])
+
+  >>> fs = FieldSet(Manual)
+
+:mod:`Field <formalchemy.fields>` declaration is the same as for adding fields
+to a SQLAlchemy-based :class:`~formalchemy.forms.FieldSet`, except that you do
+not give the Field a name (the attribute name is used).
+
+You can still validate and sync a non-SQLAlchemy class instance, but
+obviously persisting any data post-sync is up to you.
+
+You can also have a look at :mod:`formalchemy.ext.zope`.
+
+A note on Sessions
+==================
+
+`FormAlchemy` can save you the most time if you use 
+contextual Sessions: 
+http://www.sqlalchemy.org/docs/05/session.html#contextual-thread-local-sessions.
+Otherwise, you will have to manually pass Session objects when you bind
+:class:`~formalchemy.forms.FieldSet` and :class:`~formalchemy.tables.Grid`
+instances to your data.
+
+
+
+Advanced Customization: Form Templates
+======================================
+
+There are three parts you can customize in a `FieldSet` subclass short
+of writing your own render method.  These are `default_renderers`, and `prettify`.
+As in::
+
+    >>> from formalchemy import fields
+    >>> def myprettify(value):
+    ...     return value
+
+    >>> def myrender(**kwargs):
+    ...     return template % kwargs
+
+    >>> class MyFieldSet(FieldSet):
+    ...     default_renderers = {
+    ...         types.String: fields.TextFieldRenderer,
+    ...         types.Integer: fields.IntegerFieldRenderer,
+    ...         # ...
+    ...     }
+    ...     prettify = staticmethod(myprettify)
+    ...     _render = staticmethod(myrender)
+
+`default_renderers` is a dict of callables returning a FieldRenderer.  Usually these
+will be FieldRenderer subclasses, but this is not required.  For instance,
+to make Booleans render as select fields with Yes/No options by default,
+you could write::
+
+    >>> class BooleanSelectRenderer(fields.SelectFieldRenderer):
+    ...     def render(self, **kwargs):
+    ...         kwargs['options'] = [('Yes', True), ('No', False)]
+    ...         return fields.SelectFieldRenderer.render(self, **kwargs)
+
+    >>> FieldSet.default_renderers[types.Boolean] = BooleanSelectRenderer
+
+`prettify` is a function that, given an attribute name ('user_name')
+turns it into something usable as an HTML label ('User name').
+
+`_render` should be a template rendering method, such as `Template.render` from
+a mako Template or `Template.substitute` from a Tempita Template.
+
+
+`_render` should take as parameters:
+
+- `fieldset`
+      the :class:`~formalchemy.forms.FieldSet` object to render
+
+Your template will be particularly interested in these
+:class:`~formalchemy.forms.FieldSet` attributes:
+
+- `render_fields`:
+      the list of fields the user has configured for rendering
+
+- `errors`: 
+      a dictionary of validation failures, keyed on field.  `errors[None]` are
+      errors applying to the form as a whole rather than a specific field.
+
+- `prettify`: 
+      as above
+
+- `focus`: 
+      the field to focus
+
+You can also override `prettify` and `_render` on a
+per-:class:`~formalchemy.forms.FieldSet` basis::
+    
+  fs = FieldSet(...)
+  fs.prettify = myprettify
+  fs._render = ...
+
+The default template is `formalchemy.forms.template_text_tempita`.
+
+
+Really advanced customization
+=============================
+
+You can derive your own subclasses from :class:`~formalchemy.forms.FieldSet` or
+:class:`~formalchemy.forms.AbstractFieldSet` to provide a customized `render`
+and/or `configure`.
+
+`AbstractFieldSet` encorporates validation/errors logic and provides a default
+`configure` method.  It does _not_ provide `render`.
+
+You can write `render` by manually sticking strings together if that's
+what you want, but we recommend using a templating package for clarity
+and maintainability.  `FormAlchemy` includes the Tempita templating
+package as formalchemy.tempita; see http://pythonpaste.org/tempita/
+for documentation.
+    
+`formalchemy.forms.template_text_tempita` is the default template used
+by `FieldSet.` We recommend looking at that to get started.
+`FormAlchemy` also includes a Mako version,
+`formalchemy.forms.template_text_mako`, and will use that instead if
+Mako is available.  The rendered HTML is identical but Mako
+should be faster.
+
+Classes definitions
+===================
+
+AbstractFieldSet
+----------------
+
+.. autoclass:: formalchemy.forms.AbstractFieldSet
+   :members:
+
+FieldSet
+--------
+
+.. autoclass:: formalchemy.forms.FieldSet
+   :members:
+
+
+ModelRenderer
+-------------
+
+.. autoclass:: formalchemy.base.ModelRenderer
+   :members:

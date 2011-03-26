@@ -1,0 +1,28 @@
+Modules contents
+==================
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   formalchemy
+   models
+   fields
+   forms
+   tables
+   validators
+   internationalisation
+   config
+   templates
+   customisation
+   pylons_sample
+   ext/*
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

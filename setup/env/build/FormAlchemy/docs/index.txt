@@ -1,0 +1,25 @@
+Welcome to FormAlchemy's documentation!
+=======================================
+
+.. seealso::
+
+    If you use the trunk you may look at a more up to date version
+    of the documentation at `http://docs.formalchemy.org/current/
+    <http://docs.formalchemy.org/current/>`_.
+
+
+.. toctree::
+   :maxdepth: 3
+
+   doc
+
+
+Changes
+=======
+
+.. include:: ../CHANGELOG.txt
+
+Copyright and License
+=====================
+
+.. include:: ../COPYRIGHT.txt
