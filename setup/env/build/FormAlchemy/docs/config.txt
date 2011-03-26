@@ -1,4 +1,0 @@
-:mod:`formalchemy.config` -- Global configuration
-=================================================
-
-.. automodule:: formalchemy.config
