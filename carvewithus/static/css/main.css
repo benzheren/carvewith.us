@@ -401,7 +401,6 @@ textarea.text {
 #content {
 	background:#FFF;
 	display:block;
-	min-height:300px;
 	overflow:hidden;
 	margin:20px auto;
 	border-radius: 5px;
@@ -789,30 +788,30 @@ map {
 	margin:0 auto;	
 }
 
-
-#signup table.verticalform {
+.signup_form table.verticalform {
 	width:100%;
 	display:inline-block;
 }
 
-#signup .verticalform td.label {
+.signup_form .verticalform td.label {
 	width: 200px;
 	text-align:right;
 	padding:0 5px 0 0;
 }
-#signup .verticalform td.input {
+.signup_form .verticalform td.input {
 	padding:3px;
 }
-#signup .verticalform td.text {
+.signup_form .verticalform td.text {
 	padding:5px;
+	border: none;
 }
 
-#signup .verticalform td.label label {
+.signup_form .verticalform td.label label {
 	font-size:1.6em;
 	color:#666;
 }
 
-#signup .verticalform td.input .inputtext {
+.signup_form .verticalform td.input .inputtext {
 	padding:5px;
 	font-size:1.6em;
 	width:220px;

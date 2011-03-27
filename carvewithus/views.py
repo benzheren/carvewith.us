@@ -46,7 +46,7 @@ class SignUp(object):
                 profile = graph.get_object('me')
                 user.fb_id = profile['id']
                 user.fb_profile_url = profile['link']
-                user.fb_access_token = profile['access_token']
+                user.fb_access_token = cookie['access_token']
                 #elif user.fb_access_token != cookie['access_token']:
                 #    user.fb_access_token = cooke['access_token']
                 #    self.dbsession.update(user)

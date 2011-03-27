@@ -1,8 +1,8 @@
 <%inherit file="base.mak"/>
 <div class="container_12">
-<div id="content" class="grid_6 push_3 content container_480">
-    <div class="bar">
-        <h3>Sign Up</h3>
+<div id="content" class="grid_6 push_3 content">
+    <div class="bar fill blue">
+        <h3 class="white">Sign Up</h3>
     </div>
     <div class="sign_up_top sign_up_0">
         <fb:login-button size="xlarge">Connect Your Facebook Account</fb:login-button>
@@ -26,11 +26,11 @@
 	</form>
     </div>
     <div class="sign_up_2 sign_up_top" style="display:none;">
-    	<form method="post" id="signup_form_fb" class="signup_form" name="signup_form_email" action="/signup/signup_post">
+    	<form method="post" id="signup_form_fb" class="signup_form" name="signup_form_fb" action="/signup/signup_post">
 	    <div class="clear"></div>
 	    <table class="verticalform" callpadding="0" cellspacing="0">
 	        <tbody>
-		   <%include file="signup_form.html"/>
+		   <%include file="html/signup_form.html"/>
 		   <tr>
 		   	<td class="label"></td>
 		   	<td class="text">By clicking "Sign Up", you are agreeing to our <a href="terms">terms</a>.</td>
