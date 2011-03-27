@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Unicode, TIMESTAMP
+from sqlalchemy import Column, Integer, String, Unicode, TIMESTAMP, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
@@ -17,6 +17,7 @@ class User(Base):
     name = Column(Unicode(255))
     email = Column(String(255), unique=True)
     password = Column(String(40))
+    city = Column(String(255), ForeignKey('cities.short_name'))
     fb_id = Column(String(255))
     fb_profile_url = Column(String(255))
     fb_access_token = Column(String(255))
@@ -25,16 +26,29 @@ class User(Base):
                      onupdate=func.current_timestamp())
 
     def __init__(self, username=None, name=None, email=None, password=None,
-                 fb_id=None, fb_profile_url=None, fb_access_token=None):
+                 city=None, fb_id=None, fb_profile_url=None, 
+                 fb_access_token=None):
         self.username = username
         self.name = name
         self.email = email
         self.password = password
+        self.city = city
         self.fb_id = fb_id
         self.fb_profile_url = fb_profile_url
         self.fb_access_token = fb_access_token
         pass
 
+class City(Base):
+    """Mapping class for City"""
+    __tablename__ = "cities"
+
+    short_name = Column(String(255), primary_key=True)
+    full_name = Column(String(255))
+    state = Column(String(255))
+
+    def __init__(self):
+        pass
+        
 def initialize_sql(engine):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine

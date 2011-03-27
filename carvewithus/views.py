@@ -34,7 +34,8 @@ class SignUp(object):
                 User(username=self.get_username(self.request.params['reg_name']), 
                     name=self.request.params['reg_name'], 
                     email=self.request.params['reg_email'],
-                    password=func.sha1(self.request.params['reg_pwd']))
+                    password=func.sha1(self.request.params['reg_pwd']),
+                    city=self.request.params['reg_city'])
             
             cookie = facebook.get_user_from_cookie(self.request.cookies, 
                                                    self.settings['facebook.app.id'],
