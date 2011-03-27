@@ -57,9 +57,9 @@ class SignUp(object):
             self.dbsession.add(user)
             self.dbsession.commit()
             headers = remember(self.request, user.email)
-            headerlist = []
-            for k, v in headers:
-                headerlist.append((k, v))
+            #headerlist = []
+            #for k, v in headers:
+            #    headerlist.append((k, v))
             #return HTTPFound(location=route_url('create_profile', self.request), 
             #                headers=headers)
             redirect_url = route_url('create_profile', self.request)
