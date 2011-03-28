@@ -13,6 +13,7 @@ Assume that you are using Mac OS X Snow Leopard (this means you will have python
 
 ### Database
 1. In your local mysql database, create a user:carvewithus with password:5mad_cows. Create a database called carvewithus and grant correct privileges of this database to carvewithus user.
+2. Carvewithus table needs to be utf8 and collation should be utf8_bin (case sensitive)
 
 ## Open Questions
 * What's the relationship between our users? Friends or followers? (Follower case, this guy is awsome and I  like to follow him when he goes to snowboarding)
