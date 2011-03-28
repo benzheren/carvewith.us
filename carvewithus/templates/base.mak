@@ -17,11 +17,11 @@
         <div class="logo"><h1>carvewith.us</h1></div>
         
         <ul class="menu">
-            <li><a href="joinlink">
+            <li><a href="/trip/join">
                 <h2>Join Trip</h2>
                 <span class="sub">Find a trip to join</span>
             </a></li>
-            <li><a href="organizelink">
+            <li><a href="/trip/create">
                 <h2>Organize</h2>
                 <span class="sub">Make a new trip</span>
             </a></li>

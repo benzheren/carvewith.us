@@ -120,3 +120,18 @@ def validate_signup(request):
     
     return errors
 
+@view_config(route_name='create_trip', renderer='create_trip.mak')
+def create_trip(request):
+    logged_in = authenticated_userid(request)
+    return {'user_email': logged_in}
+
+@view_config(route_name='view_trip', renderer='view_trip.mak')
+def view_trip(request):
+    logged_in = authenticated_userid(request)
+    return {'user_email': logged_in}
+
+@view_config(route_name='join_trip', renderer='join_trip.mak')
+def join_trip(request):
+    logged_in = authenticated_userid(request)
+    return {'user_email': logged_in}
+
