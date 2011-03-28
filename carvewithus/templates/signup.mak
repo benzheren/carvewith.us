@@ -64,6 +64,7 @@
 	        content = '<p><a href=\"' + response.link + '\"><img src=\"http://graph.facebook.com/' + response.id +
 		          '/picture?type=large\"></a></p>';
 	        $('#fb_preview').html(content);
+		$('#signup_form_fb #reg_name').val(response.name);
 	    });
 	    
 	});

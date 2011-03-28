@@ -28,16 +28,19 @@
         </ul>
         
         <div id="account">
+% if not user_email:
             <div id="login_links">
-                <a href="login">login</a>&nbsp;|&nbsp;<a href="register">register</a>
+                <a href="login">login</a>&nbsp;|&nbsp;<a href="signup">sign up</a>
             </div>
+% else:
             <div id="account_links">
-                <span>Hi, username</span>
+                <span>Hi, ${user_email}</span>
                 &nbsp;|&nbsp;
                 <a href="account">my account</a>
                 &nbsp;|&nbsp;
-                <a href="login">logout</a>
+                <a href="/logout">logout</a>
             </div>
+% endif
         </div>
     </div>
 </div>

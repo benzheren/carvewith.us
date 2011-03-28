@@ -1,8 +1,9 @@
+/*sign up*/
 $('#sign_up_with_email_link').live('click', function(){
     $('#content div.sign_up_0').hide();
     $('#content div.sign_up_2').hide();
     $('#content div.sign_up_1').show();
-})
+});
 
 $('#sign_up_with_facebook_link').live('click', function(){
     $('#content div.sign_up_0').show();
@@ -40,4 +41,5 @@ function postSignupForm(data) {
     }
 }
 
+/*create profile*/
 
