@@ -4,3 +4,6 @@
 [submodule "deps/jquery.form"]
 	path = deps/jquery.form
 	url = git://github.com/malsup/form.git
+[submodule "deps/pyramid_beaker"]
+	path = deps/pyramid_beaker
+	url = git://github.com/Pylons/pyramid_beaker.git

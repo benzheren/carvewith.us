@@ -24,7 +24,7 @@ def login(request):
 
 @view_config(route_name="logout")
 def logout(request):
-    #request.session.invalidate()
+    request.session.invalidate()
     headers = forget(request)
     return HTTPFound(location=route_url('home', request),
                      headers=headers)

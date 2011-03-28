@@ -1,3 +1,4 @@
+from pyramid_beaker import session_factory_from_settings
 from pyramid.config import Configurator
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from sqlalchemy import engine_from_config
@@ -10,7 +11,9 @@ def main(global_config, **settings):
     engine = engine_from_config(settings, 'sqlalchemy.')
     initialize_sql(engine)
     authn_policy = AuthTktAuthenticationPolicy(settings['auth.tkt.secret'])
+    session_factory = session_factory_from_settings(settings)
     config = Configurator(settings=settings, authentication_policy=authn_policy)
+    config.set_session_factory(session_factory)
     config.scan()
     config.add_static_view('static', 'carvewithus:static')
     config.add_static_view('css', 'carvewithus:static/css')
