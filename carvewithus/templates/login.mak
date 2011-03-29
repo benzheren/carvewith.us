@@ -4,15 +4,10 @@
     <div class="bar fill blue">
         <h3 class="white">Log in</h3>
     </div>
-    <form method="post" id="signup_form_email" class="signup_form" name="signup_form_email" action="/signup/signup_post">
+    <form method="post" id="login_form" class="login_form" name="login_form">
         <div class="clear"></div>
-	<table class="verticalform" callpadding="0" cellspacing="0">
-	    <tbody>
-	        <tr>
-		    <td class="label cancel_link"></td>
-		    <td class="text"><a id="sign_up_button_email" href="javascript:;" class="button large red">Log in</a></td>
-		</tr>
-	    </tbody>
-	</table>
+% if form:
+	${form|n}
+% endif
     </form>
 </div>

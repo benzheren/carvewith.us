@@ -1,6 +1,7 @@
 import re
 
 import facebook
+import deform
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.response import Response
@@ -10,17 +11,38 @@ from formalchemy import validators
 from formalchemy.fields import Field
 from formalchemy.forms import FieldSet
 from sqlalchemy import func
+from sqlalchemy.sql import and_
 
 from carvewithus.models import DBSession, User
-
+from carvewithus.schemas import UserLoginSchema
 
 @view_config(route_name='home', renderer='home.mak')
 def home(request):
-    return {}
+    logged_in = authenticated_userid(request)
+    return {'user_email': logged_in}
 
 @view_config(route_name="login", renderer='login.mak')
 def login(request):
-    return {}
+    session = DBSession()
+    schema = UserLoginSchema()
+    form = deform.Form(schema, buttons=('submit',))
+    if request.POST:
+        try:
+            appstruct = form.validate(request.POST.items())
+            user = session.query(User).filter(and_(
+                            User.email==appstruct['email'], 
+                            User.password==func.sha1(appstruct['password']))).\
+                            first()
+            if user:
+                headers = remember(request, user.email)
+                return HTTPFound(location=route_url('home', request), 
+                                 headers=headers)
+            else:
+                return {'form': form.render(appstruct=appstruct)}
+        except deform.ValidationFailure, e:
+            return {'form':e.render()}
+    else:
+        return {'form': form.render()}
 
 @view_config(route_name="logout")
 def logout(request):
