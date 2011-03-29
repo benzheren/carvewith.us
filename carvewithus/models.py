@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Unicode, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, Enum, Unicode, TIMESTAMP, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
@@ -24,6 +24,8 @@ class User(Base):
     created = Column(TIMESTAMP, default=func.current_timestamp())
     updated = Column(TIMESTAMP, default=func.current_timestamp(),
                      onupdate=func.current_timestamp())
+    activity = Column(Enum('SNOWBOARD', 'SKI'))
+    skill_level = Column(Enum('NEWBIE', 'INTERMEDIATE', 'ADVANCED', 'EXPERT'))
 
     def __init__(self, username=None, name=None, email=None, password=None,
                  city=None, fb_id=None, fb_profile_url=None, 
