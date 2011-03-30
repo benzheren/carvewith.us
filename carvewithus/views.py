@@ -1,7 +1,7 @@
 import re
 
 import facebook
-import deform
+from deform import Form, ValidationFailure
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.response import Response
@@ -10,11 +10,20 @@ from pyramid.url import route_url
 from formalchemy import validators
 from formalchemy.fields import Field
 from formalchemy.forms import FieldSet
+from pkg_resources import resource_filename
 from sqlalchemy import func
 from sqlalchemy.sql import and_
 
 from carvewithus.models import DBSession, User
 from carvewithus.schemas import UserLoginSchema
+
+
+deform_templates = resource_filename('deform', 'templates')
+customized_deform_templates = \
+        resource_filename('carvewithus', 'templates/deform')
+search_path = (customized_deform_templates, deform_templates)
+Form.set_zpt_renderer(search_path)
+
 
 @view_config(route_name='home', renderer='home.mak')
 def home(request):
@@ -25,7 +34,7 @@ def home(request):
 def login(request):
     session = DBSession()
     schema = UserLoginSchema()
-    form = deform.Form(schema, buttons=('submit',))
+    form = Form(schema, buttons=('submit',))
     if request.POST:
         try:
             appstruct = form.validate(request.POST.items())
@@ -39,7 +48,7 @@ def login(request):
                                  headers=headers)
             else:
                 return {'form': form.render(appstruct=appstruct)}
-        except deform.ValidationFailure, e:
+        except ValidationFailure, e:
             return {'form':e.render()}
     else:
         return {'form': form.render()}
