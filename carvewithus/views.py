@@ -32,6 +32,10 @@ def home(request):
 
 @view_config(route_name="login", renderer='login.mak')
 def login(request):
+    logged_in = authenticated_userid(request)
+    if logged_in:
+        return HTTPFound(location=route_url('home', request))
+
     session = DBSession()
     schema = UserLoginSchema()
     form = Form(schema, buttons=('submit',))
@@ -63,6 +67,9 @@ def logout(request):
 @view_config(route_name="signup", renderer='signup.mak')
 def signup(request):
     """docstring for signup"""
+    logged_in = authenticated_userid(request)
+    if logged_in:
+        return HTTPFound(location=route_url('home', request))
     settings = request.registry.settings
     result = {'facebook_app_id' : settings['facebook.app.id']}
     return result
