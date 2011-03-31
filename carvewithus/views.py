@@ -121,6 +121,9 @@ def signup_post(request):
 @view_config(route_name='create_profile', renderer='create_profile.mak')
 def create_profile(request):
     logged_in = authenticated_userid(request)
+    if not logged_in:
+        return HTTPFound(location=route_url('login', request))
+
     session = DBSession()
     if request.POST and validate_create_profile(request):
         user = session.query(User).filter(User.email==logged_in).first()
