@@ -38,7 +38,7 @@ def login(request):
 
     session = DBSession()
     schema = UserLoginSchema()
-    form = Form(schema, buttons=('submit',))
+    form = Form(schema, buttons=('Login',))
     if request.POST:
         try:
             appstruct = form.validate(request.POST.items())

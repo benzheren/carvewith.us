@@ -42,4 +42,7 @@ function postSignupForm(data) {
 }
 
 /*create profile*/
-
+/*log in*/
+$('#deformLogin').live('click', function(){
+    $('#login_form').submit();
+});

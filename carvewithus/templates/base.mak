@@ -30,7 +30,7 @@
         <div id="account">
 % if not user_email:
             <div id="login_links">
-                <a href="login">login</a>&nbsp;|&nbsp;<a href="signup">sign up</a>
+                <a href="/login">login</a>&nbsp;|&nbsp;<a href="signup">sign up</a>
             </div>
 % else:
             <div id="account_links">
