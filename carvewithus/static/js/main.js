@@ -33,6 +33,18 @@ $(document).ready(function(){
     	$(this).ajaxSubmit(options);
 	return false;
     });
+    
+    /*bind enter button to form submit*/
+    $("input").bind("keydown", function(event) {
+    	var keycode = (event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode));
+      	if (keycode == 13) { 
+            $('form a.submit').click();
+            return false;
+      	} else  {
+            return true;
+      	}
+   }); 
+    
 });
 
 function postSignupForm(data) {
@@ -42,6 +54,11 @@ function postSignupForm(data) {
 }
 
 /*create profile*/
+$('#create_profile_done').live('click', function(){
+    $('#create_profile_form').submit();
+    return false;
+});
+
 /*log in*/
 $('#deformLogin').live('click', function(){
     $('#login_form').submit();

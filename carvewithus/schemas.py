@@ -9,10 +9,3 @@ class UserLoginSchema(colander.Schema):
     password = colander.SchemaNode(colander.String(), 
                                    widget=deform.widget.PasswordWidget(
                                           css_class='inputtext'))
-
-class CreateProfileSchema(colander.Schema):
-    """docstring for CreateProfileSchema"""
-    def __init__(self, arg):
-        super(CreateProfileSchema, self).__init__()
-        self.arg = arg
-        

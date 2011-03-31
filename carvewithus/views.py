@@ -121,6 +121,15 @@ def signup_post(request):
 @view_config(route_name='create_profile', renderer='create_profile.mak')
 def create_profile(request):
     logged_in = authenticated_userid(request)
+    session = DBSession()
+    if request.POST and validate_create_profile(request):
+        user = session.query(User).filter(User.email==logged_in).first()
+        user.activity = request.params['reg_activity']
+        user.skill_level = request.params['reg_level']
+        session.merge(user)
+        session.commit()
+        return HTTPFound(location=route_url('home', request))
+
     return {'user_email': logged_in}
 
 def get_user_from_fb_id(fb_id, dbsession):
@@ -162,6 +171,13 @@ def validate_signup(request):
 def create_trip(request):
     logged_in = authenticated_userid(request)
     return {'user_email': logged_in}
+
+def validate_create_profile(request):
+    activities = ('SKI', 'SNOWBOARD', 'BOTH')
+    levels = ('NEWBIE', 'INERMEDIATE', 'ADVANCED', 'EXPERT')
+    activity = request.params['reg_activity']
+    level = request.params['reg_level']
+    return activity in activities and level in levels
 
 @view_config(route_name='view_trip', renderer='view_trip.mak')
 def view_trip(request):
