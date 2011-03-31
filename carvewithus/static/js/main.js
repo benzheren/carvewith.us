@@ -35,16 +35,7 @@ $(document).ready(function(){
     });
     
     /*bind enter button to form submit*/
-    $("input").bind("keydown", function(event) {
-    	var keycode = (event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode));
-      	if (keycode == 13) { 
-            $('form a.submit').click();
-            return false;
-      	} else  {
-            return true;
-      	}
-   }); 
-    
+    $('input').clickOnEnter('form a.submit');
 });
 
 function postSignupForm(data) {
