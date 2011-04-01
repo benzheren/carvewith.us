@@ -348,38 +348,36 @@ a:hover {
 	Inline Error Msg
 *****************************************/
 .inlinemsg {
-	display:block;
 	width:240px;
-	overflow:hidden;
-	padding:0 0 10px 0px;
-}
-
-.inlinemsg .pointer {
-	background:white;
-	width:24px;
-	height:24px;
-	display:block;
-	float:left;
-}
-
-.inlinemsg .msgbody {
-	display:block;
-	float:left;
-	width:80%;
+	padding:1px;
+	position:relative;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-moz-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+	background:#c00;
+
 }
 
-.inlinemsg.error .msgbody {
+.inlinemsg .tip {
+  border-color: transparent #CC0000 transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  top:7px;
+  left:-19px;
+}
+
+.inlinemsg.error {
 	color:#FFF;
 	background:#CC0000;
 }
-.inlinemsg.warning .msgbody {
+.inlinemsg.warning {
 	color:#666;
 	background:#FFFF99;
 }
-.inlinemsg .msgbody .msgicon {
+.inlinemsg .msgicon {
 	margin:5px;
 }
 
