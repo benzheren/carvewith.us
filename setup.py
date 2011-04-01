@@ -15,7 +15,8 @@ requires = [
     'zope.sqlalchemy',
     'WebError',
     'facebook-python-sdk',
-    'FormAlchemy',
+    'pyramid_beaker',
+    'deform',
     ]
 
 if sys.version_info[:3] < (2,5,0):
