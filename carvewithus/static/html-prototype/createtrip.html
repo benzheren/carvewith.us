@@ -68,6 +68,25 @@
             <a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
    <!----- end Top bar ----->
+   
+   <!----- Message bar ----->
+        <div class="bar msg error">
+        	<div class="msgicon"></div>
+        	<h4 class="white">Main Error Message Title</h4>
+        </div>
+		<div class="bar msg warning">
+        	<div class="msgicon"></div>
+        	<h4 class="dark">Confirmation Message</h4>
+        	<a href="confirmno" id="btn_confirm_no" class="button medium red msg">No</a>
+        	<a href="confirmyes" id="btn_confirm_yes" class="button medium green msg">Yes</a>
+        </div>
+		<div class="bar msg success">
+        	<div class="msgicon"></div>
+        	<h4 class="white">Success Message Title</h4>
+        </div>
+
+   <!----- end Erroer bar ----->
+
 	
 	<!----- Left Column ----->
 	<div class="column_1 grid_3">
@@ -89,6 +108,13 @@
   				<input id="txt_new_title" name="new_title" class="text large full" alt="Enter trip title (50) chars" />            
   			</p>
        	</div>
+       	
+	  	<div class="inlinemsg error">
+			<div class="pointer">&nbsp;</div>
+			<div class="msgbody">
+				<p class="msgtext">Message goes here</p>
+			</div>
+		</div>
 
         <div id="summary" class="outer">
         	<label for="new_summary"><h4>Trip Summary</h4></label>
@@ -136,9 +162,31 @@
 	    	<div id="title" class="outer">
 	        	<h4>Intinerary</h4>
 	            <p id="description">
-	            	<label for="new_loc_1">Starting Location</label>
-	  				<input id="txt_new_loc_1" name="new_loc_1" class="text large arrlocation" alt="Enter City Name" />
-	  				         
+		            <table cellpadding="0" cellspacing="0" class="itinerary-edit">
+		            	<tr>
+		            		<td class="number">
+		            			<label class="lblleft">1</label>
+		            		</td>
+							<td class="location">
+								<label for="new_loc_1" class="lbltop">Starting Location</label>
+								<input id="txt_new_loc_1" name="new_loc_1" class="text large arrdest" alt="Enter City Name" />
+							</td>
+							<td class="date">
+								<label for="new_date_1" class="lbltop">Date</label>
+								<input id="txt_new_date_1" name="new_date_1" class="text large arrdest" alt="Enter Date" />
+							</td>
+							<td class="time">
+								<label for="new_time_1" class="lbltop">Time</label>
+								<select id="txt_new_time_1" name="new_time_1" class="text large arrdest" alt="Enter Time">
+									<option value="">Enter Time</option>
+								</select>
+							</td>
+
+		            	</tr>
+		            	
+		            	
+		  				
+		  			</table>    
 	  			</p>
 	       	</div>
 
