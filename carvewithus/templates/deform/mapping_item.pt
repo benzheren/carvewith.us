@@ -18,13 +18,15 @@
   <td class="input">
   <span tal:replace="structure field.serialize(cstruct)"/>
   </td>
-
-  <p tal:condition="field.error and not field.widget.hidden"
+  <td class="error">
+  <div tal:condition="field.error and not field.widget.hidden"
      tal:define="errstr 'error-%s' % field.oid"
      tal:repeat="msg field.error.messages()"
      tal:attributes="id repeat.msg.index==0 and errstr or 
                        ('%s-%s' % (errstr, repeat.msg.index))"
-     class="${field.widget.error_class}">${msg}</p>
+		       class="inlinemsg error">
+		       <div class="tip"></div><p class="msgtext">${msg}</p></div>
+  </td>
 
   <!-- /mapping_item -->
 </tr>

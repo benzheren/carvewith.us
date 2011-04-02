@@ -498,7 +498,7 @@ textarea.text {
 #content {
 	background:#FFF;
 	display:block;
-	overflow:hidden;
+	/*overflow:hidden;*/
 	margin:20px auto;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -891,6 +891,7 @@ map {
 }
 
 .signup_form .verticalform td.label {
+	min-width: 200px;
 	width: 200px;
 	text-align:right;
 	padding:0 5px 0 0;
@@ -912,6 +913,14 @@ map {
 	padding:5px;
 	font-size:1.6em;
 	width:220px;
+}
+
+.verticalform td.error {
+	vertical-align: middle;
+}
+
+.verticalform .inlinemsg {
+	margin-left: 25px;
 }
 
 .signup_form .button {
