@@ -348,13 +348,13 @@ a:hover {
 	Inline Error Msg
 *****************************************/
 .inlinemsg {
-	width:240px;
 	padding:1px;
-	position:relative;
+	position:absolute;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-moz-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	background:#c00;
+	display:block;
 
 }
 
