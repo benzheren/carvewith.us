@@ -12,7 +12,7 @@
 	    <div class="clear"></div>
 	    <table class="verticalform" callpadding="0" cellspacing="0">
 	        <tbody>
-		   <%include file="html/signup_form.html"/>
+		   <%include file="signup_form.html"/>
 		   <tr>
 		   	<td class="label"></td>
 		   	<td class="text">By clicking "Sign Up", you are agreeing to our <a href="terms">terms</a>.</td>
@@ -30,7 +30,7 @@
 	    <div class="clear"></div>
 	    <table class="verticalform" callpadding="0" cellspacing="0">
 	        <tbody>
-		   <%include file="html/signup_form.html"/>
+		   <%include file="signup_form.html"/>
 		   <tr>
 		   	<td class="label"></td>
 		   	<td class="text">By clicking "Sign Up", you are agreeing to our <a href="terms">terms</a>.</td>
