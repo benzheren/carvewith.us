@@ -7,9 +7,6 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.response import Response
 from pyramid.security import remember, forget, authenticated_userid
 from pyramid.url import route_url
-from formalchemy import validators
-from formalchemy.fields import Field
-from formalchemy.forms import FieldSet
 from pkg_resources import resource_filename
 from sqlalchemy import func
 from sqlalchemy.sql import and_
