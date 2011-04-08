@@ -129,12 +129,17 @@ a:hover {
 /****************************************
 	Subhead
 *****************************************/
-
-#subhead {
+.subhead_container {
 	width:100%;
 	min-height:1px;
 	overflow:hidden;
-	padding:0;
+	padding:0 0 10px 0;
+	margin:0;
+
+}
+.subhead {
+	width:100%;
+	float:left;	
 	margin:0;
 	background:#a7bfe8;
 	color:#FFF;
@@ -143,12 +148,12 @@ a:hover {
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 
 }
-#subhead .title {
+.subhead .title {
 	width:960px;
 	margin:0 auto;
 	display:block;
 }
-#subhead .title h3 {
+.subhead .title h3 {
 	float:left;
 	display:block;
 	margin:10px 0px;
@@ -157,7 +162,9 @@ a:hover {
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 }
 
-#subhead .submenu {
+
+
+.subhead .submenu {
 	display:block;
 	float:right;
 	margin:0 0 0 10px;
@@ -167,18 +174,19 @@ a:hover {
 	font-weight:900;
 
 }
-#subhead .submenu li:first-child {
+.subhead .submenu li:first-child {
 	border-left:1px dotted #fff;
 }
 
-#subhead .submenu  li {
+.subhead .submenu  li {
 	float:left;
 	border-right:1px dotted #fff;
 	display:block;
-	overflow:hidden;
+	position:relative;
+	overflow:visible;
 }
 
-#subhead .submenu  li a {
+.subhead .submenu  li a {
 	display:block;
 	padding:15px 10px;
 	width:110px;
@@ -186,7 +194,20 @@ a:hover {
 	color:#fff;
 }
 
-#subhead .submenu  li a:hover, .submenu  li.active a {
+.subhead .submenu li .tip {
+  border-color: #280078 transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:-20px;
+  left:55px;
+  z-index:100;
+}
+
+
+.subhead .submenu  li a:hover, .submenu  li.active a {
 	text-decoration:none;
 	color:#fff;
 	background:#280078;
@@ -204,12 +225,14 @@ a:hover {
 	width:100%;
 	border-radius:5px 5px 0px 0px;
 	background:	#a7bfe8;
+	padding:10px 0;
 	
 }
 .bar.line {
 	width:940px;
 	margin:0px 10px;
 	border-radius:5px 5px 0px 0px;
+	padding:10px 0;
 }
 
 .bar.msg {
@@ -219,6 +242,7 @@ a:hover {
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-moz-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+	padding:10px 0;
 
 }
 
@@ -264,11 +288,12 @@ a:hover {
 
 .bar .button.right {
 	float:right;
-	margin: 10px 10px 0 10px;
+	margin: 0;
 }
 .bar .button.msg {
 	float:right;
-	margin: 5px 10px 0 0px;
+	margin: 0px 10px 0 0px;
+	padding:5px 10px;
 }
 
 .bar h3, .bar h4 {
@@ -276,7 +301,7 @@ a:hover {
 	display:block;
 	font-size:2.4em;
 	font-weight:400;
-	margin:10px;	
+	margin:0px 10px;	
 }
 
 .bar h4{
@@ -291,8 +316,8 @@ a:hover {
 }
 
 .msgicon {
-	width:32px;
-	height:32px;
+	width:16px;
+	height:16px;
 	display:block;
 	float:left;
 }
@@ -309,7 +334,6 @@ a:hover {
 
 .bar .submenu  li {
 	float:left;
-
 	display:block;
 	overflow:hidden;
 }
@@ -426,8 +450,8 @@ a:hover {
 .button.huge {
 	font-size:1.6em;
 	padding:10px 20px;
-	min-width:240px;
-	margin:10px 0 0 -10px;
+	min-width:150px;
+	margin:0px 0 0 -10px;
 }
 
 .button.medium {
@@ -480,6 +504,13 @@ a:hover {
 	font-size:1.6em;
 }
 
+.text.medium {
+	padding:3px;
+	font-size:1.3em;
+	min-width:100px;
+}
+
+
 .text.small {
 	padding:3px;
 	font-size:1.2em;
@@ -512,6 +543,11 @@ textarea.text {
 	height:15px;
 }
 
+.seperator {
+	width:90%;
+	border-bottom:1px solid #CCC;
+}
+
 .outer {
 	width:100%;
 	overflow:hidden;
@@ -542,6 +578,7 @@ textarea.text {
 .trip_pic {
 	width:205px;
 	height:120px;
+
 
 }
 
@@ -591,7 +628,6 @@ textarea.text {
 
 .outer .col_lead_icon {
 	width:48px;
-	height:48px;
 	float:left;
 }
 .outer .indicator {
@@ -696,36 +732,36 @@ textarea.text {
 	padding:0px 0px 10px 0px;
 }
 
-#column_main {
-	padding:15px 0px;
+.column_main {
+	padding:0px 0px;
 	display:block;
 }
-#column_main .top {
-	padding:0px 0px 10px 0px;
+.column_main .top {
+	padding:10px 0px 10px 0px;
 	border-bottom:1px solid #CCC;
 	overflow:hidden;
 }
 
 
-#column_main .button {
+.column_main .button {
 	float:left;
 	margin:0px 10px 0px 0px;
 }
 
-#column_main .button.right {
+.column_main .button.right {
 	float:right;
 	margin:5px 5px 0px 0px;
 }
-#column_main .share {
+.column_main .share {
 	float:left;
 	width:300px;
 	list-style:none;
 }
-#column_main .share li {
+.column_main .share li {
 	float:left;
 	clear:none;
 }
-#column_main .outer {
+.column_main .outer {
 	margin:10px 0px 30px 0px;
 }
 
@@ -826,6 +862,77 @@ map {
 	background:#ccc;
 	display:block;
 }
+
+/****************************************
+	Create Trip Main
+*****************************************/
+
+/****************************************
+	Create Trip - Logistics
+*****************************************/
+#column_main_logistics form {
+	margin:0 15px;
+}
+
+table.itinerary_edit {
+
+	font-size:1.2em;
+	font-weight:900;
+}
+.itinerary_edit td {
+	vertical-align:top;
+	padding:3px 5px;
+}
+
+.itinerary_edit td.number label {
+	display:block;
+	padding:7px;
+	background:#000;
+	color:#fff;
+	float:left;
+	border-radius: 15px;
+	width:12px;
+	text-align:center;
+	margin:2px 0 0 0;
+}
+
+.itinerary_edit td.location {
+	min-width:140px;
+}
+.itinerary_edit td.location input.text {
+	width:200px;
+}
+
+
+.itinerary_edit .lbltop {
+	display:inline-block;
+	float:left;
+	clear:both;
+	font-size:1.2em;
+	margin:0 0 5px 0;
+	
+}
+
+.itinerary_edit .arrdest {
+	display:inline-block;
+	float:left;
+	clear:both;
+}
+
+.itinerary_edit td.lodge input.text {
+	width:240px;
+}
+
+.itinerary_edit td.date input.text {
+	width:100px;
+}
+.itinerary_edit td.time {
+	width:200px;
+}
+
+
+
+
 /****************************************
 	Footer
 *****************************************/

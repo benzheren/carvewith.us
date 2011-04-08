@@ -12,12 +12,13 @@
 <script type="text/javascript" src="../js/plugins-custom.js"></script>
 
 
+
 </head>
 
 <body>
 
 <!----- Head Start ----->
-<div id="banner">
+			<div id="banner">
 	<div id="head">
         <div class="logo"><h1>carvewith.us</h1></div>
         
@@ -49,17 +50,19 @@
 <!----- Head End ----->
 
 <!----- SubHead Start ----->
-<div id="subhead">
-	<div class="title">
-    	<h3 class="grid_7">Organize a new trip</h3>
-    <ul class="submenu  grid_5">
-    	<li class="active"><a href="basic"><b>1.</b> Basic Details</a></li>
-        <li><a href="logistics"><b>2.</b> Logistics</a></li>
-        <li><a href="members"><b>3.</b> Members</a></li>
-    </ul>
-    
+<div class="subhead_container">
+    <div class="subhead">
+        <div class="title">
+            <h3 class="grid_7">Organize a new trip</h3>
+        <ul class="submenu  grid_5">
+            <li class="active"><a href="basic"><b>1.</b> Basic Details</a>
+            <div class="tip"></div>
+            </li>
+            <li><a href="logistics"><b>2.</b> Logistics</a></li>
+            <li><a href="members"><b>3.</b> Members</a></li>
+        </ul>
+        </div>
     </div>
-    
 </div>
 <!----- SubHead End ----->
 
@@ -106,7 +109,7 @@
 	<!----- End Left Column ----->
 
 	<!----- Main Column / Basics----->
-	<div id="column_main" class="grid_9">
+	<div id="column_main_basic" class="grid_9 column_main">
     	<form id="form_new_trip_basics" name="new_trip_basics">
     	<div id="title" class="outer">
         	<label for="new_title"><h4>Title</h4></label>
@@ -138,8 +141,8 @@
  <div class="clear"> </div>
 </div>
 <!----- Content End ----->
-<!----- Content Start ----->
 
+<!----- Content Start ----->
 <div id="content" class="content container_12">
 
 	<!----- Top bar ----->
@@ -149,64 +152,208 @@
         </div>
    <!----- end Top bar ----->
 	
-	<!----- Left Column ----->
-	<div class="column_1 grid_3">
-    	<img src="" class="trip_pic" />
-    	TBD
-        <div class="clear"> </div>
-    </div>	
-	<!----- End Left Column ----->
 
     <!----- Main Column / Logistics----->
-	<div id="column_main" class="grid_9">
+	<div id="column_main_logistics" class="grid_8 column_main">
+    <div class="clear"></div>
     	<form id="form_new_trip_logistics" name="new_trip_logistics">
-	    	<div id="title" class="outer">
+        
+        	<!----- Itinerary ----->
+	    	<div id="itinerary" class="outer">
 	        	<h4>Intinerary</h4>
 	            <p id="description">
-		            <table cellpadding="0" cellspacing="0" class="itinerary-edit">
+		            <table cellpadding="0" cellspacing="0" class="itinerary_edit grid_9">
+		            	<thead>
 		            	<tr>
+                        	<td class="number"></td>
+							<td class="location">
+								<label class="lbltop">Starting Location</label>
+							</td>
+							<td class="date">
+								<label class="lbltop">Date</label>
+							</td>
+							<td class="time">
+								<label	s class="lbltop">Time</label>
+							</td>
+		            	</tr>
+                        </thead>
+                        <tbody>
+                        <tr>
 		            		<td class="number">
 		            			<label class="lblleft">1</label>
 		            		</td>
 							<td class="location">
-								<label for="new_loc_1" class="lbltop">Starting Location</label>
-								<input id="txt_new_loc_1" name="new_loc_1" class="text large arrdest" alt="Enter City Name" />
+								<input id="txt_new_loc_1" name="new_loc_1" class="text medium arrdest" alt="Enter City Name" />
 							</td>
 							<td class="date">
-								<label for="new_date_1" class="lbltop">Date</label>
-								<input id="txt_new_date_1" name="new_date_1" class="text large arrdest" alt="Enter Date" />
+								<input id="txt_new_date_1" name="new_date_1" class="text medium arrdest" alt="Enter Date" />
 							</td>
 							<td class="time">
-								<label for="new_time_1" class="lbltop">Time</label>
-								<select id="txt_new_time_1" name="new_time_1" class="text large arrdest" alt="Enter Time">
+								<select id="txt_new_time_1" name="new_time_1" class="text medium arrdest" alt="Enter Time">
 									<option value="">Enter Time</option>
 								</select>
 							</td>
-
 		            	</tr>
-		            	
-		            	
-		  				
-		  			</table>    
+                        <tr>
+		            		<td class="number">
+		            			<label class="lblleft">2</label>
+		            		</td>
+							<td class="location">
+								<input id="txt_new_loc_2" name="new_loc_2" class="text medium arrdest" alt="Enter City Name" />
+							</td>
+							<td class="date">
+								<input id="txt_new_date_2" name="new_date_2" class="text medium arrdest" alt="Enter Date" />
+							</td>
+							<td class="time">
+								<select id="txt_new_time_2" name="new_time_2" class="text medium arrdest" alt="Enter Time">
+									<option value="">Enter Time</option>
+								</select>
+							</td>
+		            	</tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                        	<td class="number"></td>
+                            <td class="location">
+                            	<a href="next-logistics" id="btn_next" class="button medium gray">Add Destination +</a>
+                            </td>
+                            <td>
+                            	<input id="chk_round_trip" name="round_trip" type="checkbox" value="roundtrip" />
+                                <label for="round_trip">Round Trip</label>
+                            </td>
+                        </tr>
+                        </tfoot>
+		  			</table> 
 	  			</p>
 	       	</div>
-
-	        <div id="summary" class="outer">
-	        	<h4>Trip Summary</h4>
+            <!----- end Itinerary ----->
+            
+			<div class="separator"></div>
+            <div class="clear"></div>
+            
+            <!----- Transportation ----->
+	        <div id="transportation" class="outer">
+	        	<h4>Transportation</h4>
 	            <p id="description">
-	  			<textarea id="txt_new_summary" name="new_summary" class="text small full"></textarea>
+	  				<table cellpadding="0" cellspacing="0" class="itinerary_edit grid_9">
+		            	<thead>
+		            	<tr>
+                        	<td class="number"></td>
+							<td class="location">
+								<label class="lbltop">Method</label>
+							</td>
+							<td class="date">
+								<label class="lbltop">Spots Available</label>
+							</td>
+						</tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+		            		<td class="number">
+		            			<img class="col_lead_icon" src="../images/trip_icon_car.png" />
+		            		</td>
+							<td class="location">
+								<input type="radio" id="rd_transport_method" name="transport_method" value="Driving" />
+                                <input type="radio" id="rd_transport_method" name="transport_method" value="Public"  />
+							</td>
+							<td class="date">
+								<input id="txt_spots_avail" name="spots" class="text small arrdest" alt="Enter Spots" />
+							</td>
+							<td class="time">
+							</td>
+		            	</tr>
+                       	</tbody>
+                     </table>
 	            </p>
 	       	</div>
+            <!----- end Transportation ----->
+            
+            <!----- Lodging ----->
+	        <div id="lodging" class="outer">
+	        	<h4>Lodging</h4>
+	            <p id="description">
+	  				<table cellpadding="0" cellspacing="0" class="itinerary_edit grid_9">
+		            	<thead>
+		            	<tr>
+                        	<td class="number"></td>
+							<td class="location">
+								<label class="lbltop">Have Lodging?</label>
+							</td>
+							<td class="date" colspan="2">
+								<label class="lbltop">Lodging Description</label>
+							</td>
+		            	</tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+		            		<td class="number">
+		            			<img class="col_lead_icon" src="../images/trip_icon_house.png" />
+		            		</td>
+							<td class="location">
+								<input type="checkbox" id="chk_have_lodging" name="have_lodging" value="lodging" />
+                                <label for="have_lodging">Yes</label>
+							</td>
+							<td class="lodge" colspan="2">
+                            	<input id="txt_logding_desc" name="new_logding_desc" class="text medium arrdest" alt="Enter Lodging Details" />
+							</td>
+							
+		            	</tr>
+                       	</tbody>
+                     </table>
+	            </p>
+	       	</div>
+            <!----- end Lodging ----->
+            
         </form>         
     </div>
-    <!----- End Main Column ----->
-    
+    <!----- End Main Column Logistics ----->
 
     <!----- Bottom bar ----->
         <div class="bar line bottom">
-        	<div class="column_1 grid_3"></div>
+        	<div class="grid_3">
+        		<a href="next-logistics" id="btn_next" class="button large gray right">&larr; Back</a>
+        	</div>
         	<div class="grid_4">
-            <a href="next-logistics" id="btn_next" class="button huge blue">Next  &rarr;</a>
+            	<a href="next-logistics" id="btn_next" class="button huge blue">Next  &rarr;</a>
+            </div>
+        </div>
+   <!----- end Bottom bar ----->
+
+ <div class="clear"> </div>
+</div>
+<!----- Content End ----->
+
+<!----- Content Start ----->
+
+<div id="content" class="content container_12">
+
+	<!----- Top bar ----->
+        <div class="bar line top">
+        	<h3 class="dark">Invite your friends!</h3>
+            <a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
+        </div>
+   <!----- end Top bar ----->
+	
+	
+	<!----- Left Column / People----->
+	<div id="column_left_people" class="grid_4 column_1">
+		
+    </div>
+    <!----- End Main Column Logistics ----->
+
+    <!----- Main Column / ----->
+	<div id="column_main_invite" class="grid_4 column_main">
+		
+    </div>
+    <!----- End Main Column Logistics ----->
+
+    <!----- Bottom bar ----->
+        <div class="bar line bottom">
+        	<div class="grid_3">
+        		<a href="back-logistics" id="btn_back" class="button large gray right">&larr; Back</a>
+        	</div>
+        	<div class="grid_4">
+            	<a href="next-complete" id="btn_next" class="button huge blue">Done!</a>
             </div>
         </div>
    <!----- end Bottom bar ----->
