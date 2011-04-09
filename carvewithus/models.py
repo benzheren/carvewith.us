@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, Enum, Unicode, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, Enum, Unicode, TIMESTAMP, \
+        ForeignKey, Boolean
+from sqlalchemy.dialects.mysql import TEXT, LONGTEXT
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
@@ -40,6 +42,7 @@ class User(Base):
         self.fb_access_token = fb_access_token
         pass
 
+
 class City(Base):
     """Mapping class for City"""
     __tablename__ = "cities"
@@ -50,7 +53,35 @@ class City(Base):
 
     def __init__(self):
         pass
-        
+
+
+class Trip(object):
+    """docstring for Trip"""
+    __tablename__ = 'trips'
+
+    id = Column(Integer, primary_key=True)
+    picture = Column(TEXT(unicode=True))
+    name = Column(TEXT(unicode=True))
+    summary = Column(LONGTEXT(unicode=True))
+    spots_available = Column(Integer)
+    transportation = Column(Enum('DRIVE', 'BUS'))
+    has_lodge = Column(Boolean)
+    lodge_desc = Column(TEXT(unicode=True))
+    organizer = Column(Integer, ForeignKey('users.id'))
+    
+    def __init__(self, picture=None, name=None, summary=None, spots_available=0,
+                 transportation=None, has_lodge=False, lodge_desc=None,
+                 organizer=None):
+        self.picture = picture
+        self.name = name
+        self.summary = summary
+        self.spots_available = sports_available
+        self.transportation = transportation
+        self.has_lodge = has_lodge
+        self.lodge_desc = lodge_desc
+        self.organizer = organizer
+
+
 def initialize_sql(engine):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
