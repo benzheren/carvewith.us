@@ -13,7 +13,6 @@ from sqlalchemy.sql import and_
 
 from carvewithus import schemas
 from carvewithus.models import DBSession, User
-from carvewithus.widgets import DivFormWidget
 
 deform_templates = resource_filename('deform', 'templates')
 customized_deform_templates = \
@@ -170,11 +169,8 @@ def validate_signup(request):
 @view_config(route_name='create_trip', renderer='create_trip.mak')
 def create_trip(request):
     logged_in = authenticated_userid(request)
-    schema = schemas.CreateTripOneSchema()
-    form = Form(schema, buttons=('Next',))
-    form.widget = DivFormWidget()
 
-    return {'user_email': logged_in, 'form':form.render()}
+    return {'user_email': logged_in}
 
 def validate_create_profile(request):
     activities = ('SKI', 'SNOWBOARD', 'BOTH')
