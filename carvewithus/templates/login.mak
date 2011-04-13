@@ -6,8 +6,8 @@
     </div>
     <form method="post" id="login_form" class="signup_form" name="login_form">
         <div class="clear"></div>
-% if form:
-	${form|n}
-% endif
+			% if form:
+				${form|n}
+			% endif
     </form>
 </div>

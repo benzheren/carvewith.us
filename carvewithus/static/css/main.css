@@ -224,6 +224,8 @@ a:hover {
 .bar.fill {
 	width:100%;
 	border-radius:5px 5px 0px 0px;
+	-moz-border-radius:5px 5px 0px 0px;
+	-webkit-border-radius:5px 5px 0px 0px;
 	background:	#a7bfe8;
 	padding:10px 0;
 	
@@ -232,6 +234,8 @@ a:hover {
 	width:940px;
 	margin:0px 10px;
 	border-radius:5px 5px 0px 0px;
+	-moz-border-radius:5px 5px 0px 0px;
+	-webkit-border-radius:5px 5px 0px 0px;
 	padding:10px 0;
 }
 
@@ -256,6 +260,8 @@ a:hover {
 
 .bar.fill.blue {
 	border-radius:5px 5px 0px 0px;
+	-moz-border-radius:5px 5px 0px 0px;
+	-webkit-border-radius:5px 5px 0px 0px;
 	background:	#a7bfe8;
 }
 .bar.line.top {
@@ -420,7 +426,6 @@ a:hover {
 	font-weight:bold;
 	text-align:center;
 	display:inline-block;
-	border-radius:5px;
 	font-weight:bold;
 	line-height:1;
 	border-radius:5px;
@@ -532,6 +537,7 @@ textarea.text {
 	/*overflow:hidden;*/
 	margin:20px auto;
 	border-radius: 5px;
+	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-box-shadow: 1px 1px 5px #ccc;
 	-webkit-box-shadow: 1px 1px 5px #ccc;
@@ -669,6 +675,7 @@ textarea.text {
 	margin:0 10px 10px 0;
 	border:1px solid #ccc;
 	border-radius: 2px;
+	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -891,6 +898,8 @@ table.itinerary_edit {
 	color:#fff;
 	float:left;
 	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
 	width:12px;
 	text-align:center;
 	margin:2px 0 0 0;
