@@ -11,9 +11,8 @@ from pkg_resources import resource_filename
 from sqlalchemy import func
 from sqlalchemy.sql import and_
 
+from carvewithus import schemas
 from carvewithus.models import DBSession, User
-from carvewithus.schemas import UserLoginSchema
-
 
 deform_templates = resource_filename('deform', 'templates')
 customized_deform_templates = \
@@ -34,7 +33,7 @@ def login(request):
         return HTTPFound(location=route_url('home', request))
 
     session = DBSession()
-    schema = UserLoginSchema()
+    schema = schemas.UserLoginSchema()
     form = Form(schema, buttons=('Login',))
     if request.POST:
         try:
@@ -170,6 +169,7 @@ def validate_signup(request):
 @view_config(route_name='create_trip', renderer='create_trip.mak')
 def create_trip(request):
     logged_in = authenticated_userid(request)
+
     return {'user_email': logged_in}
 
 def validate_create_profile(request):

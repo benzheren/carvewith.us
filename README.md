@@ -9,7 +9,7 @@ Assume that you are using Mac OS X Snow Leopard (this means you will have python
 0. Install virtualenv and install [virtualenvwrapper](http://www.doughellmann.com/docs/virtualenvwrapper/). Use virtualenvwrapper tool to create virtual enviroment for Pyramid.
 1. Install Pyramid framework by following [this](http://docs.pylonsproject.org/projects/pyramid/1.0/narr/install.html#installing-pyramid-on-a-unix-system).
 2. Install Mysql Community Server 5.1 64-bit from [here](http://dev.mysql.com/downloads/mysql/5.1.html). Make sure that you install 64-bit, not 32-bit.
-3. Install MySQL-python library with pip or easy_install.
+3. Install MySQL-python library with pip or easy_install, a good reference is [here](http://stackoverflow.com/questions/1448429/how-to-install-mysqldb-python-data-access-library-to-mysql-on-mac-os-x).
 
 ### Database
 1. In your local mysql database, create a user:carvewithus with password:5mad_cows. Create a database called carvewithus and grant correct privileges of this database to carvewithus user.

@@ -17,6 +17,7 @@ requires = [
     'facebook-python-sdk',
     'pyramid_beaker',
     'deform',
+    'WebHelpers',
     ]
 
 if sys.version_info[:3] < (2,5,0):
