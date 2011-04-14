@@ -253,10 +253,11 @@
 		            			<img class="col_lead_icon" src="../images/trip_icon_car.png" />
 		            		</td>
 							<td class="location">
-								<input type="radio" id="rd_transport_method_driving" name="transport_method" value="Driving" />
+								<input type="radio" id="rd_transport_method_driving" name="transport_method" value="Driving" />	
                                 <label for="rd_transport_method_driving">Driving</label>
+                                <br />
                                 <input type="radio" id="rd_transport_method_public" name="transport_method" value="Public"  />
-								<label for="rd_transport_method_public">Driving</label>
+								<label for="rd_transport_method_public">Public/Bus</label>
                             </td>
 							<td class="date">
 								<input id="txt_spots_avail" name="spots" class="text small arrdest" alt="Enter Spots" />
@@ -293,7 +294,7 @@
 		            		</td>
 							<td class="location">
 								<input type="checkbox" id="chk_have_lodging" name="have_lodging" value="lodging" />
-                                <label for="have_lodging">Yes</label>
+                                <label for="chk_have_lodging">Yes</label>
 							</td>
 							<td class="lodge" colspan="2">
                             	<input id="txt_logding_desc" name="new_logding_desc" class="text medium arrdest" alt="Enter Lodging Details" />
@@ -335,19 +336,94 @@
             <a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
    <!----- end Top bar ----->
+   
+   
+   <!----- Top bar ----->
+        <div class="bar line members">
+        	<div class="grid_4">
+            	&nbsp;
+            </div>
+            <ul class="tab">
+                <li class="active">
+                	<a href="">Invite</a>
+                    <sup>2</sup>
+                </li>
+            </ul>
+        </div>
+   <!----- end Top bar ----->
+   
 	
-	
-	<!----- Left Column / People----->
-	<div id="column_left_people" class="grid_4 column_1">
-		
+    <!----- Right Column / Invite Message----->
+	<div id="column_left_contact" class="grid_4 column_1">
+       	<div class="outer">
+       		<fb:login-button size="large">Connect Your Facebook Account</fb:login-button>
+        </div>
+        <div class="outer">
+        	<label class="top">Add by name or email</label>
+            <input id="txt_" type="text" class="text large searchname" alt="Type in friend's name or email" />
+            <a href="invite" id="btn_invite" class="button medium green right">Add &raquo;</a>
+        </div>
+        <div class="outer">
+        	<label class="top">List of Facebook friends</label>
+            <ul class="users_list full friends">
+            <li>
+                <h6 class="name">User Name</h6>
+                <a href="addinvite" class="button medium green right msg">&raquo;</a>
+            </li>
+             <li class="alt">
+                <h6 class="name">User Name</h6>
+                <a href="addinvite" class="button medium green right msg">&raquo;</a>
+            </li>
+            </ul>
+        </div>
+        
     </div>
-    <!----- End Main Column Logistics ----->
+    <!----- End Right Column Invite Message ----->
+    
+	 <!----- Main Column / People ----->
+	<div id="column_main_people" class="grid_8 column_main">
+        
+        <div class="outer">
+        	<h4 class="tabhead">Invite List:</h4>
+        	<ul class="users_list full">
+            <li>
+                <div class="grid_1">
+                	<img class="small" src="" />
+                </div>
+                <div class="grid_5">
+                    <h6 class="name">User Name</h6>
+                    <div class="skill">
+                        <span class="activity">Snowboard</span>
+                        <span class="activity">Ski</span>
+                    </div>
+                    <p class="info">
+                        If the person is not on CWS but on facebook, this is blank.
+                    </p>
+                </div>
+                
+                <a href="uninvite" class="button medium red right msg">X</a>
+            </li>
+            <li class="alt">
+                <div class="grid_1">
+                	<img class="small" src="" />
+                </div>
+                <div class="grid_5">
+                    <h6 class="name">just-an-email-address@something.com</h6>
+                   
+                </div>
+                
+                <a href="uninvite" class="button medium red right msg">X</a>
+            </li>
+            
+            </ul>
+        </div>
+        
+    </div>
+    <!----- End Main Column People ----->
+    
+	
 
-    <!----- Main Column / ----->
-	<div id="column_main_invite" class="grid_4 column_main">
-		
-    </div>
-    <!----- End Main Column Logistics ----->
+   
 
     <!----- Bottom bar ----->
         <div class="bar line bottom">

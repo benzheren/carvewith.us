@@ -221,6 +221,7 @@ a:hover {
 	overflow:hidden;
 	display:block;
 }
+
 .bar.fill {
 	width:100%;
 	border-radius:5px 5px 0px 0px;
@@ -247,7 +248,13 @@ a:hover {
 	-moz-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	padding:10px 0;
+}
 
+.bar.members {
+	width:940px;
+	margin:0px 10px;
+	padding: 50px 0 0 0;
+	background:url(../images/invite_users.png) no-repeat bottom left;
 }
 
 .bar.border {
@@ -292,10 +299,7 @@ a:hover {
 .bar.msg.success .msgicon {
 }
 
-.bar .button.right {
-	float:right;
-	margin: 0;
-}
+
 .bar .button.msg {
 	float:right;
 	margin: 0px 10px 0 0px;
@@ -372,6 +376,83 @@ a:hover {
 	padding:12px 10px;
 	margin:6px 0 0 0;
 }
+
+
+
+
+/****************************************
+	Members Tab Bar
+*****************************************/
+.tab {
+	display:block;
+	margin:0;
+	list-style:none;
+	font-size:1.4em;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.10);
+	font-weight:900;
+	position:relative;
+	border-bottom:1px solid #ccc;
+	width: 935px;
+	padding:0 0 45px 300px;
+}
+
+.tab li {
+	float:left;
+	display:inline;
+	margin:0 0 0 5px;
+	position:relative;
+	padding:10px 0 0 0;
+}
+
+.tab li a {
+	display:block;
+	width:120px;
+	background:#ccc;
+	padding:10px 0;
+	text-align:center;
+	color:#000;
+	text-decoration:none;
+	border-radius:5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	border-width:1px;
+	border-color: #ccc;
+	border-style:solid;
+	z-index:200;
+}
+.tab li a:hover, .tab li.active a:hover {
+	background:#666;
+	color:#fff;
+}
+
+
+.tab li.active a {
+	border-bottom:1px solid #fff;
+	background:#fff;
+	color:#666;
+}
+.tab li.active a:hover {
+	background:#fff;
+	color:#666;
+}
+
+.tab li sup {
+	display:block;	
+	background:#c00;
+	color:#fff;
+	min-width:15px;
+	text-align:center;
+	padding:5px;
+	border-radius:15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	position:relative;
+	z-index:300;
+	float:right;
+	margin-top:-40px;
+	margin-right:-5px;
+}
+
 
 
 /****************************************
@@ -494,6 +575,14 @@ a:hover {
 .button.green:hover {
 	background:#008800;
 }
+.button.right {
+	float:right;
+}
+
+.button[href='invite'] {
+	margin:3px 20px 0 0;
+}
+
 
 /****************************************
 	Forms
@@ -515,11 +604,25 @@ a:hover {
 	min-width:100px;
 }
 
-
 .text.small {
 	padding:3px;
 	font-size:1.2em;
 }
+
+.text.searchname {
+	min-width:200px;
+}
+
+label.top {
+	padding:3px;
+	margin:5px 0 0 0;
+	font-size:1.44em;
+	font-weight:900;
+	min-width:98%;
+	float:left;
+	clear:both;
+}
+
 .text.full {
 	width:460px;
 }
@@ -554,9 +657,13 @@ textarea.text {
 	border-bottom:1px solid #CCC;
 }
 
+.column_main .outer {
+	margin:10px 0px 30px 0px;
+}
 .outer {
 	width:100%;
 	overflow:hidden;
+
 }
 
 .inner {
@@ -658,18 +765,36 @@ textarea.text {
 }
 
 /****************************************
-	User List
+	Users List 
 *****************************************/
-
-.user_small{
+.user_small, .users_list {
 	display:block;
 	overflow:hidden;
+}
+
+.user_small{
 	width: 200px;
 }
-.users_small_list li {
+
+.users_list.full {
+	border:1px solid #ccc;
+}
+.users_list.full.friends {
+	width:95%;
+	max-height:500px;
+	overflow:auto;
+}
+
+.users_list li {
 	float:left;
 	display:block;
 	overflow:hidden;
+}
+.users_list li.alt {
+	background:#eee;
+}
+
+.users_list.small li {
 	width: 210px;
 	padding:5px;
 	margin:0 10px 10px 0;
@@ -682,53 +807,72 @@ textarea.text {
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 
 }
-.users_small_list li:hover {
+
+.users_list.full li {
+	width: 100%;
+	padding:5px 0px;
+	margin: 0;
+}
+
+.users_list.small li:hover {
 	background:#eee;
 }
 
-.user_small, .users_small_list li a {
+
+.users_list.full li .grid_1,  .users_list.full li .grid_5{
+	padding:0;
+	margin:0;
+	
+}
+.user_small, .users_list li a {
 	color:#000;
 }
-.user_small a:hover, .users_small_list li a:hover{
+.user_small a:hover, .users_list li a:hover{
 	text-decoration:none;
 }
 
-.user_small img, .users_small_list li img{
+.user_small img, .users_list li img{
 	width:48px;
 	height:48px;
 	float:left;
 }
+.users_list.full li img{
+	margin-left:5px;
+}
 
-.user_small h6, .users_small_list li h6{
+.user_small h6, .users_list li h6{
 	float:left;
 	font-size: 1.4em;
-	padding:  5px 5px 5px 5px;
+	padding:  5px;
 }
 
-.user_small a h6:hover, .users_small_list li h6:hover{
-	text-decoration:underline;
-}
-
-.user_small .skill, .users_small_list li .skill {
+.user_small .skill, .users_list li .skill {
 	float:left;
+	font-size: 1.1em;
+	font-weight:900;
+}
+.user_small .skill, .users_list.small li .skill {
+	padding: 0px 5px;
+}
+
+.users_list.full li .skill {
+	clear:right;
+	margin:7px 0 0 0;
+}
+.users_list.full li .info {
+	float:left;
+	clear:left;
 	font-size: 1.1em;
 	padding: 0px 5px;
 }
-.user_small .tags, .users_small_list li .tags {
-	float:left;
-	width:100px;
-	margin:5px 5px 0px 5px;
-}
-.user_small .tags li, .users_small_list li .tags li{
-	float:left;
-	display:block;
-	color:#280078;
-	border:none;
-	width:auto;
-	margin: 0 5px 0 0;
-	
+
+.users_list.full li .button.msg {
+	margin:10px 5px 0 0;
 }
 
+.users_list.full.friends li .button.msg {
+	margin:0 5px 0 0;
+}
 
 /****************************************
 	Main Column - Trip Profile
@@ -737,6 +881,11 @@ textarea.text {
 .outer h4 {
 	font-size:1.8em;
 	padding:0px 0px 10px 0px;
+}
+
+.outer h4.tabhead {
+	font-size:1.8em;
+	padding:10px 0px 10px 0px;
 }
 
 .column_main {
@@ -750,15 +899,12 @@ textarea.text {
 }
 
 
-.column_main .button {
+.column_main .button.left {
 	float:left;
 	margin:0px 10px 0px 0px;
 }
 
-.column_main .button.right {
-	float:right;
-	margin:5px 5px 0px 0px;
-}
+
 .column_main .share {
 	float:left;
 	width:300px;
@@ -768,10 +914,6 @@ textarea.text {
 	float:left;
 	clear:none;
 }
-.column_main .outer {
-	margin:10px 0px 30px 0px;
-}
-
 
 p#description {
 	font-size:1.2em;	
@@ -882,7 +1024,6 @@ map {
 }
 
 table.itinerary_edit {
-
 	font-size:1.2em;
 	font-weight:900;
 }
@@ -919,7 +1060,6 @@ table.itinerary_edit {
 	clear:both;
 	font-size:1.2em;
 	margin:0 0 5px 0;
-	
 }
 
 .itinerary_edit .arrdest {
@@ -939,6 +1079,10 @@ table.itinerary_edit {
 	width:200px;
 }
 
+
+/****************************************
+	Create Trip - Invite
+*****************************************/
 
 
 
