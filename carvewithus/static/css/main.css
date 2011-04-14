@@ -43,8 +43,31 @@ a:hover {
 
 
 /****************************************
-	Shared Classes
+	H1, H2, H3, H4, H5
 *****************************************/
+h1 {
+	font-weight:900;
+	font-size: 2.8em;
+	line-height:normal;
+}
+h2 {
+	font-size: 2.4em;
+}
+
+
+h5 {
+	font-size:1.6em;
+	padding:0px 0px 10px 0px;
+}
+
+.top q.short {
+	font-size:2.4em;
+	font-weight:900;
+	display:inline-block;
+	margin:10px 0 5px 0;
+	padding:0px;
+}
+
 
 /****************************************
 	Header
@@ -73,9 +96,6 @@ a:hover {
 
 .logo h1 {
 	font-family:"Arial Black", "Helvetica Neue", Helvetica, Arial, san-serif;
-	font-weight:900;
-	font-size: 2.8em;
-	line-height:normal;
 }
 #head .menu {
 	list-style:none;
@@ -107,7 +127,6 @@ a:hover {
 
 #head .menu li a h2 {
 	color: #000;
-	font-size: 2.4em;
 	margin:20px 0 5px 0;
 }
 
@@ -316,6 +335,7 @@ a:hover {
 
 .bar h4{
 	font-size:1.8em;
+	font-weight:900;
 }
 .bar h3.white, .bar h4.white {
 	color:#fff;
@@ -583,6 +603,9 @@ a:hover {
 	margin:3px 20px 0 0;
 }
 
+.button.full {
+	width:70%;
+}
 
 /****************************************
 	Forms
@@ -672,18 +695,38 @@ textarea.text {
 }
 
 /****************************************
+	Icons - Sprites
+*****************************************/
+
+.icon48 {
+	width:48px;
+	height:48px;
+	float:left;
+	background:url(../images/48-icons-sprite.png) no-repeat;
+}
+
+.icon48.car {
+	background-position: 0px -140px;
+}
+
+.icon48.house {
+	background-position: 0px -65px;
+}
+
+/****************************************
 	Left Column 
 *****************************************/
 
 .column_1 {
 	background:#fff;
-	margin:15px 0 0 15px;
+	margin:15px 0 15px 15px;
 }
 
-.outer h5 {
-	font-size:1.8em;
-	padding:0px 0px 10px 0px;
+.column_1.seperated {
+	border-right:1px solid #ccc;
 }
+
+
 
 /****************************************
 	Left Column - Trip Profile
@@ -691,8 +734,6 @@ textarea.text {
 .trip_pic {
 	width:205px;
 	height:120px;
-
-
 }
 
 .inner.dates {
@@ -739,21 +780,17 @@ textarea.text {
 	font-weight:bold;
 }
 
-.outer .col_lead_icon {
-	width:48px;
-	float:left;
-}
 .outer .indicator {
 	float:left;
 	font-size:2.4em;
-	background:#280078;
+	background:#a7bfe8;
 	font-weight:900;
 	color:#FFF;
 	padding: 7px 14px;
-	margin:5px 5px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	margin:3px 5px 5px 10px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	
 
 }
@@ -763,6 +800,37 @@ textarea.text {
 	margin:0px;
 	padding: 10px 0px;
 }
+
+
+
+
+
+/****************************************
+	Left Column - User Profile
+*****************************************/
+.user_pic {
+	width:200px;
+	min-height:120px;
+}
+
+.skill.large .activity {
+	background:url(../images/48-icons-sprite.png) no-repeat;
+	padding: 20px 0 0 52px;
+	min-height:48px;
+	margin:3px 5px 0 0;
+	color:#666;
+	font-size:1.6em;
+	float:left;
+	clear:both;
+}
+
+.skill.large .activity.snowboard {
+	background-position:0px -286px;	
+}
+.skill.large .activity.ski {
+	background-position:0px -206px;	
+}
+
 
 /****************************************
 	Users List 
@@ -784,7 +852,11 @@ textarea.text {
 	max-height:500px;
 	overflow:auto;
 }
-
+.users_list.thumbs {
+	border:none;
+	width:480px;
+	margin:0 0 10px 0;
+}
 .users_list li {
 	float:left;
 	display:block;
@@ -813,6 +885,16 @@ textarea.text {
 	padding:5px 0px;
 	margin: 0;
 }
+.users_list.thumbs li {
+	width:50px;
+	margin:5px 10px 5px 0;
+	clear:none;
+	border:none;
+	border-radius: none;
+	box-shadow:0 0 0;-webkit-box-shadow:0 0 0;-moz-box-shadow:0 0 0;
+	border-radius: 0;-moz-border-radius: 0;-webkit-border-radius: 0;
+}
+
 
 .users_list.small li:hover {
 	background:#eee;
@@ -831,10 +913,13 @@ textarea.text {
 	text-decoration:none;
 }
 
+
+
 .user_small img, .users_list li img{
 	width:48px;
 	height:48px;
 	float:left;
+
 }
 .users_list.full li img{
 	margin-left:5px;
@@ -843,16 +928,33 @@ textarea.text {
 .user_small h6, .users_list li h6{
 	float:left;
 	font-size: 1.4em;
-	padding:  5px;
+	padding: 5px;
 }
 
 .user_small .skill, .users_list li .skill {
 	float:left;
 	font-size: 1.1em;
 	font-weight:900;
+	min-width:50%;
+	margin:5px 0 0 0;
 }
 .user_small .skill, .users_list.small li .skill {
 	padding: 0px 5px;
+}
+
+.skill .activity {
+	background:url(../images/16-icons-sprite.png) no-repeat;
+	padding: 0 0 5px 18px;
+	margin:3px 5px 0 0;
+	min-height:24px;
+	color:#666;
+}
+
+.activity.snowboard {
+	background-position:0px -96px;	
+}
+.activity.ski {
+	background-position:0px -70px;	
 }
 
 .users_list.full li .skill {
@@ -874,6 +976,77 @@ textarea.text {
 	margin:0 5px 0 0;
 }
 
+.users_list.thumbs .name {
+	color:#000;
+	font-size:1em;
+	font-weight:900;	
+	padding: 5px 0;
+	display:inline-block;
+	min-height:8px;
+	min-width:48px;
+	text-align:center;
+	position:relative;
+	margin: 0 0 0 0;
+	
+}
+
+/****************************************
+	Trips List 
+*****************************************/
+.trips_list {
+	display:block;
+	overflow:hidden;
+}
+
+.trips_list li {
+	float:left;
+	display:block;
+	overflow:hidden;
+	clear:both;
+	width:99%;
+	border:1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.trips_list li.alt {
+	background:#eee;
+}
+
+.trips_list .grid_3 {
+	width:170px;	
+}
+.trips_list .outer {
+	margin:0 0 10px 0;	
+}
+
+.trips_list .grid_6 {
+	width:480px;	
+}
+.trips_list .bar {
+	width:100%;
+	margin:0 0 10px 0;
+	padding:15px 0 0 0;
+}
+.trips_list .bar h4 {
+	margin:0 0 0 15px;
+}
+
+
+.trips_list h6.destinations {
+	font-weight:900;
+	font-size:1.4em;
+	line-height:normal;
+	margin:5px 0;
+	padding:0;
+	color:#666;	
+}
+.trips_list p {
+	margin:10px 0;
+}
 /****************************************
 	Main Column - Trip Profile
 *****************************************/
@@ -915,7 +1088,7 @@ textarea.text {
 	clear:none;
 }
 
-p#description {
+p.description {
 	font-size:1.2em;	
 }
 #ds_col_main {
@@ -1124,8 +1297,8 @@ table.itinerary_edit {
 	font-weight:900;
 	font-size:1.2em;
 	text-transform:uppercase;
-	
 }
+
 
 .footer h1 {
 	margin:5px 0px;

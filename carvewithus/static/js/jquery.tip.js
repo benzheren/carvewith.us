@@ -1,3 +1,10 @@
+/****************************
+*	jQuery Tip 
+*	by Phu
+*	Displays a tooltip with class 'inlinemsg' 
+*	to the right of the target element
+*	
+*****************************/
 (function($){
 
   var methods = {

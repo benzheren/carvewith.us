@@ -14,6 +14,8 @@ $(document).ready(function(){
 		return false;
 	});
 	
+	$('input[type="text"]').promptText();
+	
 	$('#btn_next').click(function(){
 		
 		$('textarea').tooltip('destroy');
