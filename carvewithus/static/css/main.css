@@ -260,7 +260,6 @@ h5 {
 }
 
 .bar.msg {
-	width:940px;
 	margin:10px;
 	border-style:none;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
@@ -1354,6 +1353,7 @@ table.itinerary_edit {
 
 .verticalform .inlinemsg {
 	margin-left: 25px;
+	min-width: 200px;
 }
 
 .signup_form .button {

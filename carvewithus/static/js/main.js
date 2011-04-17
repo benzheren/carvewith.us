@@ -51,6 +51,7 @@ $('#create_profile_done').live('click', function(){
 });
 
 /*log in*/
-$('#deformLogin').live('click', function(){
+$('#login_btn').live('click', function(){
     $('#login_form').submit();
+    return false;
 });

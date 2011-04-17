@@ -18,6 +18,7 @@ requires = [
     'pyramid_beaker',
     'deform',
     'WebHelpers',
+    'FormEncode',
     ]
 
 if sys.version_info[:3] < (2,5,0):

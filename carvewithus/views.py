@@ -1,24 +1,19 @@
 import re
 
 import facebook
-from deform import Form, ValidationFailure
+import formencode
+from formencode import validators
+from formencode import htmlfill
 from pyramid.view import view_config
-from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized 
 from pyramid.response import Response
 from pyramid.security import remember, forget, authenticated_userid
 from pyramid.url import route_url
-from pkg_resources import resource_filename
 from sqlalchemy import func
 from sqlalchemy.sql import and_
 
 from carvewithus import schemas
 from carvewithus.models import DBSession, User
-
-deform_templates = resource_filename('deform', 'templates')
-customized_deform_templates = \
-        resource_filename('carvewithus', 'templates/deform')
-search_path = (customized_deform_templates, deform_templates)
-Form.set_zpt_renderer(search_path)
 
 
 @view_config(route_name='home', renderer='home.mak')
@@ -31,27 +26,27 @@ def login(request):
     logged_in = authenticated_userid(request)
     if logged_in:
         return HTTPFound(location=route_url('home', request))
-
     session = DBSession()
-    schema = schemas.UserLoginSchema()
-    form = Form(schema, buttons=('Login',))
+    schema = schemas.Login()
     if request.POST:
+        if not validate_csrf(request):
+            return HTTPUnauthorized('Not authorized');
         try:
-            appstruct = form.validate(request.POST.items())
+            form_result = schema.to_python(request.params)
             user = session.query(User).filter(and_(
-                            User.email==appstruct['email'], 
-                            User.password==func.sha1(appstruct['password']))).\
+                            User.email==form_result['email'], 
+                            User.password==func.sha1(form_result['password']))).\
                             first()
             if user:
                 headers = remember(request, user.email)
                 return HTTPFound(location=route_url('home', request), 
                                  headers=headers)
             else:
-                return {'form': form.render(appstruct=appstruct)}
-        except ValidationFailure, e:
-            return {'form':e.render()}
+                return {'errors': ['form']}
+        except validators.Invalid, e:
+            return {'errors': e.error_dict}
     else:
-        return {'form': form.render()}
+        return {'errors': [], '_csrf_': request.session.get_csrf_token()}
 
 @view_config(route_name="logout")
 def logout(request):
@@ -189,3 +184,6 @@ def join_trip(request):
     logged_in = authenticated_userid(request)
     return {'user_email': logged_in}
 
+def validate_csrf(request):
+    token = request.session.get_csrf_token()
+    return token == request.POST['_csrf_']
