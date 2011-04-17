@@ -23,6 +23,7 @@ def home(request):
 
 @view_config(route_name="login", renderer='login.mak')
 def login(request):
+    max_age = request.registry.settings['auth_cookie.max_age']
     logged_in = authenticated_userid(request)
     if logged_in:
         return HTTPFound(location=route_url('home', request))
@@ -38,7 +39,10 @@ def login(request):
                             User.password==func.sha1(form_result['password']))).\
                             first()
             if user:
-                headers = remember(request, user.email)
+                if request.params['remember_me']:
+                    headers = remember(request, user.email, max_age=max_age)
+                else:
+                    headers = remember(request, user.email)
                 return HTTPFound(location=route_url('home', request), 
                                  headers=headers)
             else:
