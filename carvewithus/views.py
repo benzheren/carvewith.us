@@ -39,7 +39,7 @@ def login(request):
                             User.password==func.sha1(form_result['password']))).\
                             first()
             if user:
-                if request.params['remember_me']:
+                if request.params.get('remember_me', False):
                     headers = remember(request, user.email, max_age=max_age)
                 else:
                     headers = remember(request, user.email)
