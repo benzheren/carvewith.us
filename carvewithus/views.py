@@ -29,6 +29,8 @@ def login(request):
         return HTTPFound(location=route_url('home', request))
     session = DBSession()
     schema = schemas.Login()
+    result = {'_csrf_': request.session.get_csrf_token()}
+    errors = []
     if request.POST:
         if not validate_csrf(request):
             return HTTPUnauthorized('Not authorized');
@@ -46,11 +48,12 @@ def login(request):
                 return HTTPFound(location=route_url('home', request), 
                                  headers=headers)
             else:
-                return {'errors': ['form']}
+                errors.append('form')
         except validators.Invalid, e:
-            return {'errors': e.error_dict}
-    else:
-        return {'errors': [], '_csrf_': request.session.get_csrf_token()}
+            errors = e.error_dict
+    
+    result['errors'] = errors
+    return result
 
 @view_config(route_name="logout")
 def logout(request):
