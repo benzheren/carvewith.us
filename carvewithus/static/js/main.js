@@ -2,6 +2,7 @@
 $('#sign_up_with_email_link').live('click', function(){
     $('#content div.sign_up_0').hide();
     $('#content div.sign_up_2').hide();
+    $('#fb_preview').hide();
     $('#content div.sign_up_1').show();
 });
 

@@ -61,8 +61,8 @@
     	    $('#content div.sign_up_1').hide();
 	    $('#content div.sign_up_2').show();
 	    FB.api('/me', function(response) {
-	        content = '<p><a href=\"' + response.link + '\"><img src=\"http://graph.facebook.com/' + response.id +
-		          '/picture?type=large\"></a></p>';
+		    content = '<p><img src=\"http://graph.facebook.com/' + response.id +
+			    '/picture?type=large\"></p>';
 	        $('#fb_preview').html(content);
 		$('#signup_form_fb #reg_name').val(response.name);
 	    });
