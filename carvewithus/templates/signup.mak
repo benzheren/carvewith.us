@@ -57,7 +57,7 @@
 	    <table class="verticalform" callpadding="0" cellspacing="0">
 		   <tbody>
 			<tr>
-				<td class="label">${form.label('name', label='Full Name:')}</td>	
+				<td class="label">${form.label('name', label='Full Name:')}</td>
 				<td class="input">${form.text('name', class_='inputtext')}</td>
 			</tr>
 			<tr>
