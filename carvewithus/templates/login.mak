@@ -68,7 +68,7 @@ from webhelpers.html.tags import text, password, checkbox, hidden
 			    </tr>
 		    </tbody>
 	    </table>
-	    ${hidden(name="_csrf_", value=_csrf_)}
+	    ${hidden(name="_csrf", value=_csrf_)}
     </form>
 	<div class="clear"> </div>
 </div>
