@@ -70,4 +70,6 @@ from webhelpers.html.tags import text, password, checkbox, hidden
 	    </table>
 	    ${hidden(name="_csrf_", value=_csrf_)}
     </form>
+	<div class="clear"> </div>
 </div>
+

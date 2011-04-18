@@ -29,7 +29,7 @@
 		return this.each(function(){
 			var $this = $(this);
 			$tooltip = $this.next('.inlinemsg');
-			$tooltip = $this.next('.inlinemsg');
+			$tooltip.css("position","absolute");
 			$tooltip.offset(
 			{ 	top: $this.offset().top,
 				left: $this.offset().left+$this.width()+$this.data('tip').offset.left
