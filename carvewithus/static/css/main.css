@@ -479,7 +479,7 @@ h5 {
 *****************************************/
 .inlinemsg {
 	padding:1px;
-	position:absolute;
+	position:relative;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-moz-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
