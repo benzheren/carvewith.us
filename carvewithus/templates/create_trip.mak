@@ -1,24 +1,23 @@
 <%inherit file="base.mak"/>
 <%! 
-from webhelpers.html.tags import form, end_form, text, textarea, radio, checkbox
+from webhelpers.html.tags import text, textarea, radio, checkbox
 %>
 <div class="subhead_container">
     <div class="subhead">
         <div class="title">
             <h3 class="grid_7">Organize a new trip</h3>
         <ul class="submenu  grid_5">
-            <li class="active"><a href="basic"><b>1.</b> Basic Details</a>
-            <div class="tip"></div>
+		<li id="create_trip_menu_1" class="active"><a href="basic"><b>1.</b> Basic Details</a>
+                 <div class="tip"></div>
             </li>
-            <li><a href="logistics"><b>2.</b> Logistics</a></li>
-            <li><a href="members"><b>3.</b> Members</a></li>
+	    <li id="create_trip_menu_2"><a href="logistics"><b>2.</b> Logistics</a></li>
+	    <li id="create_trip_menu_3"><a href="members"><b>3.</b> Members</a></li>
         </ul>
         </div>
     </div>
 </div>
-
-<div id="content" class="content container_12">
-${form('/submit',method='post')}
+${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
+<div id="create_trip_1" class="content container_12">
 <div class="bar line top">
 	<h3 class="dark">Basic Details</h3>
 	<a class="button medium gray right" id="btn_view" href="viewtrip">View Trip Profile</a>
@@ -47,19 +46,17 @@ ${form('/submit',method='post')}
 <div class="bar line bottom">
 	<div class="column_1 grid_3"></div>
 	<div class="grid_4">
-            <a href="next-logistics" id="btn_next" class="button huge blue">Next  &rarr;</a>
+		<a href="#" alt="2" class="button huge blue btn_next">Next  &rarr;</a>
         </div>
 </div>
-${end_form()}
 </div>
-<div id="content" class="content container_12">
+<div id="create_trip_2" class="content container_12" style="display: none;">
 	<div class="bar line top">
         	<h3 class="dark">Logistics</h3>
             	<a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
 	<div id="column_main_logistics" class="grid_8 column_main">
     		<div class="clear"></div>
-		${form('/submit', method='post', name='new_trip_logistics')}
 	    	<div id="itinerary" class="outer">
 			<h4>Intinerary</h4>
 	            	<p id="description">
@@ -116,7 +113,7 @@ ${end_form()}
                         	<tr>
                         		<td class="number"></td>
                             		<td class="location">
-                            			<a href="next-logistics" id="btn_next" class="button medium gray">Add Destination +</a>
+						<a href="#" class="button medium gray">Add Destination +</a>
                             		</td>
                             		<td>
                             			<input id="chk_round_trip" name="round_trip" type="checkbox" value="roundtrip" />
@@ -196,16 +193,19 @@ ${end_form()}
                      		</table>
 			</p>
 	       	</div>
-		${end_form()}			
 	</div>
         <div class="bar line bottom">
         	<div class="grid_3">
-        		<a href="next-logistics" id="btn_next" class="button large gray right">&larr; Back</a>
+			<a alt="1" href="#" class="button large gray right btn_next">&larr; Back</a>
         	</div>
         	<div class="grid_4">
-            		<a href="next-logistics" id="btn_next" class="button huge blue">Next  &rarr;</a>
+			<a alt="3" href="#" class="button huge blue btn_next">Next  &rarr;</a>
             	</div>
         </div>
  	<div class="clear"> </div>
 </div>
+<div id="create_trip_3" style="display: none;">
+
+</div>
+${form.end()}
 

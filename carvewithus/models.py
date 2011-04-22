@@ -75,7 +75,7 @@ class Trip(object):
         self.picture = picture
         self.name = name
         self.summary = summary
-        self.spots_available = sports_available
+        self.spots_available = spots_available
         self.transportation = transportation
         self.has_lodge = has_lodge
         self.lodge_desc = lodge_desc

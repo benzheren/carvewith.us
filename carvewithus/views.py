@@ -16,7 +16,7 @@ from sqlalchemy.sql import and_
 from sqlalchemy.exc import IntegrityError
 
 from carvewithus import schemas
-from carvewithus.models import DBSession, User
+from carvewithus.models import DBSession, User, Trip
 
 
 @view_config(route_name='home', renderer='home.mak')
@@ -142,7 +142,15 @@ def get_username(name, dbsession):
 def create_trip(request):
     logged_in = authenticated_userid(request)
 
+    form = Form(request, schema=schemas.Trip, obj=Trip())
+    settings = request.registry.settings
+    return dict(user_email=logged_in, form=FormRenderer(form))
+
     return {'user_email': logged_in}
+
+@view_config(route_name='create_trip_post', renderer='json')
+def create_trip_post(request):
+    return dic()
 
 def validate_create_profile(request):
     activities = ('SKI', 'SNOWBOARD', 'BOTH')

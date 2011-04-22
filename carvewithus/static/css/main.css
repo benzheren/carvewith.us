@@ -656,7 +656,7 @@ textarea.text {
 	General - Content
 *****************************************/
 
-#content {
+#content, .content {
 	background:#FFF;
 	display:block;
 	/*overflow:hidden;*/
