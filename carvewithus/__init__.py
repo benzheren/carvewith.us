@@ -26,6 +26,7 @@ def main(global_config, **settings):
     config.add_route('create_profile', '/profile/create')
     config.add_route('view_trip', '/trip/view')
     config.add_route('create_trip', '/trip/create')
+    config.add_route('create_trip_post', '/trip/create_post')
     config.add_route('join_trip', '/trip/join')
     return config.make_wsgi_app()
 

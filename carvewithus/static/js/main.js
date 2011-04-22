@@ -19,6 +19,20 @@ $('#sign_up_button_fb').live('click', function(){
     $('#signup_form_fb').submit();
 });
 
+$('#create_trip_form a.btn_next').live('click', function(e){
+    e.preventDefault();
+    var target = parseInt($(this).attr('alt'));
+    for(var i = 1, limit = 3; i <= limit; i++) {
+    	if ( i === target) {
+	    $('#create_trip_' + i).show();
+	    $('#create_trip_menu_' + i).addClass('active');
+	} else {
+	    $('#create_trip_' + i).hide();
+	    $('#create_trip_menu_' + i).removeClass('active');
+	}
+    }
+});
+
 $(document).ready(function(){
     var options = {
 	    dataType: 'json',
