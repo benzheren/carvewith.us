@@ -54,10 +54,11 @@
 <div class="subhead_container">
     <div class="subhead">
         <div class="title">
-            <h3 class="grid_7">Edit Profile</h3>
+            <h3 class="grid_7">Edit Account Settings</h3>
             <ul class="submenu  grid_5">
-            <li class="active"><a href="settings">Basic Info</a><div class="tip"></div></li>
-            <li><a href="account">Account Info</a> </li>
+            <li><a href="settings">Basic Info</a></li>
+            <li  class="active"><a href="account">Account Info</a>
+            <div class="tip"></div></li>
             <li><a href="profile">View Profile</a></li>
 
         </ul>
@@ -77,13 +78,9 @@
         <div class="outer">
             <img src="" class="user_pic" />
             <div class="clear"> </div>
-         	<a href="pic-upload" id="btn_upload" class="button medium gray">Upload Picture</a>
-		 	<a href="pic-clear" id="btn_remove" class="link">Remove Picture</a>
-
+           <fb:login-button size="large">Connect Your Facebook Account</fb:login-button>
         </div>
-        <!-- User Picture -->
-        <div class="clear"> </div>
-        
+        <!-- User Picture -->        
                
       </div>	
 	<!----- End Left Column ----->
@@ -92,41 +89,23 @@
 	<div id="column_main_basic" class="grid_9 column_main">
     
     	 <div class="outer">
-        	<label for="txt_user_name"><h4>Your Name:</h4></label>
-        	<input id="txt_user_name" name="user_name"  type="text" class="text xlarge" alt="Enter your full name" />
+    	 	
+    	 	<div class="top">
+    	 		<h4>Change your password</h4>
+    	 	</div>
+    	 	<div class="clear"></div>
+        	<label for="txt_old_password"><h4>Old Password</h4></label>
+        	<input id="txt_old_password" name="old_password"  type="password" class="text xlarge" />
 			<div class="clear"></div>
 			
-			<label for="txt_user_name"><h4>Tagline:</h4></label>
-        	<input id="txt_user_name" name="user_name"  type="text" class="text xlarge" alt="Describe yourself in a sentence" />
+			<label for="txt_new_password"><h4>New Password</h4></label>
+        	<input id="txt_new_password" name="new_password"  type="password" class="text xlarge" />
 			<div class="clear"></div>
 			
-        	<label for="txt_user_location"><h4>Your Location:</h4></label>
-        	<input id="txt_user_location" name="user_location"  type="text" class="text xlarge" alt="Type in a city name" />
-        	<div class="clear"></div>
-        	<label for="txt_user_location"><h4>Your Activities:</h4></label>
-        	<div class="skill large">
-                  <span class="activity snowboard">
-                  <label class="lbl_select_skill">Snowboard</label><br />
-                  <select class="text small select_skill" id="select_skill_snowboard">
-                  	<option value="0">No thanks</option>
-                  	<option value="1">Beginner</option>
-                  	<option value="2">Intermediate</option>
-                  	<option value="3">Advanced</option>
-                  	<option value="4">PRO</option>
-                  </select>
-                  </span>
-                  <span class="activity ski">
-                  <label class="lbl_select_skill">Ski</label><br />
-                  <select class="text small select_skill" id="select_skill_ski">
-                  	<option value="0">No thanks</option>
-                  	<option value="1">Beginner</option>
-                  	<option value="2">Intermediate</option>
-                  	<option value="3">Advanced</option>
-                  	<option value="4">PRO</option>
-                  </select>
-                  </span>
-             </div>
-         </div>   
+			<label for="txt_new_password_2"><h4>Confirm New Password</h4></label>
+        	<input id="txt_new_password_2" name="new_password_2"  type="password" class="text xlarge" />
+			<div class="clear"></div>			
+       	</div>   
     </div>
     <!----- End Main Column Basic Info ----->	
     <!----- Bottom bar ----->

@@ -615,6 +615,12 @@ h5 {
 	font-family:inherit;
 }
 
+.text.xlarge {
+	padding:5px;
+	font-size:2.0em;
+	min-width:300px;
+}
+
 .text.large {
 	padding:5px;
 	font-size:1.6em;
@@ -644,6 +650,13 @@ label.top {
 	float:left;
 	clear:both;
 }
+label.lbl_select_skill {
+	display:inline-block;
+	min-width:75px;
+	font-size:.8em;
+	font-weight:900;
+}
+
 
 .text.full {
 	width:460px;
@@ -656,7 +669,7 @@ textarea.text {
 	General - Content
 *****************************************/
 
-#content {
+.content {
 	background:#FFF;
 	display:block;
 	/*overflow:hidden;*/
@@ -814,7 +827,7 @@ textarea.text {
 
 .skill.large .activity {
 	background:url(../images/48-icons-sprite.png) no-repeat;
-	padding: 20px 0 0 52px;
+	padding: 10px 0 0 52px;
 	min-height:48px;
 	margin:3px 5px 0 0;
 	color:#666;
@@ -1065,7 +1078,7 @@ textarea.text {
 	display:block;
 }
 .column_main .top {
-	padding:10px 0px 10px 0px;
+	padding:10px 0px 5px 0px;
 	border-bottom:1px solid #CCC;
 	overflow:hidden;
 }
@@ -1364,13 +1377,13 @@ table.itinerary_edit {
 	vertical-align: top;
 }
 
-#content .sign_up_top {
+.sign_up_top {
 	min-height: 130px;
 	margin: 0px 10px;
 	border-bottom: 2px solid #CCC;
 }
 
-#content .sign_up_bottom {
+.sign_up_bottom {
 	font-size: 18px;
 	text-align: center;
 	margin: 20px 0px;
