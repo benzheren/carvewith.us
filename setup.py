@@ -41,7 +41,7 @@ setup(name='carvewithus',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      test_suite='carvewithus',
+      test_suite='carvewithus.tests',
       install_requires = requires,
       entry_points = """\
       [paste.app_factory]
