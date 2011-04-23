@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Enum, Unicode, TIMESTAMP, \
-        ForeignKey, Boolean
+        ForeignKey, Boolean, Date, Time, DateTime
 from sqlalchemy.dialects.mysql import TEXT, LONGTEXT
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
@@ -11,7 +11,6 @@ DBSession = scoped_session(sessionmaker())
 Base = declarative_base()
 
 class User(Base):
-    """Mapping class for User"""
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
@@ -44,7 +43,6 @@ class User(Base):
 
 
 class City(Base):
-    """Mapping class for City"""
     __tablename__ = "cities"
 
     short_name = Column(String(255), primary_key=True)
@@ -55,8 +53,7 @@ class City(Base):
         pass
 
 
-class Trip(object):
-    """docstring for Trip"""
+class Trip(Base):
     __tablename__ = 'trips'
 
     id = Column(Integer, primary_key=True)
@@ -80,6 +77,35 @@ class Trip(object):
         self.has_lodge = has_lodge
         self.lodge_desc = lodge_desc
         self.organizer = organizer
+
+
+class Itinerary(Base):
+    __tablename__ = 'itineraries'
+
+    id = Column(Integer, primary_key=True)
+    trip = Column(Integer, ForeignKey('trips.id'))
+    location = Column(TEXT)
+    date = Date()
+    time = Time()
+    
+
+class TripMember(Base):
+    __table__name = 'trip_member'
+
+    trip_id = Column(Integer, primary_key=True, ForeignKey('trips.id'))
+    user_id = Column(Integer, primary_key=True, ForeignKey('users.id'))
+    join_date = Column(DateTime)
+    admin = Column(Boolean, default=False)
+
+class TripInvitation(Base):
+    __table__name = 'trip_invitations'
+
+    id = Column(Integer, primary_key=True)
+    trip_id = Column(Integer, ForeignKey('trips.id'))
+    inviter = Column(Integer, ForeignKey('users.id'))
+    invitee = Column(Integer, ForeignKey('users.id'))
+    invite_date = Column(DateTime)
+    status = Column(Enum('SENT', 'ACCEPTED', 'REJECTED'))
 
 
 def initialize_sql(engine):
