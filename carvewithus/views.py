@@ -175,7 +175,7 @@ def create_trip_post(request):
     if request.POST and form.validate():
         if not validate_csrf(request):
             return HTTPUnauthorized('Not authorized');
-
+        #TODO remove this
         print form.schema.to_python(dict(request.params))
 
         user = get_user_from_email(authenticated_userid(request), dbsession)

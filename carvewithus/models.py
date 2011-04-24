@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, Enum, Unicode, TIMESTAMP, \
-        ForeignKey, Boolean, Date, Time, DateTime
-from sqlalchemy.dialects.mysql import TEXT, LONGTEXT
+        ForeignKey, Boolean, Date, Time, DateTime, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from sqlalchemy import func
@@ -56,13 +55,13 @@ class Trip(Base):
     __tablename__ = 'trips'
 
     id = Column(Integer, primary_key=True)
-    picture = Column(TEXT(unicode=True))
-    name = Column(TEXT(unicode=True))
-    summary = Column(LONGTEXT(unicode=True))
+    picture = Column(UnicodeText)
+    name = Column(UnicodeText)
+    summary = Column(UnicodeText)
     spots_available = Column(Integer)
     transportation = Column(Enum('DRIVE', 'BUS'))
     has_lodge = Column(Boolean)
-    lodge_desc = Column(TEXT(unicode=True))
+    lodge_desc = Column(UnicodeText)
     organizer = Column(Integer, ForeignKey('users.id'))
     itineraries = relationship('Itinerary', backref='trips')
     
@@ -84,7 +83,7 @@ class Itinerary(Base):
 
     id = Column(Integer, primary_key=True)
     trip = Column(Integer, ForeignKey('trips.id'))
-    location = Column(TEXT)
+    location = Column(UnicodeText)
     date = Column(Date)
     time = Column(Time)
 
