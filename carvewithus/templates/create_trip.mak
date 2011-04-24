@@ -311,5 +311,6 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 
  <div class="clear"> </div>
 </div>
+${form.csrf_token()}
 ${form.end()}
 

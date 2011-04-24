@@ -48,6 +48,11 @@ $(document).ready(function(){
     	$(this).ajaxSubmit(options);
 	return false;
     });
+
+    $('#create_trip_form').submit(function(){
+    	$(this).ajaxSubmit(options);
+	return false;
+    });
     
     /*bind enter button to form submit*/
     $('input').clickOnEnter('form a.submit');
