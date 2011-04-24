@@ -59,7 +59,8 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
     		<div class="clear"></div>
 	    	<div id="itinerary" class="outer">
 			<h4>Intinerary</h4>
-	            	<p id="description">
+			${form.hidden(name='itinerary_count', value='2')}
+			<p id="description">
 				<table cellpadding="0" cellspacing="0" class="itinerary_edit grid_9">
 		            	<thead>
 		            	<tr>
@@ -75,10 +76,24 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 					</td>
 		        	</tr>
                         	</thead>
-                        	<tbody>
-                        	<tr>
+				<tbody id='itinerary-table'>
+				<tr id='itineraries-0'>
 		        		<td class="number">
 		            			<label class="lblleft">1</label>
+		            		</td>
+					<td class="location">
+						${form.text(name='itineraries-0.location', class_='text medium arrdest', alt_='Enter City Name')}
+					</td>
+					<td class="date">
+						${form.text(name='itineraries-0.date', type='date', class_='text medium arrdest', alt_='Enter Date')}
+					</td>
+					<td class="time">
+						${form.select(name='itineraries-0.time', options=[('', 'Enter Time') ], class_='text, medium, arrdest', alt_='Enter Time')}
+					</td>
+		            	</tr>
+                        	<tr>
+		            		<td class="number">
+		            			<label class="lblleft">2</label>
 		            		</td>
 					<td class="location">
 						${form.text(name='itineraries-1.location', class_='text medium arrdest', alt_='Enter City Name')}
@@ -89,20 +104,6 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 					<td class="time">
 						${form.select(name='itineraries-1.time', options=[('', 'Enter Time') ], class_='text, medium, arrdest', alt_='Enter Time')}
 					</td>
-		            	</tr>
-                        	<tr>
-		            		<td class="number">
-		            			<label class="lblleft">2</label>
-		            		</td>
-					<td class="location">
-						${form.text(name='itineraries-2.location', class_='text medium arrdest', alt_='Enter City Name')}
-					</td>
-					<td class="date">
-						${form.text(name='itineraries-2.date', type='date', class_='text medium arrdest', alt_='Enter Date')}
-					</td>
-					<td class="time">
-						${form.select(name='itineraries-2.time', options=[('', 'Enter Time') ], class_='text, medium, arrdest', alt_='Enter Time')}
-					</td>
 	
 		            	</tr>
                         	</tbody>
@@ -110,7 +111,7 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
                         	<tr>
                         		<td class="number"></td>
                             		<td class="location">
-						<a href="#" class="button medium gray">Add Destination +</a>
+						<a href="#" id="add_dest_btn" class="button medium gray">Add Destination +</a>
                             		</td>
                             		<td>
                             			<input id="chk_round_trip" name="round_trip" type="checkbox" value="roundtrip" />

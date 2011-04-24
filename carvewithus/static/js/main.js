@@ -56,6 +56,16 @@ $(document).ready(function(){
     
     /*bind enter button to form submit*/
     $('input').clickOnEnter('form a.submit');
+
+    /*create_trip*/
+    $('#add_dest_btn').click(function(e){
+    	e.preventDefault();
+	count = parseInt($('#itinerary_count').val());
+	count++;
+	element = '<tr>' + $('#itineraries-0').html().replace('>1<', '>' + count +'<').replace(/-0/g, '-' + count) + '</tr>';
+	$('#itinerary-table').append(element);
+	$('#itinerary_count').val(count);
+    });
 });
 
 function postSignupForm(data) {
