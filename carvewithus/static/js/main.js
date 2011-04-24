@@ -70,3 +70,9 @@ $('#login_btn').live('click', function(){
     $('#login_form').submit();
     return false;
 });
+
+/*create trip*/
+$('#create_trip_btn').live('click', function(e){
+    e.preventDefault();
+    $('#create_trip_form').submit();
+})

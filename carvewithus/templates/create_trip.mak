@@ -30,16 +30,16 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
         <div class="clear"> </div>
 </div>
 <div id="column_main_basic" class="grid_9 column_main">
-    	<div id="title" class="outer">
-        	<label for="new_title"><h4>Title</h4></label>
+	<div id="title" class="outer">
+		${form.label('name', label='Title')}
 		<p id="description">
-			${text(name='new_title', class_='text large full', alt_='Enter trip title (50) chars')}
+			${form.text(name='name', class_='text large full', alt_='Enter trip title (50) chars')}
   		</p>
        	</div>
-        <div id="summary" class="outer">
-        	<label for="new_summary"><h4>Trip Summary</h4></label>
+	<div id="summary" class="outer">
+		${form.label(name='summary', label='Trip Summary')}
 		<p id="description">
-			${textarea(name='new_summary', class_='text small full')}
+			${form.textarea(name='summary', class_='text small full')}
             	</p>
        	</div>
 </div>
@@ -81,15 +81,13 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 		            			<label class="lblleft">1</label>
 		            		</td>
 					<td class="location">
-						${text(name='new_loc_1', class_='text medium arrdest', alt_='Enter City Name')}
+						${form.text(name='itineraries-1.location', class_='text medium arrdest', alt_='Enter City Name')}
 					</td>
 					<td class="date">
-						${text(name='new_date_1', type='date', class_='text medium arrdest', alt_='Enter Date')}
+						${form.text(name='itineraries-1.date', type='date', class_='text medium arrdest', alt_='Enter Date')}
 					</td>
 					<td class="time">
-						<select id="txt_new_time_1" name="new_time_1" class="text medium arrdest" alt="Enter Time">
-							<option value="">Enter Time</option>
-						</select>
+						${form.select(name='itineraries-1.time', options=[('', 'Enter Time') ], class_='text, medium, arrdest', alt_='Enter Time')}
 					</td>
 		            	</tr>
                         	<tr>
@@ -97,16 +95,15 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 		            			<label class="lblleft">2</label>
 		            		</td>
 					<td class="location">
-								<input id="txt_new_loc_2" name="new_loc_2" class="text medium arrdest" alt="Enter City Name" />
-							</td>
-							<td class="date">
-								<input id="txt_new_date_2" name="new_date_2" class="text medium arrdest" alt="Enter Date" />
-							</td>
-							<td class="time">
-								<select id="txt_new_time_2" name="new_time_2" class="text medium arrdest" alt="Enter Time">
-									<option value="">Enter Time</option>
-								</select>
-							</td>
+						${form.text(name='itineraries-2.location', class_='text medium arrdest', alt_='Enter City Name')}
+					</td>
+					<td class="date">
+						${form.text(name='itineraries-2.date', type='date', class_='text medium arrdest', alt_='Enter Date')}
+					</td>
+					<td class="time">
+						${form.select(name='itineraries-2.time', options=[('', 'Enter Time') ], class_='text, medium, arrdest', alt_='Enter Time')}
+					</td>
+	
 		            	</tr>
                         	</tbody>
                         	<tfoot>
@@ -136,10 +133,10 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 		            	<tr>
                         		<td class="number"></td>
 					<td class="location">
-						<label class="lbltop">Method</label>
+						${form.label(name='transportation', class_='lbltop', label='Method')}
 					</td>
 					<td class="date">
-						<label class="lbltop">Spots Available</label>
+						${form.label(name='spots_available', class_='lbltop', label='Spots Available')}
 					</td>
 				</tr>
                         	</thead>
@@ -149,11 +146,11 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 		            			<img class="col_lead_icon" src="../images/trip_icon_car.png" />
 		            		</td>
 					<td class="location">
-						${radio(name='transport_method', value='Driving')}
-						${radio(name='transport_method', value='Public')}
+						${form.radio(name='transportation', value='DRIVE')}
+						${form.radio(name='transportation', value='BUS')}
 					</td>
 					<td class="date">
-						${text(name='spots', type='number', class_='text small arrdest', alt_='Enter Spots')}
+						${form.text(name='spots_available', type='number', class_='text small arrdest', alt_='Enter Spots')}
 					</td>
 					<td class="time"></td>
 		            	</tr>
@@ -169,10 +166,10 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 		            	<tr>
                         		<td class="number"></td>
 					<td class="location">
-						<label class="lbltop">Have Lodging?</label>
+						${form.label(name='has_lodge', label='Have Lodging', class_='lbltop')}
 					</td>
 					<td class="date" colspan="2">
-						<label class="lbltop">Lodging Description</label>
+						${form.label(name='lodge_desc', label='Lodging Description', class_='lbltop')}
 					</td>
 		            	</tr>
                         	</thead>
@@ -182,11 +179,11 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 		            			<img class="col_lead_icon" src="../images/trip_icon_house.png" />
 		            		</td>
 					<td class="location">
-						${checkbox(name='have_lodging', value='1')}
-                                		<label for="have_lodging">Yes</label>
+						${form.checkbox(name='has_lodge', value='1')}
+						<label for="has_lodge">Yes</label>
 					</td>
 					<td class="lodge" colspan="2">
-						${text(name='lodging_desc', class_='text medium arrdest', alt_='Enter Lodging Details')}
+						${form.text(name='lodge_desc', class_='text medium arrdest', alt_='Enter Lodging Details')}
 					</td>		
 		            	</tr>
                        		</tbody>
@@ -204,8 +201,115 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
         </div>
  	<div class="clear"> </div>
 </div>
-<div id="create_trip_3" style="display: none;">
+<div id="create_trip_3" class="content container_12" style="display: none;">
 
+	<!----- Top bar ----->
+        <div class="bar line top">
+        	<h3 class="dark">Invite your friends!</h3>
+            <a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
+        </div>
+   <!----- end Top bar ----->
+   
+   
+   <!----- Top bar ----->
+        <div class="bar line members">
+        	<div class="grid_4">
+            	&nbsp;
+            </div>
+            <ul class="tab">
+                <li class="active">
+                	<a href="">Invite</a>
+                    <sup>2</sup>
+                </li>
+            </ul>
+        </div>
+   <!----- end Top bar ----->
+   
+	
+    <!----- Right Column / Invite Message----->
+	<div id="column_left_contact" class="grid_4 column_1">
+       	<div class="outer">
+       		<fb:login-button size="large">Connect Your Facebook Account</fb:login-button>
+        </div>
+        <div class="outer">
+        	<label class="top">Add by name or email</label>
+            <input id="txt_" type="text" class="text large searchname" alt="Type in friend's name or email" />
+            <a href="invite" id="btn_invite" class="button medium green right">Add &raquo;</a>
+        </div>
+        <div class="outer">
+        	<label class="top">List of Facebook friends</label>
+            <ul class="users_list full friends">
+            <li>
+                <h6 class="name">User Name</h6>
+                <a href="addinvite" class="button medium green right msg">&raquo;</a>
+            </li>
+             <li class="alt">
+                <h6 class="name">User Name</h6>
+                <a href="addinvite" class="button medium green right msg">&raquo;</a>
+            </li>
+            </ul>
+        </div>
+        
+    </div>
+    <!----- End Right Column Invite Message ----->
+    
+	 <!----- Main Column / People ----->
+	<div id="column_main_people" class="grid_8 column_main">
+        
+        <div class="outer">
+        	<h4 class="tabhead">Invite List:</h4>
+        	<ul class="users_list full">
+            <li>
+                <div class="grid_1">
+                	<img class="small" src="" />
+                </div>
+                <div class="grid_5">
+                    <h6 class="name">User Name</h6>
+                    <div class="skill">
+                        <span class="activity">Snowboard</span>
+                        <span class="activity">Ski</span>
+                    </div>
+                    <p class="info">
+                        If the person is not on CWS but on facebook, this is blank.
+                    </p>
+                </div>
+                
+                <a href="uninvite" class="button medium red right msg">X</a>
+            </li>
+            <li class="alt">
+                <div class="grid_1">
+                	<img class="small" src="" />
+                </div>
+                <div class="grid_5">
+                    <h6 class="name">just-an-email-address@something.com</h6>
+                   
+                </div>
+                
+                <a href="uninvite" class="button medium red right msg">X</a>
+            </li>
+            
+            </ul>
+        </div>
+        
+    </div>
+    <!----- End Main Column People ----->
+    
+	
+
+   
+
+    <!----- Bottom bar ----->
+        <div class="bar line bottom">
+		<div class="grid_3">
+			<a alt="2" href="#" class="button large gray right btn_next">&larr; Back</a>
+        	</div>
+        	<div class="grid_4">
+			<a href="#" id="create_trip_btn" class="button huge blue">Done!</a>
+            </div>
+        </div>
+   <!----- end Bottom bar ----->
+
+ <div class="clear"> </div>
 </div>
 ${form.end()}
 
