@@ -90,15 +90,15 @@ class Itinerary(Base):
     
 
 class TripMember(Base):
-    __table__name = 'trip_member'
+    __tablename__ = 'trip_member'
 
-    trip_id = Column(Integer, primary_key=True, ForeignKey('trips.id'))
-    user_id = Column(Integer, primary_key=True, ForeignKey('users.id'))
+    trip_id = Column(Integer, ForeignKey('trips.id'), primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
     join_date = Column(DateTime)
     admin = Column(Boolean, default=False)
 
 class TripInvitation(Base):
-    __table__name = 'trip_invitations'
+    __tablename__ = 'trip_invitations'
 
     id = Column(Integer, primary_key=True)
     trip_id = Column(Integer, ForeignKey('trips.id'))

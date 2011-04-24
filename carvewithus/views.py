@@ -129,6 +129,10 @@ def get_user_from_fb_id(fb_id, dbsession):
     """docstring for f"""
     return dbsession.query(User).filter(User.fb_id==fb_id).first()
 
+def get_user_from_email(email, dbsession):
+    '''return User in the db by email address'''
+    return dbsession.query(User).filter(User.email==email).first()
+
 def get_username(name, dbsession):
     """docstring for get_name_dup_count"""
     count = dbsession.query(func.count('*').label('count')).filter(
@@ -146,11 +150,27 @@ def create_trip(request):
     settings = request.registry.settings
     return dict(user_email=logged_in, form=FormRenderer(form))
 
-    return {'user_email': logged_in}
-
 @view_config(route_name='create_trip_post', renderer='json')
 def create_trip_post(request):
-    return dic()
+    dbsession = DBSession()
+    settings = request.registry.settings
+    form = Form(request, schema=schemas.Trip, obj=Trip())
+    if request.POST and form.validate():
+        if not validate_csrf(request):
+            return HTTPUnauthorized('Not authorized');
+        user = get_user_from_email(authenticated_userid(request), dbsession)
+        trip = form.bind(Trip())
+        trip.organizer = user.id
+
+        try:
+            dbsession.add(trip)
+            dbsession.commit()
+            redirect_url = route_url('home', request)
+            return {'status': 1, 'url': redirect_url}
+        except IntegrityError:
+            return {'errors': {'form': 'Invalid Information'}}
+    
+    return {'errors': form.errors}
 
 def validate_create_profile(request):
     activities = ('SKI', 'SNOWBOARD', 'BOTH')

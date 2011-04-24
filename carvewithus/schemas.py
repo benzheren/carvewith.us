@@ -1,4 +1,4 @@
-from formencode import validators, Schema
+from formencode import validators, Schema, ForEach
 
 class Login(Schema):
     allow_extra_fields = True
@@ -16,9 +16,20 @@ class Signup(Schema):
     city = validators.OneOf(['sfo', 'nyc', 'chi', 'den', 'other'])
 
 
+class Itinerary(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = False
+    location = validators.String(not_empty=True)
+    date = validators.DateConverter(not_empty=True)
+    time = validators.TimeConverter(not_emtpy=True)
+
+
 class Trip(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = False
     name = validators.UnicodeString(max=50, not_empty=True)
     summary = validators.UnicodeString()
+    itineraries = ForEach(Itinerary())
     spots_available = validators.Int(not_empty=True, min=1)
     transportation = validators.OneOf(['DRIVE', 'BUS'])
     has_lodge = validators.Bool()
