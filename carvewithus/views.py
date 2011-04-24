@@ -16,7 +16,7 @@ from sqlalchemy.sql import and_
 from sqlalchemy.exc import IntegrityError
 
 from carvewithus import schemas
-from carvewithus.models import DBSession, User, Trip
+from carvewithus.models import DBSession, User, Trip, Itinerary
 
 
 @view_config(route_name='home', renderer='home.mak')
@@ -142,6 +142,23 @@ def get_username(name, dbsession):
     else:
         return "%s-%d" % (name, count)
 
+def bind(data, obj):
+    for k, v in data.items():
+        if hasattr(obj, k):
+            setattr(obj, k, v)
+    return obj
+
+def bind_trip(data, trip):
+    trip_items = [(k, v) for k, v in data.items() if not k == 'itineraries' and
+                   not k == 'memebers']
+    for k, v in trip_items:
+        if hasattr(trip, k):
+            setattr(trip, k, v)
+    itineraries = [bind(k, Itinerary()) for k in data['itineraries']]
+    trip.itineraries = itineraries
+
+    return trip
+
 @view_config(route_name='create_trip', renderer='create_trip.mak')
 def create_trip(request):
     logged_in = authenticated_userid(request)
@@ -158,8 +175,11 @@ def create_trip_post(request):
     if request.POST and form.validate():
         if not validate_csrf(request):
             return HTTPUnauthorized('Not authorized');
+
+        print form.schema.to_python(dict(request.params))
+
         user = get_user_from_email(authenticated_userid(request), dbsession)
-        trip = form.bind(Trip())
+        trip = bind_trip(form.schema.to_python(dict(request.params)), Trip())
         trip.organizer = user.id
 
         try:

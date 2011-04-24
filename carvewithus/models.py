@@ -2,8 +2,7 @@ from sqlalchemy import Column, Integer, String, Enum, Unicode, TIMESTAMP, \
         ForeignKey, Boolean, Date, Time, DateTime
 from sqlalchemy.dialects.mysql import TEXT, LONGTEXT
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from sqlalchemy import func
 
 DBSession = scoped_session(sessionmaker())
@@ -65,6 +64,7 @@ class Trip(Base):
     has_lodge = Column(Boolean)
     lodge_desc = Column(TEXT(unicode=True))
     organizer = Column(Integer, ForeignKey('users.id'))
+    itineraries = relationship('Itinerary', backref='trips')
     
     def __init__(self, picture=None, name=None, summary=None, spots_available=0,
                  transportation=None, has_lodge=False, lodge_desc=None,
@@ -85,8 +85,14 @@ class Itinerary(Base):
     id = Column(Integer, primary_key=True)
     trip = Column(Integer, ForeignKey('trips.id'))
     location = Column(TEXT)
-    date = Date()
-    time = Time()
+    date = Column(Date)
+    time = Column(Time)
+
+    def __init__(self, trip=None, location=None, date=None, time=None):
+        self.trip = trip
+        self.location = location
+        self.date = date
+        self.time = time
     
 
 class TripMember(Base):
