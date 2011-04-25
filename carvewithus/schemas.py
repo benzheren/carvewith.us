@@ -17,6 +17,14 @@ class Signup(Schema):
     city = validators.OneOf(['sfo', 'nyc', 'chi', 'den', 'other'])
 
 
+class CreateProfile(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = True
+    picture = validators.FileUploadKeeper()
+    activity = validators.OneOf(['SNOWBOARD', 'SKI', 'BOTH'])
+    skill_level = validators.OneOf(['NEWBIE', 'INERMEDIATE', 'ADVANCED', 'EXPERT'])
+
+
 class Itinerary(Schema):
     allow_extra_fields = True
     filter_extra_fields = False

@@ -117,8 +117,9 @@ def create_profile(request):
     logged_in = authenticated_userid(request)
     if not logged_in:
         return HTTPFound(location=route_url('login', request))
-
+    
     session = DBSession()
+    form = Form(request, schema=schemas.CreateProfile, obj=User())
     if request.POST and validate_create_profile(request):
         user = session.query(User).filter(User.email==logged_in).first()
         user.activity = request.params['reg_activity']
@@ -127,7 +128,7 @@ def create_profile(request):
         session.commit()
         return HTTPFound(location=route_url('home', request))
 
-    return {'user_email': logged_in}
+    return dict(user_email=logged_in, form=FormRenderer(form))
 
 def get_user_from_fb_id(fb_id, dbsession):
     """docstring for f"""
