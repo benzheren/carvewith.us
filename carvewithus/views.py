@@ -1,4 +1,6 @@
 import re
+import os
+import shutil
 
 import facebook
 import formencode
@@ -8,7 +10,7 @@ from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized 
 from pyramid.response import Response
 from pyramid.security import remember, forget, authenticated_userid
-from pyramid.url import route_url
+from pyramid.url import route_url, static_url
 from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
 from sqlalchemy import func
@@ -18,6 +20,8 @@ from sqlalchemy.exc import IntegrityError
 from carvewithus import schemas
 from carvewithus.models import DBSession, User, Trip, Itinerary
 
+
+permanent_store = '/Users/hzr/workspace/carvewithus/carvewithus/uploads/'
 
 @view_config(route_name='home', renderer='home.mak')
 def home(request):
@@ -177,10 +181,24 @@ def create_trip_post(request):
             return HTTPUnauthorized('Not authorized');
         #TODO remove this
         print form.schema.to_python(dict(request.params))
-
+        
         user = get_user_from_email(authenticated_userid(request), dbsession)
         trip = bind_trip(form.schema.to_python(dict(request.params)), Trip())
         trip.organizer = user.id
+
+        picfile = request.POST['picture.upload']
+        print picfile
+        if not picfile and len(picfile) > 0:
+            permanent_file_path = os.path.join(permanent_store,
+                                               picfile.filename.lstrip(os.sep))
+            permanent_file = open(permanent_file_path, 'w')
+            shutil.copyfileobj(picfile.file, permanent_file)
+            picfile.file.close()
+            permanent_file.close()
+            trip.picture = static_url('carvewithus:uploads/' + 
+                             picfile.filename.lstrip(os.sep), request)
+        else:
+            trip.picture = None
 
         try:
             dbsession.add(trip)

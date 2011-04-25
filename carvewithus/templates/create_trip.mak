@@ -7,16 +7,16 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         <div class="title">
             <h3 class="grid_7">Organize a new trip</h3>
         <ul class="submenu  grid_5">
-		<li id="create_trip_menu_1" class="active"><a href="basic"><b>1.</b> Basic Details</a>
+		<li id="create_trip_menu_1" class="active"><a href="#" alt="1"><b>1.</b> Basic Details</a>
                  <div class="tip"></div>
             </li>
-	    <li id="create_trip_menu_2"><a href="logistics"><b>2.</b> Logistics</a></li>
-	    <li id="create_trip_menu_3"><a href="members"><b>3.</b> Members</a></li>
+	    <li id="create_trip_menu_2"><a href="#" alt="2"><b>2.</b> Logistics</a></li>
+	    <li id="create_trip_menu_3"><a href="#" alt="3"><b>3.</b> Members</a></li>
         </ul>
         </div>
     </div>
 </div>
-${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
+${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", multipart=True)}
 <div id="create_trip_1" class="content container_12">
 <div class="bar line top">
 	<h3 class="dark">Basic Details</h3>
@@ -25,20 +25,22 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
 <div class="column_1 grid_3">
 	<img src="" class="trip_pic" />
     	<div class="clear"> </div>
-        <a href="pic-upload" id="btn_upload" class="button medium gray right">Upload Picture</a>
+        <a href="pic-upload" id="btn_upload" class="button medium gray">Upload Picture</a>
 	<a href="pic-clear" id="btn_remove" class="link">Remove Picture</a>
+	${form.file(name='picture.upload')}
+	${form.hidden(name='picture.static')}
         <div class="clear"> </div>
 </div>
 <div id="column_main_basic" class="grid_9 column_main">
 	<div id="title" class="outer">
-		${form.label('name', label='Title')}
-		<p id="description">
+		<h4>${form.label('name', label='Title')}</h4>
+		<p>
 			${form.text(name='name', class_='text large full', alt_='Enter trip title (50) chars')}
   		</p>
        	</div>
 	<div id="summary" class="outer">
-		${form.label(name='summary', label='Trip Summary')}
-		<p id="description">
+		<h4>${form.label(name='summary', label='Trip Summary')}</h4>
+		<p>
 			${form.textarea(name='summary', class_='text small full')}
             	</p>
        	</div>
@@ -143,12 +145,13 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form")}
                         	</thead>
                         	<tbody>
                         	<tr>
-		            		<td class="number">
-		            			<img class="col_lead_icon" src="../images/trip_icon_car.png" />
+					<td class="number">
+						<div class="icon48 car"></div>
 		            		</td>
 					<td class="location">
-						${form.radio(name='transportation', value='DRIVE')}
-						${form.radio(name='transportation', value='BUS')}
+						${form.radio(name='transportation', value='DRIVE', label='Driving')}
+						<br/>
+						${form.radio(name='transportation', value='BUS', label="Public/Bus")}
 					</td>
 					<td class="date">
 						${form.text(name='spots_available', type='number', class_='text small arrdest', alt_='Enter Spots')}
