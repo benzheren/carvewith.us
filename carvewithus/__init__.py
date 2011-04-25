@@ -18,6 +18,7 @@ def main(global_config, **settings):
     config.add_static_view('static', 'carvewithus:static')
     config.add_static_view('css', 'carvewithus:static/css')
     config.add_static_view('js', 'carvewithus:static/js')
+    config.add_static_view('uploads','carvewithus:uploads')
     config.add_route('home', '/')
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')

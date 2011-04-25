@@ -1,4 +1,6 @@
 import re
+import os
+import shutil
 
 import facebook
 import formencode
@@ -8,7 +10,7 @@ from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized 
 from pyramid.response import Response
 from pyramid.security import remember, forget, authenticated_userid
-from pyramid.url import route_url
+from pyramid.url import route_url, static_url
 from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
 from sqlalchemy import func
@@ -16,8 +18,10 @@ from sqlalchemy.sql import and_
 from sqlalchemy.exc import IntegrityError
 
 from carvewithus import schemas
-from carvewithus.models import DBSession, User, Trip
+from carvewithus.models import DBSession, User, Trip, Itinerary
 
+
+permanent_store = '/Users/hzr/workspace/carvewithus/carvewithus/uploads/'
 
 @view_config(route_name='home', renderer='home.mak')
 def home(request):
@@ -129,6 +133,10 @@ def get_user_from_fb_id(fb_id, dbsession):
     """docstring for f"""
     return dbsession.query(User).filter(User.fb_id==fb_id).first()
 
+def get_user_from_email(email, dbsession):
+    '''return User in the db by email address'''
+    return dbsession.query(User).filter(User.email==email).first()
+
 def get_username(name, dbsession):
     """docstring for get_name_dup_count"""
     count = dbsession.query(func.count('*').label('count')).filter(
@@ -138,6 +146,23 @@ def get_username(name, dbsession):
     else:
         return "%s-%d" % (name, count)
 
+def bind(data, obj):
+    for k, v in data.items():
+        if hasattr(obj, k):
+            setattr(obj, k, v)
+    return obj
+
+def bind_trip(data, trip):
+    trip_items = [(k, v) for k, v in data.items() if not k == 'itineraries' and
+                   not k == 'memebers']
+    for k, v in trip_items:
+        if hasattr(trip, k):
+            setattr(trip, k, v)
+    itineraries = [bind(k, Itinerary()) for k in data['itineraries']]
+    trip.itineraries = itineraries
+
+    return trip
+
 @view_config(route_name='create_trip', renderer='create_trip.mak')
 def create_trip(request):
     logged_in = authenticated_userid(request)
@@ -146,11 +171,44 @@ def create_trip(request):
     settings = request.registry.settings
     return dict(user_email=logged_in, form=FormRenderer(form))
 
-    return {'user_email': logged_in}
-
 @view_config(route_name='create_trip_post', renderer='json')
 def create_trip_post(request):
-    return dic()
+    dbsession = DBSession()
+    settings = request.registry.settings
+    form = Form(request, schema=schemas.Trip, obj=Trip())
+    if request.POST and form.validate():
+        if not validate_csrf(request):
+            return HTTPUnauthorized('Not authorized');
+        #TODO remove this
+        print form.schema.to_python(dict(request.params))
+        
+        user = get_user_from_email(authenticated_userid(request), dbsession)
+        trip = bind_trip(form.schema.to_python(dict(request.params)), Trip())
+        trip.organizer = user.id
+
+        picfile = request.POST['picture.upload']
+        print picfile
+        if not picfile and len(picfile) > 0:
+            permanent_file_path = os.path.join(permanent_store,
+                                               picfile.filename.lstrip(os.sep))
+            permanent_file = open(permanent_file_path, 'w')
+            shutil.copyfileobj(picfile.file, permanent_file)
+            picfile.file.close()
+            permanent_file.close()
+            trip.picture = static_url('carvewithus:uploads/' + 
+                             picfile.filename.lstrip(os.sep), request)
+        else:
+            trip.picture = None
+
+        try:
+            dbsession.add(trip)
+            dbsession.commit()
+            redirect_url = route_url('home', request)
+            return {'status': 1, 'url': redirect_url}
+        except IntegrityError:
+            return {'errors': {'form': 'Invalid Information'}}
+    
+    return {'errors': form.errors}
 
 def validate_create_profile(request):
     activities = ('SKI', 'SNOWBOARD', 'BOTH')

@@ -48,9 +48,24 @@ $(document).ready(function(){
     	$(this).ajaxSubmit(options);
 	return false;
     });
+
+    $('#create_trip_form').submit(function(){
+    	$(this).ajaxSubmit(options);
+	return false;
+    });
     
     /*bind enter button to form submit*/
     $('input').clickOnEnter('form a.submit');
+
+    /*create_trip*/
+    $('#add_dest_btn').click(function(e){
+    	e.preventDefault();
+	count = parseInt($('#itinerary_count').val());
+	count++;
+	element = '<tr>' + $('#itineraries-0').html().replace('>1<', '>' + count +'<').replace(/-0/g, '-' + count) + '</tr>';
+	$('#itinerary-table').append(element);
+	$('#itinerary_count').val(count);
+    });
 });
 
 function postSignupForm(data) {
@@ -70,3 +85,9 @@ $('#login_btn').live('click', function(){
     $('#login_form').submit();
     return false;
 });
+
+/*create trip*/
+$('#create_trip_btn').live('click', function(e){
+    e.preventDefault();
+    $('#create_trip_form').submit();
+})
