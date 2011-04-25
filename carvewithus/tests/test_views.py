@@ -15,8 +15,9 @@ def _initTestingDB():
 
 def _registerRoutes(config):
     config.add_route('home', '/')
+    config.add_route('login', '/login')
     
-class UnitTest(unittest.TestCase):
+class UnitTests(unittest.TestCase):
     def setUp(self):
         self.session = _initTestingDB()
         self.config = testing.setUp()
@@ -67,4 +68,23 @@ class UnitTest(unittest.TestCase):
         request.params = params
         self._addUser()
         result = create_trip_post(request)
-        self.assertEqual(result['status'], 1)        
+        self.assertEqual(result['status'], 1)
+
+
+class IntegrationTests(unittest.TestCase):
+    def setUp(self):
+        import carvewithus
+        self.config = testing.setUp()
+        self.config.include('carvewithus')
+
+    def tearDown(self):
+        testing.tearDown()
+
+    def test_create_trip_logged_out(self):
+        from carvewithus.views import create_trip
+        _registerRoutes(self.config)
+        request = testing.DummyRequest()
+        response = create_trip(request)
+        self.assertEqual(response.status_int, 302)
+        self.failUnless('/login' in response.location)
+

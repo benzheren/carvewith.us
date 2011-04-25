@@ -31,4 +31,8 @@ def main(global_config, **settings):
     config.add_route('join_trip', '/trip/join')
     return config.make_wsgi_app()
 
+def includeme(config):
+    '''For integration testing purpose'''
+    pass
+
 

@@ -166,6 +166,8 @@ def bind_trip(data, trip):
 @view_config(route_name='create_trip', renderer='create_trip.mak')
 def create_trip(request):
     logged_in = authenticated_userid(request)
+    if not logged_in:
+        return HTTPFound(location=route_url('login', request))
 
     form = Form(request, schema=schemas.Trip, obj=Trip())
     settings = request.registry.settings
