@@ -669,11 +669,7 @@ textarea.text {
 	General - Content
 *****************************************/
 
-<<<<<<< HEAD
 .content {
-=======
-#content, .content {
->>>>>>> d060610d904eceb30c66e012a9bd5bd0f424d98b
 	background:#FFF;
 	display:block;
 	/*overflow:hidden;*/
