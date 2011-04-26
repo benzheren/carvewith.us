@@ -20,9 +20,9 @@ class Signup(Schema):
 class CreateProfile(Schema):
     allow_extra_fields = True
     filter_extra_fields = True
-    picture = validators.URL()
+    picture = validators.String()
     activity = validators.OneOf(['SNOWBOARD', 'SKI', 'BOTH'])
-    skill_level = validators.OneOf(['NEWBIE', 'INERMEDIATE', 'ADVANCED', 'EXPERT'])
+    skill_level = validators.OneOf(['NEWBIE', 'INTERMEDIATE', 'ADVANCED', 'EXPERT'])
 
 
 class Itinerary(Schema):

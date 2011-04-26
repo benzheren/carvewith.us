@@ -120,14 +120,13 @@ def create_profile(request):
     
     session = DBSession()
     form = Form(request, schema=schemas.CreateProfile, obj=User())
-    if request.POST and validate_create_profile(request):
+    if request.POST and form.validate():
         user = session.query(User).filter(User.email==logged_in).first()
-        user.activity = request.params['reg_activity']
-        user.skill_level = request.params['reg_level']
+        user = form.bind(user)
         session.merge(user)
         session.commit()
         return HTTPFound(location=route_url('home', request))
-
+    print form.errors
     return dict(user_email=logged_in, form=FormRenderer(form))
 
 def get_user_from_fb_id(fb_id, dbsession):
