@@ -7,20 +7,28 @@
 </div>
 </div>
 
-${form.begin(url=request.route_url('create_profile'), id_="create_profile_form")}
 <div class="content container_12">
 	<div class="bar line top">
 		<h3 class="dark">Basic Information</h3>
 	</div>
 	<div class="column_1 grid_3 create_profile_main">
-		<img src="${request.static_url('carvewithus:static/images/cat.jpg')}" class="profile_pic">
-		<div class="clear"></div>
-		<a class="button medium gray" id="btn_upload" href="pic-upload">Upload Picture</a>
-		<a href="" id="" class="link">Remove Picture</a>
-		<input id="reg_profile_pic" name="reg_profile_pic" type="file">	
+		<form method="post" action="/upload" enctype="multipart/form-data" id="create_profile_pic_form">
+			<img src="${request.static_url('carvewithus:static/images/cat.jpg')}" class="profile_pic">
+			<div class="clear"></div>
+			<a class="button medium gray" id="btn_upload" href="pic-upload">Upload Picture</a>
+			<a href="" id="" class="link">Remove Picture</a>
+			<input name="picture.upload" type="file">
+			<input name="picture.static" type="hidden">
+			<input type="submit" value="Upload">
+			<input type="hidden" name="pic_form" value="create_profile_pic_form">
+			<input type="hidden" name="target_form" value="create_profile_form">
+			${form.csrf_token()}
+		</form>
 	</div>
 	<div class="grid_9 column_main">
-    	
+
+	${form.begin(url=request.route_url('create_profile'), id_="create_profile_form")}
+	${form.hidden(name='picture')}
     	<div id="" class="outer">
             <label for="new_title"><h4>What Do You Do?</h4></label>
 	    <p>
@@ -44,7 +52,9 @@ ${form.begin(url=request.route_url('create_profile'), id_="create_profile_form")
 		    ${form.radio(name="skill_level", value="EXPERT", label="Expert")}
             </p>
        	</div>
-    	</div>
+	</div>
+	${form.csrf_token()}
+	${form.end()}
 	<div class="bar line bottom">
 		<div class="column_1 grid_3">&nbsp;</div>
 		<div class="grid_4">
@@ -53,6 +63,5 @@ ${form.begin(url=request.route_url('create_profile'), id_="create_profile_form")
 	</div>
 	<div class="clear"></div>
 </div>
-</form>
 
 

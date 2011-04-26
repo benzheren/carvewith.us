@@ -20,7 +20,7 @@ class Signup(Schema):
 class CreateProfile(Schema):
     allow_extra_fields = True
     filter_extra_fields = True
-    picture = validators.FileUploadKeeper()
+    picture = validators.URL()
     activity = validators.OneOf(['SNOWBOARD', 'SKI', 'BOTH'])
     skill_level = validators.OneOf(['NEWBIE', 'INERMEDIATE', 'ADVANCED', 'EXPERT'])
 
@@ -45,6 +45,13 @@ class Trip(Schema):
     transportation = validators.OneOf(['DRIVE', 'BUS'])
     has_lodge = validators.Bool()
     lodge_desc = validators.UnicodeString()
+
+
+class Upload(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = True
+    pre_validators = [NestedVariables()]
+    picture = validators.FileUploadKeeper()
 
     
 
