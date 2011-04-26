@@ -53,6 +53,10 @@ $(document).ready(function(){
     	$(this).ajaxSubmit(options);
 	return false;
     });
+
+    $('#create_profile_pic_form').ajaxForm({
+    	dataType: 'script'
+    });
     
     /*bind enter button to form submit*/
     $('input').clickOnEnter('form a.submit');

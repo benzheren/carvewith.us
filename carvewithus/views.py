@@ -117,17 +117,17 @@ def create_profile(request):
     logged_in = authenticated_userid(request)
     if not logged_in:
         return HTTPFound(location=route_url('login', request))
-
+    
     session = DBSession()
-    if request.POST and validate_create_profile(request):
+    form = Form(request, schema=schemas.CreateProfile, obj=User())
+    if request.POST and form.validate():
         user = session.query(User).filter(User.email==logged_in).first()
-        user.activity = request.params['reg_activity']
-        user.skill_level = request.params['reg_level']
+        user = form.bind(user)
         session.merge(user)
         session.commit()
         return HTTPFound(location=route_url('home', request))
-
-    return {'user_email': logged_in}
+    print form.errors
+    return dict(user_email=logged_in, form=FormRenderer(form))
 
 def get_user_from_fb_id(fb_id, dbsession):
     """docstring for f"""
@@ -228,6 +228,34 @@ def view_trip(request):
 def join_trip(request):
     logged_in = authenticated_userid(request)
     return {'user_email': logged_in}
+
+@view_config(route_name='upload', renderer='upload.mak')
+def upload(request):
+    logged_in = authenticated_userid(request)
+    if not logged_in:
+        return HTTPFound(location=route_url('signup', request))
+
+    form = Form(request, schema=schemas.Upload)
+    if request.POST and form.validate():
+        if not validate_csrf(request):
+            return HTTPUnauthorized('Not authorized');
+        
+        pic_form = request.POST['pic_form']
+        target_form = request.POST['target_form']
+        picfile = request.POST['picture.upload']
+        if not picfile:
+            permanent_file_path = os.path.join(permanent_store,
+                                               picfile.filename.lstrip(os.sep))
+            permanent_file = open(permanent_file_path, 'w')
+            shutil.copyfileobj(picfile.file, permanent_file)
+            picfile.file.close()
+            permanent_file.close()
+            pic_url = static_url('carvewithus:uploads/' + 
+                             picfile.filename.lstrip(os.sep), request)
+
+        return dict(pic_url=pic_url, pic_form=pic_form, target_form=target_form)
+
+    return {}
 
 def validate_csrf(request):
     token = request.session.get_csrf_token()
