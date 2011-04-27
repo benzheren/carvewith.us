@@ -15,11 +15,12 @@
 		<form method="post" action="/upload" enctype="multipart/form-data" id="create_profile_pic_form">
 			<img src="${request.static_url('carvewithus:static/images/cat.jpg')}" class="profile_pic">
 			<div class="clear"></div>
-			<a class="button medium gray" id="btn_upload" href="pic-upload">Upload Picture</a>
+			<a class="button medium gray" href="#" id="upload_widget_btn">Upload Picture</a>
 			<a href="" id="" class="link">Remove Picture</a>
-			<input name="picture.upload" type="file">
+			<input name="picture.upload" type="file" class="upload_widget" size="15" style="display:none;">
 			<input name="picture.static" type="hidden">
-			<input type="submit" value="Upload">
+			<input type="submit" value="Upload" class="upload_widget" style="display:none;">
+			<input type="submit" value="Cancel" class="upload_widget" style="display:none;" id="upload_widget_cancel">
 			<input type="hidden" name="pic_form" value="create_profile_pic_form">
 			<input type="hidden" name="target_form" value="create_profile_form">
 			${form.csrf_token()}
