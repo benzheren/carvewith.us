@@ -19,6 +19,7 @@ requires = [
     'deform',
     'WebHelpers',
     'FormEncode',
+    'pyramid_simpleform'
     ]
 
 if sys.version_info[:3] < (2,5,0):
