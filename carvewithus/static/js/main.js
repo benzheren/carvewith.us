@@ -49,15 +49,29 @@ $(document).ready(function(){
 	return false;
     });
 
-    $('#create_trip_form').submit(function(){
-    	$(this).ajaxSubmit(options);
-	return false;
+    $('#upload_widget_btn').click(function(e){
+	e.preventDefault();
+    	$('input.upload_widget').show();
+    });
+
+    $('#upload_widget_cancel').click(function(e){
+    	e.preventDefault();
+	$('input.upload_widget').hide();
+    });
+
+    $('#create_profile_pic_form').ajaxForm({
+    	dataType: 'script'
     });
     
     /*bind enter button to form submit*/
     $('input').clickOnEnter('form a.submit');
 
     /*create_trip*/
+    $('#create_trip_form').submit(function(){
+    	$(this).ajaxSubmit(options);
+	return false;
+    });
+
     $('#add_dest_btn').click(function(e){
     	e.preventDefault();
 	count = parseInt($('#itinerary_count').val());

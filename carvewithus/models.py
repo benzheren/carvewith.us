@@ -23,7 +23,8 @@ class User(Base):
     created = Column(TIMESTAMP, default=func.current_timestamp())
     updated = Column(TIMESTAMP, default=func.current_timestamp(),
                      onupdate=func.current_timestamp())
-    activity = Column(Enum('SNOWBOARD', 'SKI'))
+    picture = Column(String(255))
+    activity = Column(Enum('SNOWBOARD', 'SKI', 'BOTH'))
     skill_level = Column(Enum('NEWBIE', 'INTERMEDIATE', 'ADVANCED', 'EXPERT'))
 
     def __init__(self, username=None, name=None, email=None, password=None,

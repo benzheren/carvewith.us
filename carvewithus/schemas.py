@@ -17,6 +17,14 @@ class Signup(Schema):
     city = validators.OneOf(['sfo', 'nyc', 'chi', 'den', 'other'])
 
 
+class CreateProfile(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = True
+    picture = validators.String()
+    activity = validators.OneOf(['SNOWBOARD', 'SKI', 'BOTH'])
+    skill_level = validators.OneOf(['NEWBIE', 'INTERMEDIATE', 'ADVANCED', 'EXPERT'])
+
+
 class Itinerary(Schema):
     allow_extra_fields = True
     filter_extra_fields = False
@@ -37,6 +45,13 @@ class Trip(Schema):
     transportation = validators.OneOf(['DRIVE', 'BUS'])
     has_lodge = validators.Bool()
     lodge_desc = validators.UnicodeString()
+
+
+class Upload(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = True
+    pre_validators = [NestedVariables()]
+    picture = validators.FileUploadKeeper()
 
     
 
