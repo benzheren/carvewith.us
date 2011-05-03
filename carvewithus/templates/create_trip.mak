@@ -8,7 +8,6 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
             <h3 class="grid_7">Organize a new trip</h3>
         <ul class="submenu  grid_5">
 		<li id="create_trip_menu_1" class="active"><a href="#" alt="1"><b>1.</b> Basic Details</a>
-                 <div class="tip"></div>
             </li>
 	    <li id="create_trip_menu_2"><a href="#" alt="2"><b>2.</b> Logistics</a></li>
 	    <li id="create_trip_menu_3"><a href="#" alt="3"><b>3.</b> Members</a></li>
