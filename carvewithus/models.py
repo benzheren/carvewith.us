@@ -63,8 +63,9 @@ class Trip(Base):
     transportation = Column(Enum('DRIVE', 'BUS'))
     has_lodge = Column(Boolean)
     lodge_desc = Column(UnicodeText)
-    organizer = Column(Integer, ForeignKey('users.id'))
-    itineraries = relationship('Itinerary', backref='trips')
+    itineraries = relationship('Itinerary', backref='trip')
+    members = relationship('TripMember', backref='trip')
+    invitations = relationship('TripInvitation', backref='trip')
     
     def __init__(self, picture=None, name=None, summary=None, spots_available=0,
                  transportation=None, has_lodge=False, lodge_desc=None,
@@ -102,16 +103,17 @@ class TripMember(Base):
     user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
     join_date = Column(DateTime)
     admin = Column(Boolean, default=False)
+    user = relationship('User', backref='trip_member')
 
 class TripInvitation(Base):
-    __tablename__ = 'trip_invitations'
+    __tablename__ = 'trip_invitation'
 
     id = Column(Integer, primary_key=True)
     trip_id = Column(Integer, ForeignKey('trips.id'))
     inviter = Column(Integer, ForeignKey('users.id'))
     invitee = Column(Integer, ForeignKey('users.id'))
     invite_date = Column(DateTime)
-    status = Column(Enum('SENT', 'ACCEPTED', 'REJECTED'))
+    status = Column(Enum('PENDING', 'ACCEPTED', 'REJECTED'))
 
 
 def initialize_sql(engine):

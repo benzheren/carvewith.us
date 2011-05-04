@@ -1,14 +1,10 @@
-import re
 import os
 import shutil
 
 import facebook
-import formencode
 from formencode import validators
-from formencode import htmlfill
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized 
-from pyramid.response import Response
 from pyramid.security import remember, forget, authenticated_userid
 from pyramid.url import route_url, static_url
 from pyramid_simpleform import Form
@@ -186,7 +182,7 @@ def create_trip_post(request):
         
         user = get_user_from_email(authenticated_userid(request), dbsession)
         trip = bind_trip(form.schema.to_python(dict(request.params)), Trip())
-        trip.organizer = user.id
+        #trip.organizer = user.id
 
         picfile = request.POST['picture.upload']
         print picfile
