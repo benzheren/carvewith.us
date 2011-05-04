@@ -5,7 +5,7 @@
         <h3 class="white">Sign Up</h3>
     </div>
     <div class="sign_up_top sign_up_0">
-        <fb:login-button size="xlarge">Connect Your Facebook Account</fb:login-button>
+	    <fb:login-button size="xlarge" perms="email, publish_stream, offline_access">Connect Your Facebook Account</fb:login-button>
     </div>
     <div class="sign_up_1" style="display:none;">
 	${form.begin(url=request.route_url('signup_post'), class_="signup_form", id_="signup_form_email")}
