@@ -84,7 +84,7 @@ class Itinerary(Base):
     __tablename__ = 'itineraries'
 
     id = Column(Integer, primary_key=True)
-    trip = Column(Integer, ForeignKey('trips.id'))
+    trip_id = Column(Integer, ForeignKey('trips.id'))
     location = Column(UnicodeText)
     date = Column(Date)
     time = Column(Time)
