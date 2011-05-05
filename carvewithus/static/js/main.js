@@ -19,6 +19,7 @@ $('#sign_up_button_fb').live('click', function(){
     $('#signup_form_fb').submit();
 });
 
+/*
 $('div.create_trip_form a.btn_next').live('click', function(e){
     e.preventDefault();
     var target = parseInt($(this).attr('alt'));
@@ -31,6 +32,12 @@ $('div.create_trip_form a.btn_next').live('click', function(e){
 	    $('#create_trip_menu_' + i).removeClass('active');
 	}
     }
+});
+*/
+
+$('#create_trip_1 a.btn_next').live('click', function(e){
+	e.preventDefault();
+	$('#create_trip_basic_form').submit();	
 });
 
 $(document).ready(function(){
@@ -67,8 +74,10 @@ $(document).ready(function(){
     $('input').clickOnEnter('form a.submit');
 
     /*create_trip*/
-    $('#create_trip_form').submit(function(){
-    	$(this).ajaxSubmit(options);
+    $('#create_trip_basic_form').submit(function(){
+    	$(this).ajaxSubmit({
+		dataType: 'json' 
+	});
 	return false;
     });
 

@@ -39,6 +39,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
 <div id="column_main_basic" class="grid_9 column_main">
 	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_basic_form")}
 	${form.hidden(name='picture')}
+	<input type="hidden" name="step" value="1"/>
 	<div id="title" class="outer">
 		<h4>${form.label('name', label='Title')}</h4>
 		<p>

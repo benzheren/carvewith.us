@@ -47,6 +47,14 @@ class Trip(Schema):
     lodge_desc = validators.UnicodeString()
 
 
+class TripBasic(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = False
+    picture = validators.String()
+    name = validators.UnicodeString(max=50, not_empty=True)
+    summary = validators.UnicodeString()
+
+
 class Upload(Schema):
     allow_extra_fields = True
     filter_extra_fields = True

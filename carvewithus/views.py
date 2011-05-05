@@ -14,7 +14,7 @@ from sqlalchemy.sql import and_
 from sqlalchemy.exc import IntegrityError
 
 from carvewithus import schemas
-from carvewithus.models import DBSession, User, Trip, Itinerary
+from carvewithus.models import DBSession, User, Trip, Itinerary, TripMember
 
 
 permanent_store = '/Users/hzr/workspace/carvewithus/carvewithus/uploads/'
@@ -174,39 +174,31 @@ def create_trip_post(request):
     dbsession = DBSession()
     settings = request.registry.settings
     form = Form(request, schema=schemas.Trip, obj=Trip())
-    if request.POST and form.validate():
-        if not validate_csrf(request):
-            return HTTPUnauthorized('Not authorized');
-        #TODO remove this
-        print form.schema.to_python(dict(request.params))
-        
-        user = get_user_from_email(authenticated_userid(request), dbsession)
-        trip = bind_trip(form.schema.to_python(dict(request.params)), Trip())
-        #trip.organizer = user.id
-
-        picfile = request.POST['picture.upload']
-        print picfile
-        if not picfile and len(picfile) > 0:
-            permanent_file_path = os.path.join(permanent_store,
-                                               picfile.filename.lstrip(os.sep))
-            permanent_file = open(permanent_file_path, 'w')
-            shutil.copyfileobj(picfile.file, permanent_file)
-            picfile.file.close()
-            permanent_file.close()
-            trip.picture = static_url('carvewithus:uploads/' + 
-                             picfile.filename.lstrip(os.sep), request)
-        else:
-            trip.picture = None
-
-        try:
-            dbsession.add(trip)
-            dbsession.commit()
-            redirect_url = route_url('home', request)
-            return {'status': 1, 'url': redirect_url}
-        except IntegrityError:
-            return {'errors': {'form': 'Invalid Information'}}
     
+    if request.POST:
+        if not validate_csrf(request):
+            return HTTPUnauthorized('Not authorized')
+
+        step = request.POST['step']
+        if step == '1':
+            form = Form(request, schema=schemas.TripBasic, obj=Trip())
+            if form.validate():
+                user = get_user_from_email(authenticated_userid(request), dbsession)
+                trip = form.bind(Trip())
+                organizer = TripMember()
+                organizer.user = user
+                organizer.admin = True
+                trip.members.append(organizer)
+                try:
+                    dbsession.add(trip)
+                    dbsession.commit()
+                    redirect_url = route_url('home', request)
+                    return {'status': 1, 'url': redirect_url}
+                except IntegrityError:
+                    return {'errors': {'form': 'Invalid Information'}}
+
     return {'errors': form.errors}
+
 
 def validate_create_profile(request):
     activities = ('SKI', 'SNOWBOARD', 'BOTH')
