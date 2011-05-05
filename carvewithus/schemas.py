@@ -37,7 +37,7 @@ class Trip(Schema):
     allow_extra_fields = True
     filter_extra_fields = False
     pre_validators = [NestedVariables()]
-    picture = validators.FileUploadKeeper()
+    picture = validators.String()
     name = validators.UnicodeString(max=50, not_empty=True)
     summary = validators.UnicodeString()
     itineraries = ForEach(Itinerary())
