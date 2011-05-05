@@ -15,22 +15,30 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         </div>
     </div>
 </div>
-${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", multipart=True)}
 <div id="create_trip_1" class="content container_12">
 <div class="bar line top">
 	<h3 class="dark">Basic Details</h3>
 	<a class="button medium gray right" id="btn_view" href="viewtrip">View Trip Profile</a>
 </div>
 <div class="column_1 grid_3">
-	<img src="" class="trip_pic" />
-    	<div class="clear"> </div>
-        <a href="pic-upload" id="btn_upload" class="button medium gray">Upload Picture</a>
-	<a href="pic-clear" id="btn_remove" class="link">Remove Picture</a>
-	${form.file(name='picture.upload')}
-	${form.hidden(name='picture.static')}
+	<form method="post" action="/upload" enctype="multipart/form-data" id="create_trip_pic_form" class="pic_upload">
+		<img src="" class="trip_pic" />
+		<div class="clear"> </div>
+		<a class="button medium gray" href="#" id="upload_widget_btn">Upload Picture</a>
+		<a href="" id="" class="link">Remove Picture</a>
+		<input name="picture.upload" type="file" class="upload_widget" size="15" style="display:none;">
+		<input name="picture.static" type="hidden">
+		<input type="submit" value="Upload" class="upload_widget" style="display:none;">
+		<input type="submit" value="Cancel" class="upload_widget" style="display:none;" id="upload_widget_cancel">
+		<input type="hidden" name="pic_form" value="create_trip_pic_form">
+		<input type="hidden" name="target_form" value="create_profile_basic_form">
+		${form.csrf_token()}
+	</form>
         <div class="clear"> </div>
 </div>
 <div id="column_main_basic" class="grid_9 column_main">
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_basic_form")}
+	${form.hidden(name='picture')}
 	<div id="title" class="outer">
 		<h4>${form.label('name', label='Title')}</h4>
 		<p>
@@ -42,7 +50,9 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
 		<p>
 			${form.textarea(name='summary', class_='text small full')}
             	</p>
-       	</div>
+	</div>
+	${form.csrf_token()}
+	${form.end()}
 </div>
 <div class="bar line bottom">
 	<div class="column_1 grid_3"></div>
@@ -57,6 +67,7 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
             	<a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
 	<div id="column_main_logistics" class="grid_8 column_main">
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_basic_form")}
     		<div class="clear"></div>
 	    	<div id="itinerary" class="outer">
 			<h4>Intinerary</h4>
@@ -192,7 +203,9 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
                        		</tbody>
                      		</table>
 			</p>
-	       	</div>
+		</div>
+	${form.csrf_token()}
+	${form.end()}
 	</div>
         <div class="bar line bottom">
         	<div class="grid_3">
@@ -314,6 +327,3 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
 
  <div class="clear"> </div>
 </div>
-${form.csrf_token()}
-${form.end()}
-

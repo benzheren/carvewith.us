@@ -59,7 +59,7 @@ $(document).ready(function(){
 	$('input.upload_widget').hide();
     });
 
-    $('#create_profile_pic_form').ajaxForm({
+    $('form.pic_upload').ajaxForm({
     	dataType: 'script'
     });
     
