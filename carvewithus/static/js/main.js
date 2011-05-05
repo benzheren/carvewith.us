@@ -19,7 +19,7 @@ $('#sign_up_button_fb').live('click', function(){
     $('#signup_form_fb').submit();
 });
 
-$('#create_trip_form a.btn_next').live('click', function(e){
+$('div.create_trip_form a.btn_next').live('click', function(e){
     e.preventDefault();
     var target = parseInt($(this).attr('alt'));
     for(var i = 1, limit = 3; i <= limit; i++) {

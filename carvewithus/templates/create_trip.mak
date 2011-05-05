@@ -15,7 +15,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         </div>
     </div>
 </div>
-<div id="create_trip_1" class="content container_12">
+<div id="create_trip_1" class="content container_12 create_trip_form">
 <div class="bar line top">
 	<h3 class="dark">Basic Details</h3>
 	<a class="button medium gray right" id="btn_view" href="viewtrip">View Trip Profile</a>
@@ -61,7 +61,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         </div>
 </div>
 </div>
-<div id="create_trip_2" class="content container_12" style="display: none;">
+<div id="create_trip_2" class="content container_12 create_trip_form" style="display: none;">
 	<div class="bar line top">
         	<h3 class="dark">Logistics</h3>
             	<a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
@@ -217,7 +217,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         </div>
  	<div class="clear"> </div>
 </div>
-<div id="create_trip_3" class="content container_12" style="display: none;">
+<div id="create_trip_3" class="content container_12 create_trip_form" style="display: none;">
 
 	<!----- Top bar ----->
         <div class="bar line top">
