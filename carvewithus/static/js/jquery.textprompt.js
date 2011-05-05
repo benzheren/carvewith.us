@@ -15,7 +15,7 @@
 		
 		var $this = $(this);
 		
-		if ($this.attr("type") != "text") return;
+		//if ($this.attr("type") != "text") return;
  
                 var fontColor = $this.css("color");
                 var backgroundColor = $this.css("background-color");

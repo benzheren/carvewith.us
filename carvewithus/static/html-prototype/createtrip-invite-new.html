@@ -1,0 +1,175 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>pagetitle</title>
+
+<link rel="stylesheet" href="../css/960reset.css" />
+<link rel="stylesheet" href="../css/main.css" />
+<link rel="stylesheet" href="../css/jquery-ui/custom-theme/jquery-ui-1.8.12.custom.css" />
+
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tip.js"></script>
+<script type="text/javascript" src="../js/jquery.textprompt.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/plugins-custom.js"></script>
+
+
+</head>
+
+<body>
+
+<!----- Head Start ----->
+			<div id="banner">
+	<div id="head">
+        <div class="logo"><h1>carvewith.us</h1></div>
+        
+        <ul class="menu">
+            <li><a href="joinlink">
+                <h2>Join Trip</h2>
+                <span class="sub">Find a trip to join</span>
+            </a></li>
+            <li><a href="organizelink">
+                <h2>Organize</h2>
+                <span class="sub">Make a new trip</span>
+            </a></li>
+        </ul>
+        
+        <div id="account">
+            <div id="login_links">
+                <a href="login">login</a>&nbsp;|&nbsp;<a href="register">register</a>
+            </div>
+            <div id="account_links">
+                <span>Hi, username</span>
+                &nbsp;|&nbsp;
+                <a href="account">my account</a>
+                &nbsp;|&nbsp;
+                <a href="login">logout</a>
+            </div>
+        </div>
+	</div>
+</div>
+<!----- Head End ----->
+
+<!----- SubHead Start ----->
+<div class="subhead_container">
+    <div class="subhead">
+        <div class="title">
+            <h3 class="grid_7">Organize a new trip</h3>
+        <ul class="submenu  grid_5">
+            <li class="active"><a href="basic"><b>1.</b> Basic Details</a>
+            <div class="tip"></div>
+            </li>
+            <li><a href="logistics"><b>2.</b> Logistics</a></li>
+            <li><a href="members"><b>3.</b> Members</a></li>
+        </ul>
+        </div>
+    </div>
+</div>
+<!----- SubHead End ----->
+
+<!----- Content Start ----->
+
+<div class="content container_12" class="content container_12">
+
+	<!----- Top bar ----->
+        <div class="bar line top">
+        	<h3 class="dark">Invite your friends!</h3>
+            <a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
+        </div>
+   <!----- end Top bar ----->
+   
+   
+   <!----- Top bar ----->
+        <div class="bar line members">
+        	<div class="grid_3">
+            	&nbsp;
+            </div>
+            <ul class="tab">
+                <li class="active">
+                	<a href="">Facebook Invite</a>
+                </li>
+            </ul>
+        </div>
+   <!----- end Top bar ----->
+   
+	
+    <!----- Right Column / Invite Message----->
+	<div id="column_left_contact" class="grid_3 column_1">
+       	<div class="outer">
+       		<fb:login-button size="large">Connect Your Facebook Account</fb:login-button>
+        </div>
+        
+        
+    </div>
+    <!----- End Right Column Invite Message ----->
+    
+	 <!----- Main Column / People ----->
+	<div id="column_main_people" class="grid_9 column_main">
+        
+        <div class="outer">
+        	<h4 class="tabhead">Invite List:</h4>
+      		<textarea id="txt-invite-to" class="text large full searchname" alt="Type in friend's name"></textarea>
+       </div>
+       
+       <div id="summary" class="outer">
+        	<label for="new_summary"><h4>Message</h4></label>
+            <p class="description">
+  			<textarea id="txt_new_summary" name="new_summary" class="text small full" alt="Type a short message here">
+            </textarea>
+            </p>
+       	</div>
+        
+        <div class="outer">
+        	<a href="sendinvite" id="btn_invite" class="button large green">Send Invites &rArr;</a>
+       </div>
+
+        
+    </div>
+    <!----- End Main Column People ----->
+    
+	
+
+   
+
+    <!----- Bottom bar ----->
+        <div class="bar line bottom">
+        	<div class="grid_3">
+        		<a href="back-logistics" id="btn_back" class="button large gray right">&larr; Back</a>
+        	</div>
+        	<div class="grid_4">
+            	<a href="next-complete" id="btn_next" class="button huge blue">Done!</a>
+            </div>
+        </div>
+   <!----- end Bottom bar ----->
+
+ <div class="clear"> </div>
+</div>
+<!----- Content End ----->
+
+
+<!----- Footer Start ----->
+<div class="footer">
+	<div class="container_12">
+		<div class="footer_col_1 grid_3">
+			<ul class="sitemap">
+				<li class="lead">carvewith.us</li>
+				<li><a href="home">Home</a></li>
+				<li><a href="jointrip">Join a Trip</a></li>
+				<li><a href="organizetrip">Organize Trip</a></li>
+				<li><a href="about">About Us</a></li>
+				<li><a href="mobile">Misc</a></li>
+			</ul>
+		</div>
+		<div class="grid_9">
+			<h1>Carve with who?</h1>
+			<p class="description">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</div>
+</div>
+<!----- Footer End ----->
+</body>
+</html>
