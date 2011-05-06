@@ -211,7 +211,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
 	</div>
         <div class="bar line bottom">
         	<div class="grid_3">
-			<a alt="1" href="#" class="button large gray right btn_next">&larr; Back</a>
+			<a alt="1" href="#" class="button large gray right btn_back">&larr; Back</a>
         	</div>
         	<div class="grid_4">
 			<a alt="3" href="#" class="button huge blue btn_next">Next  &rarr;</a>
@@ -319,7 +319,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
     <!----- Bottom bar ----->
         <div class="bar line bottom">
 		<div class="grid_3">
-			<a alt="2" href="#" class="button large gray right btn_next">&larr; Back</a>
+			<a alt="2" href="#" class="button large gray right btn_back">&larr; Back</a>
         	</div>
         	<div class="grid_4">
 			<a href="#" id="create_trip_btn" class="button huge blue">Done!</a>
