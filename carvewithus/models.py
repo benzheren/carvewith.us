@@ -101,7 +101,7 @@ class TripMember(Base):
 
     trip_id = Column(Integer, ForeignKey('trips.id'), primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
-    join_date = Column(DateTime)
+    join_date = Column(TIMESTAMP, default=func.current_timestamp())
     admin = Column(Boolean, default=False)
     user = relationship('User', backref='trip_member')
 

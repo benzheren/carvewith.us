@@ -15,22 +15,31 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         </div>
     </div>
 </div>
-${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", multipart=True)}
-<div id="create_trip_1" class="content container_12">
+<div id="create_trip_1" class="content container_12 create_trip_form">
 <div class="bar line top">
 	<h3 class="dark">Basic Details</h3>
 	<a class="button medium gray right" id="btn_view" href="viewtrip">View Trip Profile</a>
 </div>
 <div class="column_1 grid_3">
-	<img src="" class="trip_pic" />
-    	<div class="clear"> </div>
-        <a href="pic-upload" id="btn_upload" class="button medium gray">Upload Picture</a>
-	<a href="pic-clear" id="btn_remove" class="link">Remove Picture</a>
-	${form.file(name='picture.upload')}
-	${form.hidden(name='picture.static')}
+	<form method="post" action="/upload" enctype="multipart/form-data" id="create_trip_pic_form" class="pic_upload">
+		<img src="" class="trip_pic" />
+		<div class="clear"> </div>
+		<a class="button medium gray" href="#" id="upload_widget_btn">Upload Picture</a>
+		<a href="" id="" class="link">Remove Picture</a>
+		<input name="picture.upload" type="file" class="upload_widget" size="15" style="display:none;">
+		<input name="picture.static" type="hidden">
+		<input type="submit" value="Upload" class="upload_widget" style="display:none;">
+		<input type="submit" value="Cancel" class="upload_widget" style="display:none;" id="upload_widget_cancel">
+		<input type="hidden" name="pic_form" value="create_trip_pic_form">
+		<input type="hidden" name="target_form" value="create_profile_basic_form">
+		${form.csrf_token()}
+	</form>
         <div class="clear"> </div>
 </div>
 <div id="column_main_basic" class="grid_9 column_main">
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_basic_form")}
+	${form.hidden(name='picture')}
+	<input type="hidden" name="step" value="1"/>
 	<div id="title" class="outer">
 		<h4>${form.label('name', label='Title')}</h4>
 		<p>
@@ -42,7 +51,9 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
 		<p>
 			${form.textarea(name='summary', class_='text small full')}
             	</p>
-       	</div>
+	</div>
+	${form.csrf_token()}
+	${form.end()}
 </div>
 <div class="bar line bottom">
 	<div class="column_1 grid_3"></div>
@@ -51,12 +62,14 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
         </div>
 </div>
 </div>
-<div id="create_trip_2" class="content container_12" style="display: none;">
+<div id="create_trip_2" class="content container_12 create_trip_form" style="display: none;">
 	<div class="bar line top">
         	<h3 class="dark">Logistics</h3>
             	<a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
 	<div id="column_main_logistics" class="grid_8 column_main">
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_logistics_form")}
+		<input type="hidden" name="step" value="2"/>
     		<div class="clear"></div>
 	    	<div id="itinerary" class="outer">
 			<h4>Intinerary</h4>
@@ -179,7 +192,7 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
                         	<tbody>
                         	<tr>
 		            		<td class="number">
-		            			<img class="col_lead_icon" src="../images/trip_icon_house.png" />
+						<img class="icon48 house"/>
 		            		</td>
 					<td class="location">
 						${form.checkbox(name='has_lodge', value='1')}
@@ -192,11 +205,13 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
                        		</tbody>
                      		</table>
 			</p>
-	       	</div>
+		</div>
+	${form.csrf_token()}
+	${form.end()}
 	</div>
         <div class="bar line bottom">
         	<div class="grid_3">
-			<a alt="1" href="#" class="button large gray right btn_next">&larr; Back</a>
+			<a alt="1" href="#" class="button large gray right btn_back">&larr; Back</a>
         	</div>
         	<div class="grid_4">
 			<a alt="3" href="#" class="button huge blue btn_next">Next  &rarr;</a>
@@ -204,7 +219,7 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
         </div>
  	<div class="clear"> </div>
 </div>
-<div id="create_trip_3" class="content container_12" style="display: none;">
+<div id="create_trip_3" class="content container_12 create_trip_form" style="display: none;">
 
 	<!----- Top bar ----->
         <div class="bar line top">
@@ -257,8 +272,9 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
     <!----- End Right Column Invite Message ----->
     
 	 <!----- Main Column / People ----->
-	<div id="column_main_people" class="grid_8 column_main">
-        
+     <div id="column_main_people" class="grid_8 column_main">
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_invite_form")}
+	<input type="hidden" name="step" value="3"/>
         <div class="outer">
         	<h4 class="tabhead">Invite List:</h4>
         	<ul class="users_list full">
@@ -293,7 +309,8 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
             
             </ul>
         </div>
-        
+	${form.csrf_token()}
+	${form.end()}
     </div>
     <!----- End Main Column People ----->
     
@@ -304,7 +321,7 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
     <!----- Bottom bar ----->
         <div class="bar line bottom">
 		<div class="grid_3">
-			<a alt="2" href="#" class="button large gray right btn_next">&larr; Back</a>
+			<a alt="2" href="#" class="button large gray right btn_back">&larr; Back</a>
         	</div>
         	<div class="grid_4">
 			<a href="#" id="create_trip_btn" class="button huge blue">Done!</a>
@@ -314,6 +331,3 @@ ${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_form", 
 
  <div class="clear"> </div>
 </div>
-${form.csrf_token()}
-${form.end()}
-

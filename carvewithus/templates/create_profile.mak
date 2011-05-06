@@ -12,7 +12,7 @@
 		<h3 class="dark">Basic Information</h3>
 	</div>
 	<div class="column_1 grid_3 create_profile_main">
-		<form method="post" action="/upload" enctype="multipart/form-data" id="create_profile_pic_form">
+		<form method="post" action="/upload" enctype="multipart/form-data" id="create_profile_pic_form" class="pic_upload">
 			<img src="${request.static_url('carvewithus:static/images/cat.jpg')}" class="profile_pic">
 			<div class="clear"></div>
 			<a class="button medium gray" href="#" id="upload_widget_btn">Upload Picture</a>
