@@ -55,6 +55,17 @@ class TripBasic(Schema):
     summary = validators.UnicodeString()
 
 
+class TripLogistics(Schema):
+    allow_extra_fields = True
+    filter_extra_fields = False
+    pre_validators = [NestedVariables()]
+    itineraries = ForEach(Itinerary())
+    spots_available = validators.Int(not_empty=True, min=1)
+    transportation = validators.OneOf(['DRIVE', 'BUS'])
+    has_lodge = validators.Bool()
+    lodge_desc = validators.UnicodeString()
+ 
+
 class Upload(Schema):
     allow_extra_fields = True
     filter_extra_fields = True

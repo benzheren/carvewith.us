@@ -19,25 +19,14 @@ $('#sign_up_button_fb').live('click', function(){
     $('#signup_form_fb').submit();
 });
 
-/*
-$('div.create_trip_form a.btn_next').live('click', function(e){
-    e.preventDefault();
-    var target = parseInt($(this).attr('alt'));
-    for(var i = 1, limit = 3; i <= limit; i++) {
-    	if ( i === target) {
-	    $('#create_trip_' + i).show();
-	    $('#create_trip_menu_' + i).addClass('active');
-	} else {
-	    $('#create_trip_' + i).hide();
-	    $('#create_trip_menu_' + i).removeClass('active');
-	}
-    }
-});
-*/
-
 $('#create_trip_1 a.btn_next').live('click', function(e){
 	e.preventDefault();
 	$('#create_trip_basic_form').submit();	
+});
+
+$('#create_trip_2 a.btn_next').live('click', function(e){
+	e.preventDefault();
+	$('#create_trip_logistics_form').submit();
 });
 
 $(document).ready(function(){
@@ -74,12 +63,35 @@ $(document).ready(function(){
     $('input').clickOnEnter('form a.submit');
 
     /*create_trip*/
+    function postCreateTripForm(data) {
+    	if (data.status == 1) {
+	    for(var i = 1, limit = 3; i <= limit; i++) {
+    	        if ( i === data.target) {
+	            $('#create_trip_' + i).show();
+	            $('#create_trip_menu_' + i).addClass('active');
+	        } else {
+	            $('#create_trip_' + i).hide();
+	            $('#create_trip_menu_' + i).removeClass('active');
+	        }
+            } 
+	}	
+    }
+
+    var create_trip_options = {
+    	dataType: 'json',
+	success: postCreateTripForm
+    };
+
     $('#create_trip_basic_form').submit(function(){
-    	$(this).ajaxSubmit({
-		dataType: 'json' 
-	});
+    	$(this).ajaxSubmit(create_trip_options);
 	return false;
     });
+
+    $('#create_trip_logistics_form').submit(function(){
+    	$(this).ajaxSubmit(create_trip_options);
+	return false;
+    });
+
 
     $('#add_dest_btn').click(function(e){
     	e.preventDefault();
@@ -89,6 +101,8 @@ $(document).ready(function(){
 	$('#itinerary-table').append(element);
 	$('#itinerary_count').val(count);
     });
+
+    /**/
 });
 
 function postSignupForm(data) {

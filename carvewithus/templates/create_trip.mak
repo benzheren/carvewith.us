@@ -68,7 +68,8 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
             	<a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
 	<div id="column_main_logistics" class="grid_8 column_main">
-	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_basic_form")}
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_logistics_form")}
+		<input type="hidden" name="step" value="2"/>
     		<div class="clear"></div>
 	    	<div id="itinerary" class="outer">
 			<h4>Intinerary</h4>
@@ -191,7 +192,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
                         	<tbody>
                         	<tr>
 		            		<td class="number">
-		            			<img class="col_lead_icon" src="../images/trip_icon_house.png" />
+						<img class="icon48 house"/>
 		            		</td>
 					<td class="location">
 						${form.checkbox(name='has_lodge', value='1')}

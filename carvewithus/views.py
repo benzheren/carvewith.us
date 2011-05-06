@@ -178,12 +178,12 @@ def create_trip_post(request):
     if request.POST:
         if not validate_csrf(request):
             return HTTPUnauthorized('Not authorized')
-
+        
         step = request.POST['step']
+        user = get_user_from_email(authenticated_userid(request), dbsession)
         if step == '1':
             form = Form(request, schema=schemas.TripBasic, obj=Trip())
             if form.validate():
-                user = get_user_from_email(authenticated_userid(request), dbsession)
                 trip = form.bind(Trip())
                 organizer = TripMember()
                 organizer.user = user
@@ -192,8 +192,20 @@ def create_trip_post(request):
                 try:
                     dbsession.add(trip)
                     dbsession.commit()
-                    redirect_url = route_url('home', request)
-                    return {'status': 1, 'url': redirect_url}
+                    request.session['new_trip'] = trip
+                    return {'status': 1, 'target': 2}
+                except IntegrityError:
+                    return {'errors': {'form': 'Invalid Information'}}
+        elif step == '2':
+            form = Form(request, schema=schemas.TripLogistics, obj=Trip())
+            if form.validate():
+                trip = request.session['new_trip']
+                trip = bind_trip(form.schema.to_python(dict(request.params)),
+                                 trip)
+                try:
+                    dbsession.merge(trip)
+                    dbsession.commit()
+                    return {'status': 1, 'target': 3}
                 except IntegrityError:
                     return {'errors': {'form': 'Invalid Information'}}
 
