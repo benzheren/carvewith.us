@@ -171,7 +171,12 @@ def create_trip(request):
 
 @view_config(route_name='create_trip_post', renderer='json')
 def create_trip_post(request):
-    dbsession = DBSession()
+    try:
+        dbsession = request.session['dbsession']
+    except KeyError:
+        dbsession = DBSession()
+        request.session['dbsession'] = dbsession
+
     settings = request.registry.settings
     form = Form(request, schema=schemas.Trip, obj=Trip())
     
@@ -179,35 +184,37 @@ def create_trip_post(request):
         if not validate_csrf(request):
             return HTTPUnauthorized('Not authorized')
         
+        try:
+            trip = request.session['new_trip']
+        except KeyError:
+            user = get_user_from_email(authenticated_userid(request), dbsession)
+            trip = Trip()
+            organizer = TripMember()
+            organizer.user = user
+            organizer.admin = True
+            trip.members.append(organizer)
+            request.session['new_trip'] = trip
+
         step = request.POST['step']
-        user = get_user_from_email(authenticated_userid(request), dbsession)
         if step == '1':
             form = Form(request, schema=schemas.TripBasic, obj=Trip())
             if form.validate():
-                trip = form.bind(Trip())
-                organizer = TripMember()
-                organizer.user = user
-                organizer.admin = True
-                trip.members.append(organizer)
-                try:
-                    dbsession.add(trip)
-                    dbsession.commit()
-                    request.session['new_trip'] = trip
-                    return {'status': 1, 'target': 2}
-                except IntegrityError:
-                    return {'errors': {'form': 'Invalid Information'}}
+                trip = form.bind(trip)
+                return {'status': 2, 'target': 2}
         elif step == '2':
             form = Form(request, schema=schemas.TripLogistics, obj=Trip())
             if form.validate():
-                trip = request.session['new_trip']
                 trip = bind_trip(form.schema.to_python(dict(request.params)),
                                  trip)
-                try:
-                    dbsession.merge(trip)
-                    dbsession.commit()
-                    return {'status': 1, 'target': 3}
-                except IntegrityError:
-                    return {'errors': {'form': 'Invalid Information'}}
+                return {'status': 2, 'target': 3}
+        elif step == '3':
+            try:
+                dbsession.add(trip)
+                dbsession.commit()
+                redirect_url = route_url('home', request)
+                return {'status': 1, 'url': redirect_url}
+            except IntegrityError:
+                return {'errors': {'form': 'Invalid Information'}}
 
     return {'errors': form.errors}
 

@@ -44,6 +44,11 @@ $('#create_trip_2 a.btn_next').live('click', function(e){
 	$('#create_trip_logistics_form').submit();
 });
 
+$('#create_trip_btn').live('click', function(e){
+	e.preventDefault();
+	$('#create_trip_invite_form').submit();
+});
+
 $(document).ready(function(){
     var options = {
 	    dataType: 'json',
@@ -79,7 +84,11 @@ $(document).ready(function(){
 
     /*create_trip*/
     function postCreateTripForm(data) {
-    	if (data.status == 1) {
+	if (data.status == 1) {
+	    window.location.replace(data.url);
+	}
+
+    	if (data.status == 2) {
 	    for(var i = 1, limit = 3; i <= limit; i++) {
     	        if ( i === data.target) {
 	            $('#create_trip_' + i).show();
@@ -89,7 +98,7 @@ $(document).ready(function(){
 	            $('#create_trip_menu_' + i).removeClass('active');
 	        }
             } 
-	}	
+	} 
     }
 
     var create_trip_options = {
@@ -107,6 +116,10 @@ $(document).ready(function(){
 	return false;
     });
 
+    $('#create_trip_invite_form').submit(function(){
+    	$(this).ajaxSubmit(create_trip_options);
+	return false;
+    });
 
     $('#add_dest_btn').click(function(e){
     	e.preventDefault();

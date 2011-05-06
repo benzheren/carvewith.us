@@ -272,8 +272,9 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
     <!----- End Right Column Invite Message ----->
     
 	 <!----- Main Column / People ----->
-	<div id="column_main_people" class="grid_8 column_main">
-        
+     <div id="column_main_people" class="grid_8 column_main">
+	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_invite_form")}
+	<input type="hidden" name="step" value="3"/>
         <div class="outer">
         	<h4 class="tabhead">Invite List:</h4>
         	<ul class="users_list full">
@@ -308,7 +309,8 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
             
             </ul>
         </div>
-        
+	${form.csrf_token()}
+	${form.end()}
     </div>
     <!----- End Main Column People ----->
     
