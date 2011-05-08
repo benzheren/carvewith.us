@@ -20,7 +20,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
 	<h3 class="dark">Basic Details</h3>
 	<a class="button medium gray right" id="btn_view" href="viewtrip">View Trip Profile</a>
 </div>
-<div class="column_1 grid_3">
+<div class="column-side grid_3">
 	<form method="post" action="/upload" enctype="multipart/form-data" id="create_trip_pic_form" class="pic_upload">
 		<img src="" class="trip_pic" />
 		<div class="clear"> </div>
@@ -36,7 +36,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
 	</form>
         <div class="clear"> </div>
 </div>
-<div id="column_main_basic" class="grid_9 column_main">
+<div id="column-main_basic" class="grid_9 column-main">
 	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_basic_form")}
 	${form.hidden(name='picture')}
 	<input type="hidden" name="step" value="1"/>
@@ -56,7 +56,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
 	${form.end()}
 </div>
 <div class="bar line bottom">
-	<div class="column_1 grid_3"></div>
+	<div class="column-side grid_3"></div>
 	<div class="grid_4">
 		<a href="#" alt="2" class="button huge blue btn_next">Next  &rarr;</a>
         </div>
@@ -67,7 +67,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
         	<h3 class="dark">Logistics</h3>
             	<a href="viewtrip" id="btn_view" class="button medium gray right">View Trip Profile</a>
         </div>
-	<div id="column_main_logistics" class="grid_8 column_main">
+	<div id="column-main_logistics" class="grid_8 column-main">
 	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_logistics_form")}
 		<input type="hidden" name="step" value="2"/>
     		<div class="clear"></div>
@@ -245,7 +245,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
    
 	
     <!----- Right Column / Invite Message----->
-	<div id="column_left_contact" class="grid_4 column_1">
+	<div id="column_left_contact" class="grid_4 column-side">
        	<div class="outer">
        		<fb:login-button size="large">Connect Your Facebook Account</fb:login-button>
         </div>
@@ -272,7 +272,7 @@ from webhelpers.html.tags import text, textarea, radio, checkbox
     <!----- End Right Column Invite Message ----->
     
 	 <!----- Main Column / People ----->
-     <div id="column_main_people" class="grid_8 column_main">
+     <div id="column-main_people" class="grid_8 column-main">
 	${form.begin(url=request.route_url('create_trip_post'), id_="create_trip_invite_form")}
 	<input type="hidden" name="step" value="3"/>
         <div class="outer">

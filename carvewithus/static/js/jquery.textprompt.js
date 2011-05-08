@@ -29,7 +29,9 @@
                 }).blur(function () {
                     if (jQuery.trim($this.val()) == "") {
                         $this.css({ color: promptColor}).val(promptText);
-                    }
+                    } else {
+						 $this.css({ color: fontColor});
+					}
                 });
 				
 				var value = $this.val();

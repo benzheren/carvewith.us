@@ -6,7 +6,13 @@
 
 <link rel="stylesheet" href="../css/960reset.css" />
 <link rel="stylesheet" href="../css/main.css" />
+<link rel="stylesheet" href="../css/jquery-ui/custom-theme/jquery-ui-1.8.12.custom.css" />
 
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tip.js"></script>
+<script type="text/javascript" src="../js/jquery.textprompt.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/plugins-custom.js"></script>
 </head>
 
 <body>
@@ -47,7 +53,19 @@
 <div class="subhead_container">
     <div class="subhead">
         <div class="title">
-            <h3 class="grid_7">User Name</h3>
+        <form>
+            <h3>Looking to:</h3>
+            <select id="search-activity" class="text large">
+            	<option value="default">Activity</option>
+            	<option value="ski">Skiing</option>
+                <option value="board">Snowboard</option>
+            </select>
+            <h3>at:</h3>
+            <input id="search-destination" class="text large" type="text" alt="Snow Destination" />
+            <h3>on:</h3>
+            <input id="search-date-picker" class="text large" type="text" alt="Enter Date" />
+            <a href="findtrip" class="button medium green">Find</a>
+         <form>
         </div>
     </div>
 </div>
@@ -58,49 +76,17 @@
 
 <div  class="content container_12">
 	
-	<!----- Left Column ----->
-	<div class="column_1 grid_3">
-    	<!-- User Picture -->
-        <div class="outer">
-            <img src="" class="user_pic" />
-        </div>
-        <!-- User Picture -->
-        <div class="clear"> </div>
-        
-        <!-- Location -->
-        <div class="outer">
-            <h4>San Francisco, CA</h4>
-            
-        </div>
-        <!-- end Location -->
-        
-        <!-- Skill Level -->
-        
-        <div class="outer">
-            <div class="skill large">
-                  <span class="activity snowboard">Advance</span>
-                  <span class="activity ski">Intermediate</span>
-             </div>
-            
-        </div>
-        <!-- end Skill Level -->
-    </div>	
-	<!----- End Left Column ----->
-
-	<!----- Main Column / Basics----->
-	<div id="column_main_basic" class="grid_9 column_main">
+	<!----- Main Column / Results----->
+	<div id="column-main_basic" class="grid_12 column-main">
     
-    	<div class="top">
-        	<q class="short">I am a free rider. Here is a 140 char description about me.</q>
-        </div>
     	<div class="outer">
-        	<h4>My Trips</h4>
+        	<h4>94 Trips found</h4>
             <ul class="trips_list">
             	<li>
                 <div class="bar fill blue">
                               <h4 class="white">Trip Title here</h4>
                      </div>
-                <div class="grid_3 column_1 seperated">
+                <div class="grid_3 column-side border-right">
                     <!----- Dates ----->
                     <div id="dates" class="outer">
                         <div id="from_date" class="inner dates">
@@ -126,8 +112,8 @@
                     <!-- end Dates -->
                     <a href="viewtrip" class="button blue large full">View Trip</a>
                 </div>
-                
-                <div class="grid_6 column_main">
+
+                <div class="grid_7 column-main border-right">
                 	
                     <div class="outer">
                         <h6 class="destinations">San Franciso, CA &rarr; North Lake Tahoe, CA &rarr; Kirkwood</h6>
@@ -156,12 +142,57 @@
                         <img class="small" src="" /><span class="name">Stephanie</span><br />
 						</a></li>
                     </ul>
+                </div>
+                <div class="grid_3 column-side">
+                    <!-- Transportation -->
+                    <div id="transportation" class="outer">
+                        <h5>Logistics</h5>
+                        <div class="icons24 car"></div>
+                        <div class="indicator small">5</div>
+                        <div class="label small">Spots Remain</div>
+                    </div>
+                    <!-- end Transportation -->
+                    <!-- Lodging -->
+                    <div id="lodging" class="outer">
+                        
+                        <div class="icons24 house"></div>
+                        <div class="indicator small">Y</div>
+                        <div class="label small">Have Lodging</div>
+                    </div>
+                    <!-- end Lodging -->
+                 	 <!-- Organizer -->
+                    <div id="organizer" class="outer">
+                        <h5>Organizer</h5>
+                        <div class="user_small">
+                            <a id="user_###" class="block" href="">
+                            <img class="small" src="" />
+                            <h6 class="name">User Name</h6>
+                                <div class="skill">
+                                        <span class="activity snowboard">Pro</span>
+                                        <span class="activity ski">Intermediate</span>
+                                    </div>
+                            
+                            </a>	            
+                        </div>
+                    </div>
+                    <!-- end Organizer -->
+                </div>
                 </li>
-                
             </ul>
+        	
         </div>       
     </div>
-    <!----- End Main Column Basics ----->	
+    <!----- Bottom bar ----->
+        <div class="bar line">
+        	<h4>
+            	<a href="pg1" class="page-numbers">1</a>
+                <a href="pg1" class="page-numbers">2</a>
+            	<a href="pg1" class="page-numbers">3</a>
+                
+            </h4>
+        </div>
+   <!----- end Bottom bar ----->
+    <!----- End Main Column ----->	
 
  <div class="clear"> </div>
 </div>

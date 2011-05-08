@@ -11,7 +11,7 @@
 	<div class="bar line top">
 		<h3 class="dark">Basic Information</h3>
 	</div>
-	<div class="column_1 grid_3 create_profile_main">
+	<div class="column-side grid_3 create_profile_main">
 		<form method="post" action="/upload" enctype="multipart/form-data" id="create_profile_pic_form" class="pic_upload">
 			<img src="${request.static_url('carvewithus:static/images/cat.jpg')}" class="profile_pic">
 			<div class="clear"></div>
@@ -26,7 +26,7 @@
 			${form.csrf_token()}
 		</form>
 	</div>
-	<div class="grid_9 column_main">
+	<div class="grid_9 column-main">
 
 	${form.begin(url=request.route_url('create_profile'), id_="create_profile_form")}
 	${form.hidden(name='picture')}
@@ -57,7 +57,7 @@
 	${form.csrf_token()}
 	${form.end()}
 	<div class="bar line bottom">
-		<div class="column_1 grid_3">&nbsp;</div>
+		<div class="column-side grid_3">&nbsp;</div>
 		<div class="grid_4">
 			<a href="#" id="create_profile_done" class="button huge blue">Done</a>
 	    	</div>

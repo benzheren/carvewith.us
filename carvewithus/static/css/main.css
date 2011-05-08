@@ -181,8 +181,6 @@ h5 {
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 }
 
-
-
 .subhead .submenu {
 	display:block;
 	float:right;
@@ -245,6 +243,28 @@ h5 {
 	left:55px;
 	z-index:100;
 
+}
+
+.subhead form {
+	float:left;
+	display:block;
+	margin:3px 0px;
+}
+.subhead form, .subhead input, .subhead select, .subhead .button {
+	float:left;
+}
+.subhead input{
+	margin:7px 10px;
+	border:1px solid #666;
+	box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
+	
+}
+.subhead select {
+	margin:10px 10px;
+}
+.subhead .button.medium {
+	font-size:1.4em;
+	margin:7px 5px;
 }
 
 /****************************************
@@ -702,14 +722,7 @@ textarea.text {
 	height:15px;
 }
 
-.seperator {
-	width:90%;
-	border-bottom:1px solid #CCC;
-}
 
-.column_main .outer {
-	margin:10px 0px 30px 0px;
-}
 .outer {
 	width:100%;
 	overflow:hidden;
@@ -725,38 +738,72 @@ textarea.text {
 	Icons - Sprites
 *****************************************/
 
-.icon48 {
+.icons48 {
 	width:48px;
 	height:48px;
 	float:left;
 	background:url(../images/48-icons-sprite.png) no-repeat;
 }
 
-.icon48.car {
-	background-position: 0px -140px;
-}
+.icons48.car1 	{ background-position: 0 0;} 
+.icons48.house 	{ background-position: 0 -59px;} 
+.icons48.car 	{ background-position: 0 -118px;} 
+.icons48.ski 	{ background-position: 0 -177px;} 
+.icons48.snowboard { background-position: 0 -236px;} 
 
-.icon48.house {
-	background-position: 0px -65px;
+.icons24 {
+	width:24px;
+	height:24px;
+	float:left;
+	background:url(../images/24-icons-sprite.png) no-repeat;
 }
+.icons24.car1{ background-position: 0 0;  } 
+.icons24.house{background-position: 0 -34px;  } 
+.icons24.car{ background-position: 0 -68px;  } 
+.icons24.ski{ background-position: 0 -102px;  } 
+.icons24.snowboard{ background-position: 0 -136px;  } 
+
+
+.icons16.car1 { background-position: 0 0;} 
+.icons16.house{ background-position: 0 -26px;} 
+.icons16.car{ background-position: 0 -52px;} 
+.icons16.ski{ background-position: 0 -78px;} 
+.icons16.snowboard{ background-position: 0 -104px; } 
+
 
 /****************************************
-	Left Column 
+	 Content Columns
 *****************************************/
 
-.column_1 {
+.column-side {
 	background:#fff;
 	margin:15px 0 15px 15px;
 }
 
-.column_1.seperated {
+.column-main {
+	padding:0px 0px;
+	display:block;
+}
+
+.column-main .outer {
+	margin:10px 0px 30px 0px;
+}
+
+.column-main .top {
+	padding:10px 0px 5px 0px;
+	border-bottom:1px solid #CCC;
+	overflow:hidden;
+}
+
+
+.border-right {
 	border-right:1px solid #ccc;
 }
 
 
 
 /****************************************
-	Left Column - Trip Profile
+	Left Column - Trips
 *****************************************/
 .trip_pic {
 	width:205px;
@@ -807,25 +854,40 @@ textarea.text {
 	font-weight:bold;
 }
 
-.outer .indicator {
+
+
+.indicator {
 	float:left;
-	font-size:2.4em;
-	background:#a7bfe8;
+	background:#280078;
 	font-weight:900;
 	color:#FFF;
-	padding: 7px 14px;
-	margin:3px 5px 5px 10px;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-	
-
 }
-.outer .label {
+.indicator.large {
+	font-size:2.4em;
+	padding: 7px 14px;
+	margin:3px 5px 5px 10px;
+	
+}
+.indicator.small {
+	font-size:1.6em;
+	padding: 5px 10px;
+	margin:0px 5px;	
+}
+
+.label.large {
 	float:left;
 	font-size:1.4em;
 	margin:0px;
 	padding: 10px 0px;
+}
+.label.small {
+	float:left;
+	font-size:1.4em;
+	margin:0px;
+	padding: 3px 0px;
 }
 
 
@@ -840,28 +902,17 @@ textarea.text {
 	min-height:120px;
 }
 
-.skill.large .activity {
-	background:url(../images/48-icons-sprite.png) no-repeat;
-	padding: 10px 0 0 52px;
-	min-height:48px;
-	margin:3px 5px 0 0;
+.skills-large .label {
+	padding: 20px 0 0 5px;
 	color:#666;
 	font-size:1.6em;
-	float:left;
-	clear:both;
-}
 
-.skill.large .activity.snowboard {
-	background-position:0px -286px;	
 }
-.skill.large .activity.ski {
-	background-position:0px -206px;	
-}
-
 
 /****************************************
 	Users List 
 *****************************************/
+
 .user_small, .users_list {
 	display:block;
 	overflow:hidden;
@@ -904,7 +955,6 @@ textarea.text {
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-
 }
 
 .users_list.full li {
@@ -921,17 +971,13 @@ textarea.text {
 	box-shadow:0 0 0;-webkit-box-shadow:0 0 0;-moz-box-shadow:0 0 0;
 	border-radius: 0;-moz-border-radius: 0;-webkit-border-radius: 0;
 }
-
-
 .users_list.small li:hover {
 	background:#eee;
 }
 
-
 .users_list.full li .grid_1,  .users_list.full li .grid_5{
 	padding:0;
 	margin:0;
-	
 }
 .user_small, .users_list li a {
 	color:#000;
@@ -939,8 +985,6 @@ textarea.text {
 .user_small a:hover, .users_list li a:hover{
 	text-decoration:none;
 }
-
-
 
 .user_small img, .users_list li img{
 	width:48px;
@@ -976,12 +1020,11 @@ textarea.text {
 	min-height:24px;
 	color:#666;
 }
-
 .activity.snowboard {
-	background-position:0px -96px;	
+	background-position: 0 -78px;
 }
 .activity.ski {
-	background-position:0px -70px;	
+	background-position: 0 -104px;	
 }
 
 .users_list.full li .skill {
@@ -1020,7 +1063,7 @@ textarea.text {
 /****************************************
 	Trips List 
 *****************************************/
-.trips_list {
+ul.trips_list {
 	display:block;
 	overflow:hidden;
 }
@@ -1039,9 +1082,13 @@ textarea.text {
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.trips_list li.alt {
-	background:#eee;
+
+.trips_list li .column-side, .trips_list li .column-main {
+	display:block;
+	margin:0px 0px 10px 10px;
+	min-height:180px;
 }
+
 
 .trips_list .grid_3 {
 	width:170px;	
@@ -1062,7 +1109,6 @@ textarea.text {
 	margin:0 0 0 15px;
 }
 
-
 .trips_list h6.destinations {
 	font-weight:900;
 	font-size:1.4em;
@@ -1075,7 +1121,7 @@ textarea.text {
 	margin:10px 0;
 }
 /****************************************
-	Main Column - Trip Profile
+Column Main - Trip Profile
 *****************************************/
 
 .outer h4 {
@@ -1088,37 +1134,32 @@ textarea.text {
 	padding:10px 0px 10px 0px;
 }
 
-.column_main {
-	padding:0px 0px;
-	display:block;
-}
-.column_main .top {
-	padding:10px 0px 5px 0px;
-	border-bottom:1px solid #CCC;
-	overflow:hidden;
+.outer p.description {
+	font-size:1.2em;	
 }
 
-
-.column_main .button.left {
+.column-main .button.left {
 	float:left;
 	margin:0px 10px 0px 0px;
 }
 
 
-.column_main .share {
+.share {
 	float:left;
 	width:300px;
 	list-style:none;
 }
-.column_main .share li {
+.share li {
 	float:left;
 	clear:none;
 }
 
-p.description {
-	font-size:1.2em;	
-}
-#ds_col_main {
+
+/*******************************
+Trip Profile - Destinations list
+********************************/
+
+#destinations-container {
 	float:left;
 	display:inline;
 	width:500px;
@@ -1205,21 +1246,18 @@ ul#destination_list .time {
 	width:200px;
 }
 
-map {
+#ds_col_right map {
 	width:100%;
 	height:200px;
 	background:#ccc;
 	display:block;
 }
 
-/****************************************
-	Create Trip Main
-*****************************************/
 
 /****************************************
-	Create Trip - Logistics
+	Create Trip 
 *****************************************/
-#column_main_logistics form {
+#column-main_logistics form {
 	margin:0 15px;
 }
 

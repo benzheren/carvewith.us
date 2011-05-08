@@ -18,6 +18,9 @@ $(document).ready(function(){
 	$('input[type="text"]').promptText();
 	$('textarea').promptText();
 	
+	$('#search-date-picker').datepicker();
+	
+	
 	$('#btn_next').click(function(){
 		
 		$('textarea').tooltip('destroy');
